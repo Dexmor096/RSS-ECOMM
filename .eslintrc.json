@@ -1,13 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "next",
-    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-    "eslint-config-next"
+    "next/core-web-vitals"
   ],
   "env": {
     "browser": true,
@@ -24,7 +22,7 @@
     "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint", "react", "prettier", "react-hooks", "next"
+    "@typescript-eslint", "react", "prettier", "react-hooks"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
@@ -42,10 +40,7 @@
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-var-reqiures": "off",
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "next/no-page-api": "error",
-    "next/no-img-element": "error",
-    "next/no-script-tags": "error"
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {
