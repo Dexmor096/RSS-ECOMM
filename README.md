@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# eCommerce Application
+## Introduction
+This is an educational project built using Next.js with React, TypeScript, and Material UI. The platform aims to replicate the real shopping experience in a digital environment, offering a smooth user journey from product discovery to order placement, enhancing user engagement and boosting confidence in making purchases.
 
-## Getting Started
+Users can explore a wide range of products, view detailed descriptions, add preferred items to the shopping cart, and proceed to checkout. The application includes user registration and login functionality, product search, product categorization, and sorting features to make the shopping process organized and convenient.
 
-First, run the development server:
+### Key Features
+- Realistic shopping experience in a digital environment.
+- User registration and login functionality.
+- Product browsing, detailed descriptions, and cart management.
+- Responsive design to ensure a seamless experience on devices with a minimum resolution of 390 pixels.
+### Key Pages
+- **Login and Registration Pages**: 
+Allow users to create accounts or log in to existing ones.
+- **Home Page**: Display featured products and offer navigation to different product categories.
+- **Product Catalog Page**: Show a list of products in the catalog with filtering and sorting options.
+- **Product Details Page**: Present comprehensive information about a selected product.
+- **User Profile Page**: Enable users to manage their profiles and account settings.
+- **Shopping Cart Page**: Provide a summary of items in the cart and options for checkout.
+- **About Us Page**: Introduce the platform and the team behind it.
+### Installation and Usage
+Clone the repository to your local machine.
+Navigate to the project directory.
+Install dependencies using npm install.
+#### Available Scripts
+In the project directory, you can run the following commands:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Development Server: **npm run dev** to start the Next.js development server.
+- Build: **npm run build** to build the production-ready application.
+- Start: **npm run start** to start the production server after building.
+- Linting: **npm run lint** to perform code linting.
+- Testing: **npm test** to execute the test suite with Jest.
+- Testing (Watch): **npm run test:watch** to run tests in watch mode.
+- Testing (Coverage): **npm run test:coverage** to generate test coverage reports.
+- Prepare: **npm run prepare** to install Husky, enabling Git hooks for pre-commit actions.
+### Technology Stack
+#### Frontend: 
+- Next.js
+- React
+- TypeScript
+- Material UI
+#### Backend: 
+- CommerceTools - a leading provider of B2C and B2B commerce solutions.
+### Feedback and Contributions
+We welcome feedback and contributions from the community to improve this educational project further. Please feel free to create issues, submit pull requests, or contact us with any suggestions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thank you for using our platform! Happy shopping! 🛍️
