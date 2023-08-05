@@ -4,8 +4,8 @@ import Link from "next/link";
 const Header = (): ReactElement => {
   return (
     <header>
-      <Link href="/registration">Registration Page </Link>
-      <Link href="/login">Login Page</Link>
+      <Link href="/auth/registration">Registration Page </Link>
+      <Link href="/auth/login">Login Page</Link>
     </header>
   );
 };
