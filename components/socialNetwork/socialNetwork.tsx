@@ -1,12 +1,17 @@
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import NetworkIcon from "./networkIcon";
+import Stack from "@mui/material/Stack";
 
-export default function SocialNetwork() {
+export default function SocialNetwork({
+  description,
+}: {
+  description: string;
+}) {
   return (
-    <>
-      <Typography variant="h6" color="inherit">
-        ИЛИ ВОЙДИ С ПОМОЩЬЮ...
+    <Stack spacing={1} sx={{ textAlign: "center" }}>
+      <Typography variant="h5" color="inherit">
+        {description}
       </Typography>
       <Grid container spacing={1} justifyContent="center" alignItems="center">
         <Grid item xs={6}>
@@ -22,6 +27,6 @@ export default function SocialNetwork() {
           <NetworkIcon source="facebook" text="facebook" />
         </Grid>
       </Grid>
-    </>
+    </Stack>
   );
 }

@@ -32,7 +32,7 @@ export default function Login() {
           <Link href="#" underline="none" color="inherit">
             Забыли пароль?
           </Link>
-          <SocialNetwork />
+          <SocialNetwork description="или войди с помощью..." />
         </Stack>
       </Container>
     </Box>
