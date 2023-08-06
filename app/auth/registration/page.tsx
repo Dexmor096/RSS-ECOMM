@@ -1,6 +1,3 @@
-import { ReactElement } from "react";
-const Registration = (): ReactElement => {
+export default function Registration() {
   return <h1>Registration</h1>;
-};
-
-export default Registration;
+}
