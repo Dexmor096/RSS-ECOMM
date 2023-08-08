@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import SocialNetwork from "../../../components/socialNetwork/socialNetwork";
+import SocialNetwork from "components/socialNetwork/socialNetwork";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";

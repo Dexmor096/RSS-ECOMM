@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-import SocialNetwork from "../../../components/socialNetwork/socialNetwork";
+import SocialNetwork from "components/socialNetwork/socialNetwork";
 
 export default function Login() {
   return (
