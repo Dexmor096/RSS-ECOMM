@@ -1,8 +1,7 @@
-import { ReactElement } from "react";
 import Link from "next/link";
 import Button from "@mui/material/Button";
 
-const Header = (): ReactElement => {
+export default function Header() {
   return (
     <header>
       <Link href="/auth/registration">Registration Page </Link>
@@ -10,6 +9,4 @@ const Header = (): ReactElement => {
       <Button href="/auth/">Authorization</Button>
     </header>
   );
-};
-
-export default Header;
+}
