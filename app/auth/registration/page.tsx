@@ -1,3 +1,4 @@
+
 import { ReactElement } from "react";
 import SocialNetwork from "components/socialNetwork/socialNetwork";
 import Container from "@mui/material/Container";
@@ -88,3 +89,7 @@ const Registration = (): ReactElement => {
 };
 
 export default Registration;
+
+export default function Registration() {
+  return <h1>Registration</h1>;
+}
