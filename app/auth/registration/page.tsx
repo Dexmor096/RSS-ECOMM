@@ -1,4 +1,3 @@
-
 import { ReactElement } from "react";
 import SocialNetwork from "components/socialNetwork/socialNetwork";
 import Container from "@mui/material/Container";
@@ -8,7 +7,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const Registration = (): ReactElement => {
+export default function Registration(): ReactElement {
   return (
     <Stack
       spacing={2}
@@ -86,10 +85,4 @@ const Registration = (): ReactElement => {
       </Container>
     </Stack>
   );
-};
-
-export default Registration;
-
-export default function Registration() {
-  return <h1>Registration</h1>;
 }
