@@ -1,5 +1,5 @@
-import Button from '@mui/material/Button';
-import Image from 'next/image';
+import Button from "@mui/material/Button";
+import Image from "next/image";
 
 export default function NetworkIcon({
   source,
@@ -12,7 +12,7 @@ export default function NetworkIcon({
     <Button
       variant="outlined"
       color="inherit"
-      sx={{ width: '100%', p: 1 }}
+      sx={{ width: "100%", p: 1 }}
       startIcon={
         <Image
           src={`/assets/logo/${source}.svg`}

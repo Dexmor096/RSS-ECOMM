@@ -1,15 +1,15 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Header from '../components/header/header';
-import Footer from 'components/footer/footer';
-import Container from '@mui/material/Container';
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Header from "../components/header/header";
+import Footer from "components/footer/footer";
+import Container from "@mui/material/Container";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'eCommerce Application',
-  description: '',
+  title: "eCommerce Application",
+  description: "",
 };
 
 export default function RootLayout({

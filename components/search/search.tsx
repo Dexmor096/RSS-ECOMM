@@ -1,6 +1,6 @@
-import styles from './search.module.css';
-import SearchIcon from '@mui/icons-material/Search';
-import { TextField, InputAdornment, IconButton } from '@mui/material';
+import styles from "./search.module.css";
+import SearchIcon from "@mui/icons-material/Search";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
 
 export default function Search() {
   return (
@@ -9,8 +9,8 @@ export default function Search() {
       type="search"
       className={styles.search}
       sx={{
-        border: 'none',
-        '& fieldset': { border: 'none' },
+        border: "none",
+        "& fieldset": { border: "none" },
       }}
       InputProps={{
         startAdornment: (

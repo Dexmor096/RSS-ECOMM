@@ -1,17 +1,17 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Stack, Typography, Container } from '@mui/material';
-import styles from './footer.module.css';
-import youtube from '../../public/assets/footer/youtube.svg';
-import vk from '../../public/assets/footer/vk.svg';
-import facebook from '../../public/assets/footer/facebook.svg';
-import insta from '../../public/assets/footer/insta.svg';
-import logoSVG from '../../public/assets/icons/logo.svg';
-import { Montserrat } from 'next/font/google';
+import Link from "next/link";
+import Image from "next/image";
+import { Stack, Typography, Container } from "@mui/material";
+import styles from "./footer.module.css";
+import youtube from "../../public/assets/footer/youtube.svg";
+import vk from "../../public/assets/footer/vk.svg";
+import facebook from "../../public/assets/footer/facebook.svg";
+import insta from "../../public/assets/footer/insta.svg";
+import logoSVG from "../../public/assets/icons/logo.svg";
+import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
-  weight: '400',
-  subsets: ['latin'],
+  weight: "400",
+  subsets: ["latin"],
 });
 
 export default function Footer() {
