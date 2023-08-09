@@ -12,12 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import SocialNetwork from "components/socialNetwork/socialNetwork";
-import {
-  useForm,
-  Controller,
-  useController,
-  UseControllerProps,
-} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 type FormInputs = {
   email: string;
