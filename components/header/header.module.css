@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Helvetica';
+  src: url('../../public/assets/fonts/helvetica.ttf');
+  font-weight: 400;
+}
+
+.header {
+  font-family: Helvetica, sans-serif;
+  background: rgba(17, 17, 17, 0.9);
+  color: #fff;
+}

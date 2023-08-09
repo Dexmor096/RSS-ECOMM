@@ -1,28 +1,28 @@
-import { ReactElement } from "react";
-import SocialNetwork from "components/socialNetwork/socialNetwork";
-import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import { ReactElement } from 'react';
+import SocialNetwork from 'components/socialNetwork/socialNetwork';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function Registration(): ReactElement {
   return (
     <Stack
       spacing={2}
       sx={{
-        textAlign: "center",
-        alignItems: "center",
-        justifyContent: "center",
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Container
         maxWidth="xs"
         sx={{
-          height: "auto",
-          width: "auto",
-          p: "10px 0",
+          height: 'auto',
+          width: 'auto',
+          p: '10px 0',
         }}
       >
         <SocialNetwork description="зарегистрироваться через" />
@@ -39,13 +39,13 @@ export default function Registration(): ReactElement {
       <Container
         maxWidth="xs"
         sx={{
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
         }}
       >
-        <Box component="form" sx={{ p: "20px" }}>
+        <Box component="form" sx={{ p: '20px' }}>
           <TextField
             id=""
             label="E-mail"
