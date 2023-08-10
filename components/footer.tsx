@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Stack, Typography, Container, Paper, Link, Box } from "@mui/material";
+import { Stack, Typography, Container, Link, Box } from "@mui/material";
 import youtube from "../public/assets/footer/youtube.svg";
 import vk from "../public/assets/footer/vk.svg";
 import facebook from "../public/assets/footer/facebook.svg";
