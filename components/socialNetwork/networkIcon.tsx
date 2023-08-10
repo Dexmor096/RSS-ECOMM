@@ -15,7 +15,7 @@ export default function NetworkIcon({
       sx={{ width: "100%", p: 1 }}
       startIcon={
         <Image
-          src={`/logo/${source}.svg`}
+          src={`/assets/logo/${source}.svg`}
           width={20}
           height={20}
           alt="google"
