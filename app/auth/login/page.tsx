@@ -54,9 +54,20 @@ export default function Login() {
                   value: true,
                   message: "E-mail не может быть пустым",
                 },
-                pattern: {
-                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                  message: "Не корректный e-mail",
+                validate: {
+                  hasSpace: (value) =>
+                    /^[^\s]+(\s+[^\s]+)*$/.test(value) ||
+                    "Пароль не должен содержать начальные или конечные пробелы",
+                  hasDomain: (value) =>
+                    /[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value) ||
+                    "Адрес электронной почты должен содержать доменное имя (например, example.com)",
+                  hasDogSymbol: (value) =>
+                    /@/.test(value) ||
+                    "Адрес электронной почты должен содержать @",
+                  hasIncorrect: (value) =>
+                    /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
+                      value,
+                    ) || "Не корректный e-mail",
                 },
               })}
             />
@@ -76,6 +87,25 @@ export default function Login() {
               type="password"
               aria-describedby="component-helper-text"
               {...register("password", {
+                validate: {
+                  isUpper: (value) =>
+                    /[A-ZА-Я]/.test(value) ||
+                    "Пароль должен содержать хотя бы одну заглавную букву (A-Z, А-Я)",
+                  isLower: (value) =>
+                    /[a-zа-я]/.test(value) ||
+                    "Пароль должен содержать хотя бы одну строчную букву (a-z, а-я)",
+                  isNumber: (value) =>
+                    /[0-9]/.test(value) ||
+                    "Пароль должен содержать как минимум одну цифру (0-9)",
+                  hasSpace: (value) =>
+                    /^[-a-zA-Zа-яА-я0-9-()!@#$%^&*_]+(\s+[-a-zA-Zа-яА-я0-9-()!@#$%^&*_]+)*$/.test(
+                      value,
+                    ) ||
+                    "Пароль не должен содержать начальные или конечные пробелы",
+                  hasSpecial: (value) =>
+                    /[!@#$%^&*_]/.test(value) ||
+                    "Пароль должен содержать хотя бы один специальный символ (например, ! @ # $ % ^ & * _ )",
+                },
                 minLength: {
                   value: 8,
                   message: "Пароль должен содержать минимум 8 символов",
@@ -89,7 +119,7 @@ export default function Login() {
             <FormHelperText error id="component-helper-text">
               {errors?.password && (
                 <Typography variant="body1" component="span">
-                  {errors.password?.message || "Error"}
+                  {errors.password?.message}
                 </Typography>
               )}
             </FormHelperText>
