@@ -5,7 +5,6 @@ import vk from "../public/assets/footer/vk.svg";
 import facebook from "../public/assets/footer/facebook.svg";
 import insta from "../public/assets/footer/insta.svg";
 import logoSVG from "../public/assets/icons/logo.svg";
-// import styles from "./footer.module.css";
 import footerBg from "../public/assets/footer/footer_bg.png";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
@@ -16,18 +15,6 @@ const montserrat = Montserrat({
   weight: "400",
   subsets: ["latin"],
 });
-
-//footer styles
-
-// .footer {
-//   background:
-//     linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%),
-//     url("../../public/assets/footer/footer_bg.png"),
-//     lightgray 0px -292.703px / 100% 205.473% no-repeat;
-//   color: #ffffff;
-//   font-family: Helvetica, sans-serif;
-//   font-size: 14px;
-// }
 
 const footerLinkSX = {
   color: "inherit",

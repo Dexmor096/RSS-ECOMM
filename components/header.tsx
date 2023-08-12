@@ -6,33 +6,18 @@ import profileSVG from "../public/assets/icons/profile.svg";
 import wishlistSVG from "../public/assets/icons/wishlist.svg";
 import { AppBar, Toolbar, Container, Stack, Link } from "@mui/material";
 import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
+
+const helveticaReg = localFont({ src: "../public/assets/fonts/helvetica.ttf" });
 
 const montserrat = Montserrat({
   weight: "400",
   subsets: ["latin"],
 });
 
-// header styles
-
-// @font-face {
-//   font-family: 'Helvetica';
-//   src: url('../../public/assets/fonts/helvetica.ttf');
-//   font-weight: 400;
-// }
-
-// .header {
-//   font-family: Helvetica, sans-serif;
-//   background: rgba(17, 17, 17, 0.9);
-//   color: #fff;
-// }
-
-// a:hover::before {
-//   transform-origin: left;
-//   transform: scaleX(1);
-// }
-
 const headerLinkSX = {
   color: "inherit",
+  letterSpacing: "0.84px",
   transition: "all 0.25s ease",
   textDecoration: "none",
   borderBottom: "2px solid transparent ",
@@ -99,25 +84,25 @@ export default function Header() {
             justifyContent="space-evenly"
             paddingBottom="20px"
           >
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
               Sale
             </Link>
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
               Mountain
             </Link>
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
               Road
             </Link>
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
               Active
             </Link>
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
               Kids
             </Link>
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
               city
             </Link>
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
               Accessories
             </Link>
           </Stack>
