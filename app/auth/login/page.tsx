@@ -11,8 +11,13 @@ import {
   FormHelperText,
   Typography,
 } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
 import SocialNetwork from "components/socialNetwork/socialNetwork";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 type FormInputs = {
   email: string;
@@ -20,6 +25,14 @@ type FormInputs = {
 };
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+  };
+
   const {
     register,
     formState: { errors },
@@ -46,10 +59,6 @@ export default function Login() {
             <FilledInput
               fullWidth
               {...register("email", {
-                minLength: {
-                  value: 5,
-                  message: `min length 5`,
-                },
                 required: {
                   value: true,
                   message: "E-mail не может быть пустым",
@@ -57,7 +66,7 @@ export default function Login() {
                 validate: {
                   hasSpace: (value) =>
                     /^[^\s]+(\s+[^\s]+)*$/.test(value) ||
-                    "Пароль не должен содержать начальные или конечные пробелы",
+                    "Адрес электронной почты не должен содержать начальные или конечные пробелы",
                   hasDomain: (value) =>
                     /[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value) ||
                     "Адрес электронной почты должен содержать доменное имя (например, example.com)",
@@ -84,8 +93,8 @@ export default function Login() {
             <InputLabel htmlFor="component-helper">Password</InputLabel>
             <FilledInput
               fullWidth
-              type="password"
               aria-describedby="component-helper-text"
+              type={showPassword ? "text" : "password"}
               {...register("password", {
                 validate: {
                   isUpper: (value) =>
@@ -115,6 +124,18 @@ export default function Login() {
                   message: "Пароль не может быть пустым",
                 },
               })}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
             <FormHelperText error id="component-helper-text">
               {errors?.password && (
