@@ -1,10 +1,21 @@
+"use client";
+import React, { useState } from "react";
+import NextLink from "next/link";
 import Image from "next/image";
 import Search from "./search";
 import logoSVG from "../public/assets/icons/logo.svg";
 import cartSVG from "../public/assets/icons/cart.svg";
 import profileSVG from "../public/assets/icons/profile.svg";
 import wishlistSVG from "../public/assets/icons/wishlist.svg";
-import { AppBar, Toolbar, Container, Stack, Link } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Container,
+  Stack,
+  Link,
+  Tab,
+  Tabs,
+} from "@mui/material";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -20,7 +31,7 @@ const headerLinkSX = {
   letterSpacing: "0.84px",
   transition: "all 0.25s ease",
   textDecoration: "none",
-  borderBottom: "2px solid transparent ",
+  borderBottom: "2px solid transparent",
   "&:hover": { borderBottom: "2px solid #006AD5", transform: "scaleX(1.05)" },
 };
 
@@ -32,6 +43,7 @@ const IconSX = {
 };
 
 export default function Header() {
+  const [value, setValue] = useState();
   return (
     <AppBar
       position="static"
@@ -50,20 +62,29 @@ export default function Header() {
             alignItems="center"
             borderBottom="1px solid rgba(255, 255, 255, 0.40)"
           >
-            <Link href="/">
+            <NextLink href="/">
               <Image src={logoSVG} alt="logo" />
-            </Link>
+            </NextLink>
             <Search />
 
-            <Stack className={montserrat.className} direction="row" spacing={7}>
-              <Link href="#" sx={headerLinkSX}>
-                About us
-              </Link>
-              <Link href="#" sx={headerLinkSX}>
-                Contacts
-              </Link>
-            </Stack>
-            <Stack direction="row" spacing={4}>
+            <Tabs>
+              <NextLink href="/about-us">
+                <Tab
+                  sx={headerLinkSX}
+                  label="About us"
+                  className={montserrat.className}
+                />
+              </NextLink>
+              <NextLink href="/contacts">
+                <Tab
+                  sx={headerLinkSX}
+                  label="Contacts"
+                  className={montserrat.className}
+                />
+              </NextLink>
+            </Tabs>
+
+            <Stack direction="row" spacing={{ md: 3, xl: 4 }}>
               <Link href="/auth/login" sx={IconSX}>
                 <Image src={profileSVG} alt="button entrie" />
               </Link>
@@ -76,36 +97,68 @@ export default function Header() {
             </Stack>
           </Stack>
 
-          <Stack
-            padding="22px 0"
-            textTransform="uppercase"
-            direction="row"
-            display="flex"
-            justifyContent="space-evenly"
-            paddingBottom="20px"
+          <Tabs
+            value={value}
+            onChange={(e, value) => setValue(value)}
+            sx={{
+              padding: "8px 0",
+              textTransform: "uppercase",
+              direction: "row",
+              display: "flex",
+              justifyContent: "space-evenly",
+              "& .css-heg063-MuiTabs-flexContainer": {
+                justifyContent: "space-evenly",
+              },
+              "& .css-9589is-MuiButtonBase-root-MuiTab-root": {
+                padding: "13px 16px",
+                minHeight: "37px",
+                minWidth: "70px",
+                fontSize: "19px",
+              },
+            }}
           >
-            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
-              Sale
-            </Link>
-            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
-              Mountain
-            </Link>
-            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
-              Road
-            </Link>
-            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
-              Active
-            </Link>
-            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
-              Kids
-            </Link>
-            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
-              city
-            </Link>
-            <Link href="#" sx={headerLinkSX} className={helveticaReg.className}>
-              Accessories
-            </Link>
-          </Stack>
+            <Tab
+              label="Sale"
+              sx={headerLinkSX}
+              className={helveticaReg.className}
+            />
+
+            <Tab
+              label="Mountain"
+              sx={headerLinkSX}
+              className={helveticaReg.className}
+            />
+
+            <Tab
+              label="Road"
+              sx={headerLinkSX}
+              className={helveticaReg.className}
+            />
+
+            <Tab
+              label="Active"
+              sx={headerLinkSX}
+              className={helveticaReg.className}
+            />
+
+            <Tab
+              label="Kids"
+              sx={headerLinkSX}
+              className={helveticaReg.className}
+            />
+
+            <Tab
+              label="city"
+              sx={headerLinkSX}
+              className={helveticaReg.className}
+            />
+
+            <Tab
+              label="Accessories"
+              sx={headerLinkSX}
+              className={helveticaReg.className}
+            />
+          </Tabs>
         </Container>
       </Toolbar>
     </AppBar>
