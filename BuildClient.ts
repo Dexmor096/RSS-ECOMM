@@ -7,7 +7,7 @@ import {
   type HttpMiddlewareOptions, // Required for sending HTTP requests
 } from "@commercetools/sdk-client-v2";
 
-export const projectKey = "ygvyvt";
+export const projectKey = "specialized-api";
 const scopeList = [
   `view_published_products`,
   `create_anonymous_token`,
@@ -17,6 +17,7 @@ const scopeList = [
   `manage_my_business_units`,
   `manage_my_shopping_lists`,
   `manage_my_orders`,
+  `view_products`,
 ];
 const scopes = scopeList.map((it) => it.concat(":", projectKey));
 
@@ -25,8 +26,8 @@ const authMiddlewareOptions: AuthMiddlewareOptions = {
   host: "https://auth.europe-west1.gcp.commercetools.com",
   projectKey: projectKey,
   credentials: {
-    clientId: "1ppOtIM0a14j4IeryfUtXNh4",
-    clientSecret: "z7jAsa5JLN8Yz8AWRfkCgzKgEWqMegyc",
+    clientId: "wuTEwe-ysq2Af8gejc3ckkX7",
+    clientSecret: "uTkAPqDpdEywYvNfinEbsGtlk-QYv3hN",
   },
   scopes,
   fetch,
