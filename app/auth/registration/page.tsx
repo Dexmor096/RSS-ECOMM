@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
+import { apiRoot } from "../../../apiRoot";
 type RegistrationInputs = {
   email: string;
   name: string;
@@ -21,8 +22,26 @@ export default function Registration(): ReactElement {
     formState: { errors },
   } = useForm<RegistrationInputs>();
 
-  const onSubmit = (data: RegistrationInputs) => {
+  const onSubmit = async (data: RegistrationInputs) => {
     console.log(data, errors);
+
+    const createCustomer = () => {
+      return apiRoot
+        .customers()
+        .post({
+          // The CustomerDraft is the object within the body
+          body: {
+            email: data.email,
+            password: data.password,
+          },
+        })
+        .execute();
+    };
+    createCustomer()
+      .then(({ body }) => {
+        console.log(body.customer.id);
+      })
+      .catch(console.error);
   };
 
   return (
