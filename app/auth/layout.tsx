@@ -14,7 +14,7 @@ export default function AuthLayout({
       elevation={8}
       sx={{
         width: "40vw",
-        margin: "20px auto",
+        margin: "100px auto",
       }}
     >
       <Box sx={{ margin: "5px auto" }}>

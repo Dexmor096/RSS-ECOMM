@@ -76,7 +76,7 @@ export default function Login() {
                   hasIncorrect: (value) =>
                     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
                       value,
-                    ) || "Не корректный e-mail",
+                    ) || "Некорректный e-mail",
                 },
               })}
             />
