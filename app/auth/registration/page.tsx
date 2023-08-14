@@ -20,6 +20,7 @@ export default function Registration(): ReactElement {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<RegistrationInputs>();
 
   const onSubmit = async (data: RegistrationInputs) => {
@@ -29,7 +30,6 @@ export default function Registration(): ReactElement {
       return apiRoot
         .customers()
         .post({
-          // The CustomerDraft is the object within the body
           body: {
             email: data.email,
             password: data.password,
@@ -40,6 +40,7 @@ export default function Registration(): ReactElement {
     createCustomer()
       .then(({ body }) => {
         console.log(body.customer.id);
+        reset();
       })
       .catch(console.error);
   };
