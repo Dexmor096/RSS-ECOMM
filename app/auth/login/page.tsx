@@ -4,14 +4,21 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-import SocialNetwork from "components/socialNetwork/socialNetwork";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Login() {
   return (
     <Box component="form">
       <Container
-        maxWidth="xs"
+        disableGutters={true}
         sx={{
+          maxWidth: "480px",
+          width: "480px",
           height: "auto",
           alignItems: "center",
           justifyContent: "center",
@@ -26,13 +33,18 @@ export default function Login() {
             type="password"
             variant="filled"
           />
-          <Button sx={{ p: 2 }} variant="contained" color="secondary">
+          <Button
+            sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
+            variant="contained"
+            fullWidth
+            color="secondary"
+            className={montserrat.className}
+          >
             Войти
           </Button>
           <Link href="#" underline="none" color="inherit">
             Забыли пароль?
           </Link>
-          <SocialNetwork description="или войди с помощью..." />
         </Stack>
       </Container>
     </Box>
