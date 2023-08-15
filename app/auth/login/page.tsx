@@ -1,3 +1,4 @@
+"use client";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -5,6 +6,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import SocialNetwork from "components/socialNetwork/socialNetwork";
+import NextLink from "next/link";
 
 export default function Login() {
   return (
@@ -29,7 +31,7 @@ export default function Login() {
           <Button sx={{ p: 2 }} variant="contained" color="secondary">
             Войти
           </Button>
-          <Link href="#" underline="none" color="inherit">
+          <Link href="/" component={NextLink} underline="none" color="inherit">
             Забыли пароль?
           </Link>
           <SocialNetwork description="или войди с помощью..." />
