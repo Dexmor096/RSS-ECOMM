@@ -72,6 +72,14 @@ export default function Registration(): ReactElement {
             helperText="Должно быть 10 символов или более"
             margin="normal"
           />
+          <TextField
+            id=""
+            label="Адрес доставки"
+            variant="filled"
+            fullWidth
+            helperText=""
+            margin="normal"
+          />
           <Button
             sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
             variant="contained"
