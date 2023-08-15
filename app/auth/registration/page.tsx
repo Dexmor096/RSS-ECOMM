@@ -42,7 +42,13 @@ export default function Registration(): ReactElement {
         console.log(body.customer.id);
         reset();
       })
-      .catch(console.error);
+      .catch((error) => {
+        if (error.statusCode == 400) {
+          console.error("Такой пользователь уже существует!");
+        } else {
+          console.error("An unknown error occurred:", error);
+        }
+      });
   };
 
   return (
