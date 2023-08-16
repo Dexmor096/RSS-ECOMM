@@ -22,6 +22,12 @@ const scopeList = [
 ];
 const scopes = scopeList.map((it) => it.concat(":", projectKey));
 
+// Configure httpMiddlewareOptions
+const httpMiddlewareOptions: HttpMiddlewareOptions = {
+  host: "https://api.europe-west1.gcp.commercetools.com",
+  fetch,
+};
+
 const anonymousId = String(generateRandomNumber());
 
 const anonymousOptions: AnonymousAuthMiddlewareOptions = {
@@ -33,12 +39,6 @@ const anonymousOptions: AnonymousAuthMiddlewareOptions = {
     anonymousId: anonymousId, // a unique id
   },
   scopes,
-  fetch,
-};
-
-// Configure httpMiddlewareOptions
-const httpMiddlewareOptions: HttpMiddlewareOptions = {
-  host: "https://api.europe-west1.gcp.commercetools.com",
   fetch,
 };
 
