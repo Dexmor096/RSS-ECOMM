@@ -9,6 +9,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { apiRoot } from "../../../apiRoot";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
+import { FilledInput, InputLabel } from "@mui/material";
 type RegistrationInputs = {
   email: string;
   name: string;
@@ -88,12 +91,21 @@ export default function Registration(): ReactElement {
             label="E-mail"
             variant="filled"
             fullWidth
-            helperText="Мы вышлем на него подтверждение заказа"
+            helperText={
+              errors
+                ? errors.email?.message
+                : "Мы вышлем на него подтверждение заказа"
+            }
             autoComplete="email"
             placeholder="example@email.ru"
             margin="normal"
             {...register("email", { required: true })}
           />
+          <FormControl>
+            <InputLabel htmlFor="component-helper">E-mail</InputLabel>
+            <FilledInput fullWidth />
+            <FormHelperText></FormHelperText>
+          </FormControl>
           <TextField
             id="name"
             label="Имя"
