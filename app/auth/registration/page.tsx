@@ -9,7 +9,10 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
-import { createCustomer } from "../functions/createCustomer";
+import {
+  createCustomer,
+  handleRegistrationError,
+} from "../functions/createCustomer";
 
 export type RegistrationInputs = {
   email: string;
@@ -26,12 +29,15 @@ export default function Registration(): ReactElement {
       password: data.password,
       name: data.name,
       lastname: data.lastname,
-    }).then(() => {
-      //todo в случае ошибки регистрации не совершать автоматический вход
-      loginUser({ email: data.email, password: data.password }).then(() => {
-        reset();
+    })
+      .then(() => {
+        loginUser({ email: data.email, password: data.password }).then(() => {
+          reset();
+        });
+      })
+      .catch((error) => {
+        handleRegistrationError(error);
       });
-    });
   };
 
   return (

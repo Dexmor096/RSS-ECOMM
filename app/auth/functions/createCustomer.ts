@@ -15,13 +15,10 @@ export const createCustomer = async (data: RegistrationInputs) => {
     .then(({ body }) => {
       console.log("Регистрация выполнена успешно!");
       console.log(body);
-    })
-    .catch((error) => {
-      handleRegistrationError(error);
     });
 };
 
-const handleRegistrationError = (error: HttpErrorType) => {
+export const handleRegistrationError = (error: HttpErrorType) => {
   //todo проверить тип ошибки
   if (error.statusCode === 400) {
     console.error(
