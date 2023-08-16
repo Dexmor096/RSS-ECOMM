@@ -8,49 +8,30 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-import { apiRoot } from "../../../apiRoot";
+import { loginUser } from "../functions/login";
+import { createCustomer } from "../functions/createCustomer";
 
-type RegistrationInputs = {
+export type RegistrationInputs = {
   email: string;
   name: string;
   lastname: string;
   password: string;
 };
 export default function Registration(): ReactElement {
-  const {
-    register,
-    handleSubmit,
-    //formState: { errors },
-    reset,
-  } = useForm<RegistrationInputs>();
+  const { register, handleSubmit, reset } = useForm<RegistrationInputs>();
 
   const onSubmit = async (data: RegistrationInputs) => {
-    const createCustomer = () => {
-      return apiRoot
-        .customers()
-        .post({
-          body: {
-            email: data.email,
-            password: data.password,
-          },
-        })
-        .execute();
-    };
-    createCustomer()
-      .then(({ body }) => {
-        console.log("Регистрация выполнена успешно!");
-        console.log(body);
-        //todo залогинить сразу после входа
-
+    createCustomer({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      lastname: data.lastname,
+    }).then(() => {
+      //todo в случае ошибки регистрации не совершать автоматический вход
+      loginUser({ email: data.email, password: data.password }).then(() => {
         reset();
-      })
-      .catch((error) => {
-        if (error.statusCode == 400) {
-          console.error("Такой пользователь уже существует!");
-        } else {
-          console.error("An unknown error occurred:", error);
-        }
       });
+    });
   };
 
   return (
