@@ -132,11 +132,6 @@ export default function Registration(): ReactElement {
             fullWidth
             color="secondary"
             className={montserrat.className}
-          <Button
-            sx={{ p: 2 }}
-            variant="contained"
-            fullWidth
-            color="secondary"
             onClick={handleSubmit(onSubmit)}
           >
             Зарегистрироваться
