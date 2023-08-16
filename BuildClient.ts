@@ -6,6 +6,7 @@ import {
   type HttpMiddlewareOptions,
   AnonymousAuthMiddlewareOptions, // Required for sending HTTP requests
 } from "@commercetools/sdk-client-v2";
+import { generateRandomNumber } from "./helpers/generateNumber";
 
 export const projectKey = "ygvyvt";
 const scopeList = [
@@ -21,13 +22,15 @@ const scopeList = [
 ];
 const scopes = scopeList.map((it) => it.concat(":", projectKey));
 
+const anonymousId = String(generateRandomNumber());
+
 const anonymousOptions: AnonymousAuthMiddlewareOptions = {
   host: "https://auth.europe-west1.gcp.commercetools.com",
   projectKey: projectKey,
   credentials: {
     clientId: "DbX0DhQieIwQMMmeY-mWhyCu",
     clientSecret: "A4bf_ce4Vd8EEWuLVxTM-n_4ORo8KATS",
-    anonymousId: "7", // a unique id
+    anonymousId: anonymousId, // a unique id
   },
   scopes,
   fetch,
