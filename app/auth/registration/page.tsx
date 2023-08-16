@@ -40,6 +40,8 @@ export default function Registration(): ReactElement {
     createCustomer()
       .then(({ body }) => {
         console.log(body.customer.id);
+        apiRoot.login();
+
         reset();
       })
       .catch((error) => {

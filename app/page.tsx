@@ -3,7 +3,7 @@ import { apiRoot } from "../apiRoot";
 
 export default function Home() {
   const handleGetData = async () => {
-    const data = apiRoot.products().get().execute();
+    const data = apiRoot.categories().get().execute();
     console.log(data);
   };
 

@@ -3,8 +3,8 @@ import {
   ClientBuilder,
 
   // Import middlewares
-  type AuthMiddlewareOptions, // Required for auth
-  type HttpMiddlewareOptions, // Required for sending HTTP requests
+  type HttpMiddlewareOptions,
+  AnonymousAuthMiddlewareOptions, // Required for sending HTTP requests
 } from "@commercetools/sdk-client-v2";
 
 export const projectKey = "ygvyvt";
@@ -21,13 +21,13 @@ const scopeList = [
 ];
 const scopes = scopeList.map((it) => it.concat(":", projectKey));
 
-// Configure authMiddlewareOptions
-const authMiddlewareOptions: AuthMiddlewareOptions = {
+const anonymousOptions: AnonymousAuthMiddlewareOptions = {
   host: "https://auth.europe-west1.gcp.commercetools.com",
   projectKey: projectKey,
   credentials: {
     clientId: "DbX0DhQieIwQMMmeY-mWhyCu",
     clientSecret: "A4bf_ce4Vd8EEWuLVxTM-n_4ORo8KATS",
+    anonymousId: "7", // a unique id
   },
   scopes,
   fetch,
@@ -40,9 +40,16 @@ const httpMiddlewareOptions: HttpMiddlewareOptions = {
 };
 
 // Export the ClientBuilder
-export const ctpClient = new ClientBuilder()
+export const ctpAnonymousClient = new ClientBuilder()
   .withProjectKey(projectKey) // .withProjectKey() is not required if the projectKey is included in authMiddlewareOptions
-  .withClientCredentialsFlow(authMiddlewareOptions)
+  .withAnonymousSessionFlow(anonymousOptions)
   .withHttpMiddleware(httpMiddlewareOptions)
   .withLoggerMiddleware() // Include middleware for logging
   .build();
+
+// export const ctpClient = new ClientBuilder()
+//   .withProjectKey(projectKey) // .withProjectKey() is not required if the projectKey is included in authMiddlewareOptions
+//   .withClientCredentialsFlow(authMiddlewareOptions)
+//   .withHttpMiddleware(httpMiddlewareOptions)
+//   .withLoggerMiddleware() // Include middleware for logging
+//   .build();
