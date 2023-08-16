@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { apiRoot } from "../../../apiRoot";
+
 type RegistrationInputs = {
   email: string;
   name: string;
@@ -19,13 +20,11 @@ export default function Registration(): ReactElement {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    //formState: { errors },
     reset,
   } = useForm<RegistrationInputs>();
 
   const onSubmit = async (data: RegistrationInputs) => {
-    console.log(data, errors);
-
     const createCustomer = () => {
       return apiRoot
         .customers()
@@ -39,8 +38,9 @@ export default function Registration(): ReactElement {
     };
     createCustomer()
       .then(({ body }) => {
-        console.log(body.customer.id);
-        apiRoot.login();
+        console.log("Регистрация выполнена успешно!");
+        console.log(body);
+        //todo залогинить сразу после входа
 
         reset();
       })
