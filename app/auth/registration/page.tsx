@@ -12,6 +12,7 @@ import { apiRoot } from "../../../apiRoot";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import { FilledInput, InputLabel } from "@mui/material";
+
 type RegistrationInputs = {
   email: string;
   name: string;
@@ -24,7 +25,9 @@ export default function Registration(): ReactElement {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<RegistrationInputs>();
+  } = useForm<RegistrationInputs>({
+    mode: "onBlur",
+  });
 
   const onSubmit = async (data: RegistrationInputs) => {
     console.log(data, errors);
@@ -86,36 +89,105 @@ export default function Registration(): ReactElement {
         }}
       >
         <Box component="form" sx={{ p: "20px" }}>
-          <TextField
-            id="E-mail"
-            label="E-mail"
-            variant="filled"
-            fullWidth
-            helperText={
-              errors
-                ? errors.email?.message
-                : "Мы вышлем на него подтверждение заказа"
-            }
-            autoComplete="email"
-            placeholder="example@email.ru"
-            margin="normal"
-            {...register("email", { required: true })}
-          />
-          <FormControl>
-            <InputLabel htmlFor="component-helper">E-mail</InputLabel>
-            <FilledInput fullWidth />
-            <FormHelperText></FormHelperText>
+          <FormControl fullWidth variant="filled">
+            <InputLabel htmlFor="email-input">E-mail</InputLabel>
+            <FilledInput
+              placeholder="example@email.ru"
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "E-mail не может быть пустым",
+                },
+                validate: {
+                  hasSpace: (value) =>
+                    /^[^\s]+(\s+[^\s]+)*$/.test(value) ||
+                    "Адрес электронной почты не должен содержать начальные или конечные пробелы",
+                  hasDomain: (value) =>
+                    /[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value) ||
+                    "Адрес электронной почты должен содержать доменное имя (например, example.com)",
+                  hasDogSymbol: (value) =>
+                    /@/.test(value) ||
+                    "Адрес электронной почты должен содержать @",
+                  hasIncorrect: (value) =>
+                    /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
+                      value,
+                    ) || "Некорректный e-mail",
+                },
+              })}
+            />
+            {errors?.email ? (
+              <FormHelperText error>
+                {errors?.email && (
+                  <Typography variant="body2" component="span">
+                    {errors.email?.message || "Error"}
+                  </Typography>
+                )}
+              </FormHelperText>
+            ) : (
+              <FormHelperText>
+                <Typography variant="body2" component="span">
+                  Мы вышлем на него подтверждение заказа
+                </Typography>
+              </FormHelperText>
+            )}
           </FormControl>
-          <TextField
-            id="name"
-            label="Имя"
-            variant="filled"
-            autoComplete="given-name"
-            fullWidth
-            margin="normal"
-            {...register("name", { required: true })}
-          />
-          <TextField
+          <FormControl fullWidth variant="filled">
+            <InputLabel htmlFor="name-input">Имя</InputLabel>
+            <FilledInput
+              id="firstname"
+              aria-describedby="name-input-text"
+              autoComplete="given-name"
+              {...register("name", {
+                required: {
+                  value: true,
+                  message: "Имя не может быть пустым",
+                },
+                minLength: 1,
+                validate: {
+                  hasNoSymbols: (value) =>
+                    /[a-zA-Zа-яА-я]/g.test(value) ||
+                    "Имя не должно содержать специальные символы или цифры",
+                },
+              })}
+            ></FilledInput>
+            <FormHelperText error>
+              {errors?.name && (
+                <Typography variant="body2" component="span">
+                  {errors.name?.message || "Error"}
+                </Typography>
+              )}
+            </FormHelperText>
+          </FormControl>
+
+          <FormControl fullWidth variant="filled">
+            <InputLabel htmlFor="lastname-input">Фамилия</InputLabel>
+            <FilledInput
+              id="lastname"
+              aria-describedby="name-input-text"
+              autoComplete="given-name"
+              {...register("lastname", {
+                required: {
+                  value: true,
+                  message: "Фамилия не может быть пустым",
+                },
+                minLength: 1,
+                validate: {
+                  hasNoSymbols: (value) =>
+                    /[a-zA-Zа-яА-я]/g.test(value) ||
+                    "Фамилия не должна содержать специальные символы или цифры",
+                },
+              })}
+            ></FilledInput>
+            <FormHelperText error>
+              {errors?.lastname && (
+                <Typography variant="body2" component="span">
+                  {errors.lastname?.message || "Error"}
+                </Typography>
+              )}
+            </FormHelperText>
+          </FormControl>
+
+          {/* <TextField
             id="lastname"
             label="Фамилия"
             variant="filled"
@@ -123,7 +195,7 @@ export default function Registration(): ReactElement {
             fullWidth
             margin="normal"
             {...register("lastname", { required: true })}
-          />
+          /> */}
           <TextField
             id="password"
             label="Пароль"
