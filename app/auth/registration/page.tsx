@@ -88,7 +88,7 @@ export default function Registration(): ReactElement {
           textAlign: "center",
         }}
       >
-        <Box component="form" sx={{ p: "20px" }}>
+        <Box component="form" sx={{ p: "20px" }} margin="normal">
           <FormControl fullWidth variant="filled">
             <InputLabel htmlFor="email-input">E-mail</InputLabel>
             <FilledInput
@@ -131,7 +131,7 @@ export default function Registration(): ReactElement {
               </FormHelperText>
             )}
           </FormControl>
-          <FormControl fullWidth variant="filled">
+          <FormControl fullWidth variant="filled" margin="normal">
             <InputLabel htmlFor="name-input">Имя</InputLabel>
             <FilledInput
               id="firstname"
@@ -159,7 +159,7 @@ export default function Registration(): ReactElement {
             </FormHelperText>
           </FormControl>
 
-          <FormControl fullWidth variant="filled">
+          <FormControl fullWidth variant="filled" margin="normal">
             <InputLabel htmlFor="lastname-input">Фамилия</InputLabel>
             <FilledInput
               id="lastname"
@@ -186,27 +186,52 @@ export default function Registration(): ReactElement {
               )}
             </FormHelperText>
           </FormControl>
-
-          {/* <TextField
-            id="lastname"
-            label="Фамилия"
-            variant="filled"
-            autoComplete="family-name"
-            fullWidth
-            margin="normal"
-            {...register("lastname", { required: true })}
-          /> */}
-          <TextField
-            id="password"
-            label="Пароль"
-            variant="filled"
-            fullWidth
-            type="password"
-            autoComplete="new-password"
-            helperText="Должно быть 10 символов или более"
-            margin="normal"
-            {...register("password", { required: true })}
-          />
+          <FormControl variant="filled" fullWidth margin="normal">
+            <InputLabel htmlFor="password-input">Пароль</InputLabel>
+            <FilledInput
+              id="password"
+              type="password"
+              autoComplete="new-password"
+              aria-describedby="password-input-text"
+              fullWidth
+              {...register("password", {
+                validate: {
+                  isUpper: (value) =>
+                    /[A-ZА-Я]/.test(value) ||
+                    "Пароль должен содержать хотя бы одну заглавную букву (A-Z, А-Я)",
+                  isLower: (value) =>
+                    /[a-zа-я]/.test(value) ||
+                    "Пароль должен содержать хотя бы одну строчную букву (a-z, а-я)",
+                  isNumber: (value) =>
+                    /[0-9]/.test(value) ||
+                    "Пароль должен содержать как минимум одну цифру (0-9)",
+                  hasSpace: (value) =>
+                    /^[-a-zA-Zа-яА-я0-9-()!@#$%^&*_]+(\s+[-a-zA-Zа-яА-я0-9-()!@#$%^&*_]+)*$/.test(
+                      value,
+                    ) ||
+                    "Пароль не должен содержать начальные или конечные пробелы",
+                  hasSpecial: (value) =>
+                    /[!@#$%^&*_]/.test(value) ||
+                    "Пароль должен содержать хотя бы один специальный символ (например, ! @ # $ % ^ & * _ )",
+                },
+                minLength: {
+                  value: 8,
+                  message: "Пароль должен содержать минимум 8 символов",
+                },
+                required: {
+                  value: true,
+                  message: "Пароль не может быть пустым",
+                },
+              })}
+            />
+            <FormHelperText error id="component-helper-text">
+              {errors?.password && (
+                <Typography variant="body2" component="span">
+                  {errors.password?.message}
+                </Typography>
+              )}
+            </FormHelperText>
+          </FormControl>
           <Button
             sx={{ p: 2 }}
             variant="contained"
