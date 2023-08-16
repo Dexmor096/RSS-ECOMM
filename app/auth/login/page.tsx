@@ -26,9 +26,9 @@ export default function Login() {
         }}
       >
         <Stack spacing={3} sx={{ textAlign: "center" }}>
-          <TextField id="filled-basic" label="E-mail" variant="filled" />
+          <TextField id="email" label="E-mail" variant="filled" />
           <TextField
-            id="filled-basic"
+            id="password"
             label="password"
             type="password"
             variant="filled"

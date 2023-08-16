@@ -64,7 +64,6 @@ export default function Registration(): ReactElement {
         sx={{
           height: "auto",
           width: "auto",
-          // p: "30px 0",
         }}
       ></Container>
       <Container

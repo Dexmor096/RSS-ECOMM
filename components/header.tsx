@@ -66,7 +66,7 @@ export default function Header() {
             borderBottom="1px solid rgba(255, 255, 255, 0.40)"
           >
             <Link href="/">
-              <Image src={logoSVG} alt="logo" />
+              <Image src={logoSVG} alt="logo" priority />
             </Link>
             <Search />
 
