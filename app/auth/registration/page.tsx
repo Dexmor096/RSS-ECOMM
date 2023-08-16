@@ -50,7 +50,7 @@ export default function Registration(): ReactElement {
             id=""
             label="E-mail"
             variant="filled"
-            fullWidth
+            fullWidth={true}
             helperText="Мы вышлем на него подтверждение заказа"
             placeholder="example@email.ru"
             margin="normal"
@@ -59,26 +59,31 @@ export default function Registration(): ReactElement {
             id=""
             label="Имя"
             variant="filled"
-            fullWidth
+            fullWidth={true}
             margin="normal"
           />
           <TextField
             id=""
             label="Фамилия"
             variant="filled"
-            fullWidth
+            fullWidth={true}
             margin="normal"
           />
           <TextField
             id=""
             label="Пароль"
             variant="filled"
-            fullWidth
+            fullWidth={true}
             type="password"
             helperText="Должно быть 10 символов или более"
             margin="normal"
           />
-          <Button sx={{ p: 2 }} variant="contained" fullWidth color="secondary">
+          <Button
+            sx={{ p: 2 }}
+            variant="contained"
+            fullWidth={true}
+            color="secondary"
+          >
             Зарегистрироваться
           </Button>
         </Box>

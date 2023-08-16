@@ -8,6 +8,7 @@ import wishlistSVG from "../../public/assets/icons/wishlist.svg";
 import { Stack, Tab, Tabs, Link } from "@mui/material";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
+import React, { useState } from "react";
 
 const helveticaReg = localFont({
   src: "../../public/assets/fonts/helvetica.ttf",
@@ -45,6 +46,11 @@ const categoriesLinks = [
 ];
 
 export default function HeaderDesktop() {
+  const [selectedTab, setSelectedTab] = useState(false);
+  const handleChange = (event, newValue) => {
+    setSelectedTab(newValue);
+  };
+
   return (
     <>
       <Stack
@@ -60,7 +66,7 @@ export default function HeaderDesktop() {
         </Link>
         <Search />
 
-        <Tabs>
+        <Tabs value={selectedTab} onChange={handleChange}>
           <Link href="/about-us" component={NextLink}>
             <Tab
               sx={headerLinkSX}
@@ -76,7 +82,6 @@ export default function HeaderDesktop() {
             />
           </Link>
         </Tabs>
-
         <Stack direction="row" spacing={{ md: 2, xl: 4 }}>
           <Link href="/auth/login" sx={IconSX} component={NextLink}>
             <Image src={profileSVG} alt="button entrie" />
@@ -91,6 +96,8 @@ export default function HeaderDesktop() {
       </Stack>
 
       <Tabs
+        value={selectedTab}
+        onChange={handleChange}
         sx={{
           padding: "8px 0",
           textTransform: "uppercase",
