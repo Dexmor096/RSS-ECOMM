@@ -29,7 +29,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
@@ -76,7 +76,7 @@ export default function Login() {
                     "Адрес электронной почты должен содержать @",
                   hasIncorrect: (value) =>
                     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
-                      value
+                      value,
                     ) || "Некорректный e-mail",
                 },
               })}
@@ -109,7 +109,7 @@ export default function Login() {
                     "Пароль должен содержать как минимум одну цифру (0-9)",
                   hasSpace: (value) =>
                     /^[-a-zA-Zа-яА-я0-9-()!@#$%^&*_]+(\s+[-a-zA-Zа-яА-я0-9-()!@#$%^&*_]+)*$/.test(
-                      value
+                      value,
                     ) ||
                     "Пароль не должен содержать начальные или конечные пробелы",
                   hasSpecial: (value) =>
