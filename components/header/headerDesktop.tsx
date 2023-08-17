@@ -46,8 +46,9 @@ const categoriesLinks = [
 ];
 
 export default function HeaderDesktop() {
-  const [selectedTab, setSelectedTab] = useState(false);
-  const handleChange = (event, newValue) => {
+  const [selectedTab, setSelectedTab] = useState<boolean>(false);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: boolean) => {
     setSelectedTab(newValue);
   };
 
