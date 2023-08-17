@@ -11,6 +11,11 @@ import { apiRoot } from "../../../apiRoot";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import { FilledInput, InputLabel } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import { useState } from "react";
 
 type RegistrationInputs = {
   email: string;
@@ -27,7 +32,13 @@ export default function Registration(): ReactElement {
   } = useForm<RegistrationInputs>({
     mode: "onBlur",
   });
-
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+  };
   const onSubmit = async (data: RegistrationInputs) => {
     console.log(data, errors);
 
@@ -167,7 +178,7 @@ export default function Registration(): ReactElement {
               {...register("lastname", {
                 required: {
                   value: true,
-                  message: "Фамилия не может быть пустым",
+                  message: "Фамилия не может быть пустой",
                 },
                 minLength: 1,
                 validate: {
@@ -189,7 +200,7 @@ export default function Registration(): ReactElement {
             <InputLabel htmlFor="password-input">Пароль</InputLabel>
             <FilledInput
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               autoComplete="new-password"
               aria-describedby="password-input-text"
               fullWidth
@@ -222,14 +233,34 @@ export default function Registration(): ReactElement {
                   message: "Пароль не может быть пустым",
                 },
               })}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
-            <FormHelperText error id="component-helper-text">
-              {errors?.password && (
+            {errors?.password ? (
+              <FormHelperText error id="component-helper-text">
+                {errors?.password && (
+                  <Typography variant="body2" component="span">
+                    {errors.password?.message || "Error"}
+                  </Typography>
+                )}
+              </FormHelperText>
+            ) : (
+              <FormHelperText>
                 <Typography variant="body2" component="span">
-                  {errors.password?.message}
+                  Пароль должен содержать не менее 8 символов
                 </Typography>
-              )}
-            </FormHelperText>
+              </FormHelperText>
+            )}
           </FormControl>
           <Button
             sx={{ p: 2 }}
