@@ -1,3 +1,4 @@
+"use client";
 import { ReactElement } from "react";
 import SocialNetwork from "components/socialNetwork/socialNetwork";
 import Container from "@mui/material/Container";
@@ -6,8 +7,44 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
+import { useForm } from "react-hook-form";
+import { apiRoot } from "../../../apiRoot";
+type RegistrationInputs = {
+  email: string;
+  name: string;
+  lastname: string;
+  password: string;
+};
 export default function Registration(): ReactElement {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<RegistrationInputs>();
+
+  const onSubmit = async (data: RegistrationInputs) => {
+    console.log(data, errors);
+
+    const createCustomer = () => {
+      return apiRoot
+        .customers()
+        .post({
+          body: {
+            email: data.email,
+            password: data.password,
+          },
+        })
+        .execute();
+    };
+    createCustomer()
+      .then(({ body }) => {
+        console.log(body.customer.id);
+        reset();
+      })
+      .catch(console.error);
+  };
+
   return (
     <Stack
       spacing={2}
@@ -47,42 +84,51 @@ export default function Registration(): ReactElement {
       >
         <Box component="form" sx={{ p: "20px" }}>
           <TextField
-            id=""
+            id="E-mail"
             label="E-mail"
             variant="filled"
             fullWidth={true}
             helperText="Мы вышлем на него подтверждение заказа"
+            autoComplete="email"
             placeholder="example@email.ru"
             margin="normal"
+            {...register("email", { required: true })}
           />
           <TextField
-            id=""
+            id="name"
             label="Имя"
             variant="filled"
             fullWidth={true}
+            autoComplete="given-name"
             margin="normal"
+            {...register("name", { required: true })}
           />
           <TextField
-            id=""
+            id="lastname"
             label="Фамилия"
             variant="filled"
             fullWidth={true}
+            autoComplete="family-name"
             margin="normal"
+            {...register("lastname", { required: true })}
           />
           <TextField
-            id=""
+            id="password"
             label="Пароль"
             variant="filled"
             fullWidth={true}
             type="password"
+            autoComplete="new-password"
             helperText="Должно быть 10 символов или более"
             margin="normal"
+            {...register("password", { required: true })}
           />
           <Button
             sx={{ p: 2 }}
             variant="contained"
             fullWidth={true}
             color="secondary"
+            onClick={handleSubmit(onSubmit)}
           >
             Зарегистрироваться
           </Button>

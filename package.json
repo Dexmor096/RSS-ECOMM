@@ -13,10 +13,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@commercetools/platform-sdk": "^5.0.0",
+    "@commercetools/sdk-client-v2": "^2.2.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.3",
-    "@mui/material": "^5.14.4",
+    "@mui/material": "^5.14.3",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
@@ -26,6 +27,7 @@
     "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.4",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
     "ts-node": "^10.9.1",
@@ -37,6 +39,7 @@
     "@babel/preset-typescript": "^7.22.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
+    "@types/node-fetch": "^2.6.4",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "babel-jest": "^29.6.2",
@@ -46,6 +49,7 @@
     "husky": "^8.0.3",
     "jest": "^29.6.2",
     "prettier": "^3.0.0",
+    "react-hook-form": "^7.45.4",
     "ts-jest": "^29.1.1"
   }
 }
