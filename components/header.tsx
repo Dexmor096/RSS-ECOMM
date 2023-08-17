@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Search from "./search";
+// import Search from "./search";
 import logoSVG from "../public/assets/icons/logo.svg";
 import cartSVG from "../public/assets/icons/cart.svg";
 import profileSVG from "../public/assets/icons/profile.svg";
@@ -68,7 +68,7 @@ export default function Header() {
             <Link href="/">
               <Image src={logoSVG} alt="logo" />
             </Link>
-            <Search />
+            {/* <Search /> */}
 
             <Stack className={montserrat.className} direction="row" spacing={7}>
               <Link href="#" sx={headerLinkSX}>
