@@ -17,6 +17,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export type LoginInputs = {
   email: string;
@@ -25,6 +26,8 @@ export type LoginInputs = {
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const {
     register,
@@ -38,6 +41,7 @@ export default function Login() {
   const handleLogin = async (data: LoginInputs) => {
     loginUser(data).then(() => {
       reset();
+      router.push("/");
     });
   };
 

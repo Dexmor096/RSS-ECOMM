@@ -13,6 +13,7 @@ import {
   createCustomer,
   handleRegistrationError,
 } from "../functions/createCustomer";
+import { useRouter } from "next/navigation";
 
 export type RegistrationInputs = {
   email: string;
@@ -22,6 +23,7 @@ export type RegistrationInputs = {
 };
 export default function Registration(): ReactElement {
   const { register, handleSubmit, reset } = useForm<RegistrationInputs>();
+  const router = useRouter();
 
   const onSubmit = async (data: RegistrationInputs) => {
     createCustomer({
@@ -31,9 +33,11 @@ export default function Registration(): ReactElement {
       lastname: data.lastname,
     })
       .then(() => {
-        loginUser({ email: data.email, password: data.password }).then(() => {
-          reset();
-        });
+        loginUser({ email: data.email, password: data.password })
+          .then(() => {
+            reset();
+          })
+          .then(() => router.push("/"));
       })
       .catch((error) => {
         handleRegistrationError(error);
