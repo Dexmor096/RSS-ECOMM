@@ -1,14 +1,27 @@
+"use client";
+import { usePathname } from "next/navigation";
 import { ButtonGroup, Paper } from "@mui/material";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const auth = ["РЕГИСТРАЦИЯ", "ВОЙТИ"];
+const paths = ["registration", "login"];
 
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
     <Paper
       elevation={8}
@@ -33,8 +46,26 @@ export default function AuthLayout({
             fullWidth={true}
             aria-label="outlined button group"
           >
-            <Button href="/auth/registration">РЕГИСТРАЦИЯ</Button>
-            <Button href="/auth/login">ВОЙТИ</Button>
+            {auth.map((link, index) => (
+              <Button
+                href={`/auth/${paths[index]}`}
+                className={montserrat.className}
+                sx={{
+                  fontSize: "22px",
+                  borderBottom:
+                    pathname === `/auth/${paths[index]}`
+                      ? "2px solid #8933CC"
+                      : "inherit",
+                  color:
+                    pathname === `/auth/${paths[index]}`
+                      ? "#000000"
+                      : "inherit",
+                }}
+                key={index}
+              >
+                {link}
+              </Button>
+            ))}
           </ButtonGroup>
         </Grid>
         {children}

@@ -1,13 +1,24 @@
 "use client";
 import { ReactElement } from "react";
-import SocialNetwork from "components/socialNetwork/socialNetwork";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 import { useForm } from "react-hook-form";
-import { apiRoot } from "../../../apiRoot";
+import { loginUser } from "../functions/login";
+import {
+  createCustomer,
+  handleRegistrationError,
+} from "../functions/createCustomer";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import { FilledInput, InputLabel } from "@mui/material";
@@ -17,7 +28,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 
-type RegistrationInputs = {
+export type RegistrationInputs = {
   email: string;
   name: string;
   lastname: string;
@@ -40,25 +51,20 @@ export default function Registration(): ReactElement {
     event.preventDefault();
   };
   const onSubmit = async (data: RegistrationInputs) => {
-    console.log(data, errors);
-
-    const createCustomer = () => {
-      return apiRoot
-        .customers()
-        .post({
-          body: {
-            email: data.email,
-            password: data.password,
-          },
-        })
-        .execute();
-    };
-    createCustomer()
-      .then(({ body }) => {
-        console.log(body.customer.id);
-        reset();
+    createCustomer({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      lastname: data.lastname,
+    })
+      .then(() => {
+        loginUser({ email: data.email, password: data.password }).then(() => {
+          reset();
+        });
       })
-      .catch(console.error);
+      .catch((error) => {
+        handleRegistrationError(error);
+      });
   };
 
   return (
@@ -75,30 +81,19 @@ export default function Registration(): ReactElement {
         sx={{
           height: "auto",
           width: "auto",
-          p: "10px 0",
         }}
-      >
-        <SocialNetwork description="зарегистрироваться через" />
-      </Container>
-      <Typography variant="subtitle2" color="inherit" sx={{ pl: 5, pr: 5 }}>
-        Регистрация через профиль социальной сети выполняется очень быстро. Вам
-        не придется запоминать новые пароли - никакой перегрузки для памяти. Не
-        беспокойтесь, мы никогда не передадим ваши данные третьим лицам и не
-        будем публиковать информацию от вашего имени
-      </Typography>
-      <Typography variant="h5" color="inherit" sx={{ pl: 0.5, pr: 0.5 }}>
-        или зарегистрируйся с помощью электронной почты
-      </Typography>
+      ></Container>
       <Container
-        maxWidth="xs"
+        disableGutters={true}
         sx={{
-          width: "100%",
+          width: "480px",
+          maxWidth: "480px",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
         }}
       >
-        <Box component="form" sx={{ p: "20px" }} margin="normal">
+        <Box component="form" sx={{ padding: "30px 0" }} margin="normal">
           <FormControl fullWidth variant="filled">
             <InputLabel htmlFor="email-input">E-mail</InputLabel>
             <FilledInput
@@ -262,11 +257,20 @@ export default function Registration(): ReactElement {
               </FormHelperText>
             )}
           </FormControl>
+          <TextField
+            id=""
+            label="Адрес доставки"
+            variant="filled"
+            fullWidth
+            helperText=""
+            margin="normal"
+          />
           <Button
-            sx={{ p: 2 }}
+            sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
             variant="contained"
             fullWidth
             color="secondary"
+            className={montserrat.className}
             onClick={handleSubmit(onSubmit)}
           >
             Зарегистрироваться
