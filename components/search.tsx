@@ -1,12 +1,14 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
+import { useId } from "react";
 
 export default function Search() {
+  const id = useId();
   return (
     <TextField
-      id=":R19l9cq:"
       placeholder="Search ..."
       type="search"
+      id={id}
       sx={{
         "& .css-aeeyth-MuiInputBase-input-MuiOutlinedInput-input": {
           color: "#DEDEDE",
