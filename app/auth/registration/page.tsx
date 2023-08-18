@@ -1,12 +1,17 @@
 "use client";
 import { ReactElement } from "react";
-import SocialNetwork from "components/socialNetwork/socialNetwork";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
 import {
@@ -54,30 +59,19 @@ export default function Registration(): ReactElement {
         sx={{
           height: "auto",
           width: "auto",
-          p: "10px 0",
         }}
-      >
-        <SocialNetwork description="зарегистрироваться через" />
-      </Container>
-      <Typography variant="subtitle2" color="inherit" sx={{ pl: 5, pr: 5 }}>
-        Регистрация через профиль социальной сети выполняется очень быстро. Вам
-        не придется запоминать новые пароли - никакой перегрузки для памяти. Не
-        беспокойтесь, мы никогда не передадим ваши данные третьим лицам и не
-        будем публиковать информацию от вашего имени
-      </Typography>
-      <Typography variant="h5" color="inherit" sx={{ pl: 0.5, pr: 0.5 }}>
-        или зарегистрируйся с помощью электронной почты
-      </Typography>
+      ></Container>
       <Container
-        maxWidth="xs"
+        disableGutters={true}
         sx={{
-          width: "100%",
+          width: "480px",
+          maxWidth: "480px",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
         }}
       >
-        <Box component="form" sx={{ p: "20px" }}>
+        <Box component="form" sx={{ padding: "30px 0" }}>
           <TextField
             id="E-mail"
             label="E-mail"
@@ -118,11 +112,20 @@ export default function Registration(): ReactElement {
             margin="normal"
             {...register("password", { required: true })}
           />
+          <TextField
+            id=""
+            label="Адрес доставки"
+            variant="filled"
+            fullWidth
+            helperText=""
+            margin="normal"
+          />
           <Button
-            sx={{ p: 2 }}
+            sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
             variant="contained"
             fullWidth
             color="secondary"
+            className={montserrat.className}
             onClick={handleSubmit(onSubmit)}
           >
             Зарегистрироваться
