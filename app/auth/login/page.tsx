@@ -15,7 +15,6 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
-import SocialNetwork from "components/socialNetwork/socialNetwork";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
@@ -45,8 +44,10 @@ export default function Login() {
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
       <Container
-        maxWidth="xs"
+        disableGutters={true}
         sx={{
+          maxWidth: "480px",
+          width: "480px",
           height: "auto",
           alignItems: "center",
           justifyContent: "center",
@@ -156,7 +157,6 @@ export default function Login() {
           <Link href="#" underline="none" color="inherit">
             Забыли пароль?
           </Link>
-          <SocialNetwork description="или войди с помощью..." />
         </Stack>
       </Container>
     </Box>

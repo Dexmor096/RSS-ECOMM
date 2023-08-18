@@ -275,7 +275,7 @@ export default function Footer() {
             paddingBottom="25px"
           >
             <Link href="/">
-              <Image src={logoSVG} alt="logo" />
+              <Image src={logoSVG} alt="logo" priority />
             </Link>
             <Stack
               display="flex"
