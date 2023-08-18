@@ -3,7 +3,6 @@ import { ReactElement } from "react";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Montserrat } from "next/font/google";
@@ -33,6 +32,7 @@ export type RegistrationInputs = {
   name: string;
   lastname: string;
   password: string;
+  address: string;
 };
 export default function Registration(): ReactElement {
   const {
@@ -56,6 +56,7 @@ export default function Registration(): ReactElement {
       password: data.password,
       name: data.name,
       lastname: data.lastname,
+      address: data.address,
     })
       .then(() => {
         loginUser({ email: data.email, password: data.password }).then(() => {
@@ -251,14 +252,33 @@ export default function Registration(): ReactElement {
               </FormHelperText>
             )}
           </FormControl>
-          <TextField
-            id=""
-            label="Адрес доставки"
-            variant="filled"
-            fullWidth
-            helperText=""
-            margin="normal"
-          />
+          <FormControl fullWidth variant="filled" margin="normal">
+            <InputLabel htmlFor="lastname-input">Адрес доставки</InputLabel>
+            <FilledInput
+              id="address"
+              aria-describedby="address-input-text"
+              autoComplete="address"
+              {...register("address", {
+                required: {
+                  value: true,
+                  message: "Адрес не может быть пустой",
+                },
+                minLength: 1,
+                validate: {
+                  hasNoSymbols: (value) =>
+                    /[a-zA-Zа-яА-я]/g.test(value) ||
+                    "Адрес не должен содержать специальные символы или цифры",
+                },
+              })}
+            ></FilledInput>
+            <FormHelperText error>
+              {errors?.address && (
+                <Typography variant="body2" component="span">
+                  {errors.address?.message || "Error"}
+                </Typography>
+              )}
+            </FormHelperText>
+          </FormControl>
           <Button
             sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
             variant="contained"
