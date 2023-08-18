@@ -16,9 +16,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
+import { loginUser } from "../functions/login";
 import { useState } from "react";
 
-type FormInputs = {
+export type LoginInputs = {
   email: string;
   password: string;
 };
@@ -36,15 +37,24 @@ export default function Login() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<FormInputs>({
+    reset,
+  } = useForm<LoginInputs>({
     mode: "onBlur",
   });
-  const onSubmit = (data: FormInputs) => console.log("data", data);
+  const onSubmit = (data: LoginInputs) => console.log("data", data);
   console.log("errors", errors);
+
+  const handleLogin = async (data: LoginInputs) => {
+    loginUser(data).then(() => {
+      reset();
+    });
+  };
+
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
       <Container
         disableGutters={true}
+        maxWidth="xs"
         sx={{
           maxWidth: "480px",
           width: "480px",
@@ -59,6 +69,7 @@ export default function Login() {
             <InputLabel htmlFor="component-helper">E-mail</InputLabel>
             <FilledInput
               fullWidth
+              autoComplete="current-email"
               {...register("email", {
                 required: {
                   value: true,
@@ -93,6 +104,7 @@ export default function Login() {
           <FormControl variant="filled">
             <InputLabel htmlFor="component-helper">Password</InputLabel>
             <FilledInput
+              autoComplete="current-password"
               fullWidth
               aria-describedby="component-helper-text"
               type={showPassword ? "text" : "password"}
@@ -151,6 +163,7 @@ export default function Login() {
             sx={{ p: 2 }}
             variant="contained"
             color="secondary"
+            onClick={handleSubmit(handleLogin)}
           >
             Войти
           </Button>

@@ -13,41 +13,36 @@ const montserrat = Montserrat({
 });
 
 import { useForm } from "react-hook-form";
-import { apiRoot } from "../../../apiRoot";
-type RegistrationInputs = {
+import { loginUser } from "../functions/login";
+import {
+  createCustomer,
+  handleRegistrationError,
+} from "../functions/createCustomer";
+
+export type RegistrationInputs = {
   email: string;
   name: string;
   lastname: string;
   password: string;
 };
 export default function Registration(): ReactElement {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<RegistrationInputs>();
+  const { register, handleSubmit, reset } = useForm<RegistrationInputs>();
 
   const onSubmit = async (data: RegistrationInputs) => {
-    console.log(data, errors);
-
-    const createCustomer = () => {
-      return apiRoot
-        .customers()
-        .post({
-          body: {
-            email: data.email,
-            password: data.password,
-          },
-        })
-        .execute();
-    };
-    createCustomer()
-      .then(({ body }) => {
-        console.log(body.customer.id);
-        reset();
+    createCustomer({
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      lastname: data.lastname,
+    })
+      .then(() => {
+        loginUser({ email: data.email, password: data.password }).then(() => {
+          reset();
+        });
       })
-      .catch(console.error);
+      .catch((error) => {
+        handleRegistrationError(error);
+      });
   };
 
   return (
