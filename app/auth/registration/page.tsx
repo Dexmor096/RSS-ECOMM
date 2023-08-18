@@ -78,12 +78,6 @@ export default function Registration(): ReactElement {
     >
       <Container
         maxWidth="xs"
-        sx={{
-          height: "auto",
-          width: "auto",
-        }}
-      ></Container>
-      <Container
         disableGutters={true}
         sx={{
           width: "480px",
