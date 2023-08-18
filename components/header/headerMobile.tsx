@@ -33,7 +33,7 @@ export default function HeaderMobile() {
           spacing={{ xs: 1, md: 3, xl: 4 }}
           alignItems="center"
         >
-          <IconButton>
+          <IconButton href="#">
             <SearchIcon
               sx={{
                 color: "#fff",

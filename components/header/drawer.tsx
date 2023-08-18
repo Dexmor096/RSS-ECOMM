@@ -7,8 +7,15 @@ import {
   ListItemIcon,
   ListItemText,
   Box,
+  Stack,
+  Link,
+  Typography,
 } from "@mui/material";
+import NextLink from "next/link";
+import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
+import profileSVG from "../../public/assets/icons/profile.svg";
+import wishlistSVG from "../../public/assets/icons/wishlist.svg";
 
 const pages = [
   "Sale",
@@ -18,7 +25,16 @@ const pages = [
   "Kids",
   "city",
   "Accessories",
+  "About us",
+  "Contacts",
 ];
+
+const IconSX = {
+  padding: "8px 16px",
+  borderRadius: "10px",
+  backgroundColor: "#8933CC",
+  textDecoration: "none",
+};
 
 export default function DrawerComp() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -49,11 +65,48 @@ export default function DrawerComp() {
       >
         <Box width="280px">
           <List>
+            <Stack
+              direction="row"
+              spacing={{ xs: 1, md: 3 }}
+              alignItems="center"
+              justifyContent="space-evenly"
+              my="20px"
+            >
+              <Link
+                href="/auth/login"
+                sx={IconSX}
+                component={NextLink}
+                display="flex"
+                alignItems="center"
+              >
+                <Image src={profileSVG} alt="button entrie" />
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    border: "none",
+                    textTransform: "uppercase",
+                    ml: "10px",
+                  }}
+                >
+                  Войти
+                </Typography>
+              </Link>
+              <Link href="/" sx={IconSX} component={NextLink}>
+                <Image src={wishlistSVG} alt="button wishlist" />
+              </Link>
+            </Stack>
             {pages.map((page, index) => (
               <ListItemButton key={index}>
                 <ListItemIcon>
                   <ListItemText
-                    sx={{ color: "#fff", "& span": { fontWeight: "700" } }}
+                    sx={{
+                      color: "#fff",
+                      "& span": {
+                        fontWeight: "700",
+                        letterSpacing: "0.8px",
+                        fontSize: "18px",
+                      },
+                    }}
                   >
                     {page.toUpperCase()}
                   </ListItemText>
