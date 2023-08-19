@@ -73,6 +73,7 @@ export default function DrawerComp() {
               my="20px"
             >
               <Link
+                rel="preload"
                 href="/auth/login"
                 sx={IconSX}
                 component={NextLink}
@@ -91,7 +92,7 @@ export default function DrawerComp() {
                   Войти
                 </Typography>
               </Link>
-              <Link href="/" sx={IconSX} component={NextLink}>
+              <Link href="/" sx={IconSX} component={NextLink} rel="preload">
                 <Image src={wishlistSVG} alt="button wishlist" />
               </Link>
             </Stack>
