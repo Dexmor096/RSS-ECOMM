@@ -6,44 +6,15 @@ import cartSVG from "../../public/assets/icons/cart.svg";
 import profileSVG from "../../public/assets/icons/profile.svg";
 import wishlistSVG from "../../public/assets/icons/wishlist.svg";
 import { Stack, Tab, Tabs, Link } from "@mui/material";
-import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import React, { useState } from "react";
+import { IconSX, montserrat } from "components/stylesSX";
+import { headerLinkSX, tabsHeader } from "./headerSX";
+import { categoriesHeader } from "components/categories";
 
 const helveticaReg = localFont({
   src: "../../public/assets/fonts/helvetica.ttf",
 });
-
-const montserrat = Montserrat({
-  weight: "400",
-  subsets: ["latin"],
-});
-
-const headerLinkSX = {
-  color: "#fff",
-  opacity: "1",
-  letterSpacing: "0.84px",
-  transition: "all 0.25s ease",
-  textDecoration: "none",
-  borderBottom: "2px solid transparent",
-  "&:hover": { borderBottom: "2px solid #006AD5", transform: "scaleX(1.05)" },
-};
-
-const IconSX = {
-  transition: "all 0.25s ease",
-  padding: "5px",
-  borderRadius: "5px",
-  "&:hover": { backgroundColor: "rgba(211, 211, 211, 0.15)" },
-};
-
-const categoriesLinks = [
-  "Sale",
-  "Mountain",
-  "active",
-  "Kids",
-  "city",
-  "Accessories",
-];
 
 export default function HeaderDesktop() {
   const [selectedTab, setSelectedTab] = useState<boolean>(false);
@@ -95,28 +66,8 @@ export default function HeaderDesktop() {
           </Link>
         </Stack>
       </Stack>
-
-      <Tabs
-        value={selectedTab}
-        onChange={handleChange}
-        sx={{
-          padding: "8px 0",
-          textTransform: "uppercase",
-          direction: "row",
-          display: "flex",
-          justifyContent: "space-evenly",
-          "& .css-heg063-MuiTabs-flexContainer": {
-            justifyContent: "space-evenly",
-          },
-          "& .css-1751eci-MuiButtonBase-root-MuiTab-root": {
-            padding: "13px 16px",
-            minHeight: "37px",
-            minWidth: "70px",
-            fontSize: "19px",
-          },
-        }}
-      >
-        {categoriesLinks.map((category, index) => (
+      <Tabs value={selectedTab} onChange={handleChange} sx={tabsHeader}>
+        {categoriesHeader.map((category, index) => (
           <Link href={`/${category.toLowerCase()}`} key={index}>
             <Tab
               label={category}

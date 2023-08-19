@@ -16,6 +16,7 @@ import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import profileSVG from "../../public/assets/icons/profile.svg";
 import wishlistSVG from "../../public/assets/icons/wishlist.svg";
+import { IconSX } from "components/stylesSX";
 
 const pages = [
   "Sale",
@@ -28,13 +29,6 @@ const pages = [
   "About us",
   "Contacts",
 ];
-
-const IconSX = {
-  padding: "8px 16px",
-  borderRadius: "10px",
-  backgroundColor: "#8933CC",
-  textDecoration: "none",
-};
 
 export default function DrawerComp() {
   const [openDrawer, setOpenDrawer] = useState(false);

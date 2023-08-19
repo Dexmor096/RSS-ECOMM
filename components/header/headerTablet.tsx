@@ -8,13 +8,8 @@ import wishlistSVG from "../../public/assets/icons/wishlist.svg";
 import DrawerComp from "./drawer";
 import { Stack, Link, useMediaQuery, useTheme } from "@mui/material";
 import HeaderMobile from "./headerMobile";
-
-const IconSX = {
-  transition: "all 0.25s ease",
-  padding: "5px",
-  borderRadius: "5px",
-  "&:hover": { backgroundColor: "rgba(211, 211, 211, 0.15)" },
-};
+import { IconSX } from "components/stylesSX";
+import { stackSX } from "./headerSX";
 
 export default function HeaderTablet() {
   const theme = useTheme();
@@ -25,14 +20,7 @@ export default function HeaderTablet() {
   }
   return (
     <>
-      <Stack
-        direction="row"
-        padding="18px 0"
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        borderBottom="1px solid rgba(255, 255, 255, 0.40)"
-      >
+      <Stack sx={stackSX}>
         <Link href="/" component={NextLink}>
           <Image src={logoSVG} alt="logo" />
         </Link>
