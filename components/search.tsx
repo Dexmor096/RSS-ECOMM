@@ -6,6 +6,7 @@ import {
   createTheme,
   useMediaQuery,
 } from "@mui/material";
+import { useId } from "react";
 
 export default function Search() {
   const theme = createTheme({
@@ -21,11 +22,12 @@ export default function Search() {
   });
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
 
+  const id = useId();
   return (
     <TextField
-      id=":R56l5j9:"
       placeholder="Search ..."
       type="search"
+      id={id}
       sx={{
         "& .css-aeeyth-MuiInputBase-input-MuiOutlinedInput-input": {
           color: "#DEDEDE",

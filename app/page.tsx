@@ -1,16 +1,8 @@
-"use client";
-import { apiRoot } from "../apiRoot";
-
 export default function Home() {
-  const handleGetData = async () => {
-    const data = apiRoot.products().get().execute();
-    console.log(data);
-  };
-
+  //todo вывод товаров после запроса токена анонима
   return (
     <main>
       <h1>Home Page</h1>
-      <button onClick={handleGetData}>Get Data</button>
     </main>
   );
 }
