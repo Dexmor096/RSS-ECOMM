@@ -10,6 +10,13 @@ export const categoriesFooter = {
   contacts: ["+7 (495) 829-12-59", "info@sitename.ru"],
 };
 
+export const categoriesFooterTablet = {
+  firstColumn: ["Contact Us", "FAQ", "Our Story", "Press"],
+  secondColumn: ["Mountain", "Road", "Active", "Kids", "City"],
+  thirdColumn: ["About us", "Delivery", "Payment", "Contacts"],
+  fourthColumn: ["+7 (495) 829-12-59", "info@sitename.ru"],
+};
+
 export const categoriesHeader = [
   "Sale",
   "Mountain",
@@ -17,4 +24,16 @@ export const categoriesHeader = [
   "Kids",
   "city",
   "Accessories",
+];
+
+export const pagesDrawer = [
+  "Sale",
+  "Mountain",
+  "Road",
+  "Active",
+  "Kids",
+  "city",
+  "Accessories",
+  "About us",
+  "Contacts",
 ];

@@ -1,10 +1,17 @@
 import footerBg from "../../public/assets/footer/footer_bg.png";
+import { createTheme } from "@mui/material";
 
 export const footerLinkSX = {
   color: "inherit",
   transition: "all 0.25s ease",
   textDecoration: "none",
   "&:hover": { color: "#006AD5" },
+};
+
+export const LinkTabletSX = {
+  color: "inherit",
+  textDecoration: "none",
+  fontSize: "16px",
 };
 
 export const boxImgSX = {
@@ -22,3 +29,15 @@ export const titleCategoriesSX = {
   variant: "body1",
   textTransform: "uppercase",
 };
+
+export const themeFooter = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1100,
+      xl: 1536,
+    },
+  },
+});

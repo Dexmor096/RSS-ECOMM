@@ -13,22 +13,19 @@ import {
 } from "@mui/material";
 import NextLink from "next/link";
 import Image from "next/image";
+import youtube from "../../public/assets/footer/youtube.svg";
+import vk from "../../public/assets/footer/vk.svg";
+import facebook from "../../public/assets/footer/facebook.svg";
+import insta from "../../public/assets/footer/insta.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 import profileSVG from "../../public/assets/icons/profile.svg";
 import wishlistSVG from "../../public/assets/icons/wishlist.svg";
 import { IconSX } from "components/stylesSX";
+import { pagesDrawer } from "components/categories";
+import { LinkTabletSX } from "components/footer/footerSX";
+import { categoriesFooterTablet } from "components/categories";
 
-const pages = [
-  "Sale",
-  "Mountain",
-  "Road",
-  "Active",
-  "Kids",
-  "city",
-  "Accessories",
-  "About us",
-  "Contacts",
-];
+const { fourthColumn } = categoriesFooterTablet;
 
 export default function DrawerComp() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -90,7 +87,7 @@ export default function DrawerComp() {
                 <Image src={wishlistSVG} alt="button wishlist" />
               </Link>
             </Stack>
-            {pages.map((page, index) => (
+            {pagesDrawer.map((page, index) => (
               <ListItemButton key={index}>
                 <ListItemIcon>
                   <ListItemText
@@ -108,6 +105,27 @@ export default function DrawerComp() {
                 </ListItemIcon>
               </ListItemButton>
             ))}
+            <Stack gap="15px" marginTop="25px" color="white" pl="16px">
+              {fourthColumn.map((category: string, idx: number) => (
+                <Link href="#" sx={LinkTabletSX} component={NextLink} key={idx}>
+                  {category}
+                </Link>
+              ))}
+              <Stack direction="row" spacing={1}>
+                <Link href="#" sx={IconSX}>
+                  <Image src={youtube} alt="youtube" />
+                </Link>
+                <Link href="#" sx={IconSX}>
+                  <Image src={vk} alt="vk" />
+                </Link>
+                <Link href="#" sx={IconSX}>
+                  <Image src={facebook} alt="facebook" />
+                </Link>
+                <Link href="#" sx={IconSX}>
+                  <Image src={insta} alt="instagram" />
+                </Link>
+              </Stack>
+            </Stack>
           </List>
         </Box>
       </Drawer>

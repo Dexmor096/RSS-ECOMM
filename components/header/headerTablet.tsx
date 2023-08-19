@@ -20,7 +20,7 @@ export default function HeaderTablet() {
   }
   return (
     <>
-      <Stack sx={stackSX}>
+      <Stack sx={stackSX} direction="row">
         <Link href="/" component={NextLink}>
           <Image src={logoSVG} alt="logo" />
         </Link>

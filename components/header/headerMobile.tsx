@@ -11,7 +11,7 @@ import { stackSX } from "./headerSX";
 export default function HeaderMobile() {
   return (
     <>
-      <Stack sx={stackSX}>
+      <Stack sx={stackSX} direction="row">
         <DrawerComp />
         <Link href="/" component={NextLink}>
           <Image src={logoSVG} alt="logo" />
