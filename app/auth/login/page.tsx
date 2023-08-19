@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import {
   FormControl,
   InputLabel,
@@ -29,14 +30,22 @@ export default function Login() {
   const router = useRouter();
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+  };
+
   const {
     register,
+    formState: { errors },
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm<LoginInputs>({
     mode: "onBlur",
   });
+  const onSubmit = (data: LoginInputs) => console.log("data", data);
+  console.log("errors", errors);
 
   const handleLogin = async (data: LoginInputs) => {
     loginUser(data).then(() => {
@@ -45,17 +54,14 @@ export default function Login() {
     });
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
-  };
-
   return (
-    <Box component="form">
+    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
       <Container
+        disableGutters={true}
         maxWidth="xs"
         sx={{
+          maxWidth: "480px",
+          width: "480px",
           height: "auto",
           alignItems: "center",
           justifyContent: "center",
@@ -165,6 +171,9 @@ export default function Login() {
           >
             Войти
           </Button>
+          <Link href="#" underline="none" color="inherit">
+            Забыли пароль?
+          </Link>
         </Stack>
       </Container>
     </Box>
