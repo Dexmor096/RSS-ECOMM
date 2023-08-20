@@ -6,6 +6,7 @@ export default function Search() {
     <TextField
       placeholder="Search ..."
       type="search"
+      id=":R19l9cq:"
       sx={{
         "& .css-aeeyth-MuiInputBase-input-MuiOutlinedInput-input": {
           color: "#DEDEDE",
