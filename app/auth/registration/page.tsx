@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Montserrat } from "next/font/google";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, TypeOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const montserrat = Montserrat({
@@ -52,10 +52,11 @@ export default function Registration(): ReactElement {
   ) => {
     event.preventDefault();
   };
-  const notify = () =>
-    toast.success("🦄 Wow so easy!", {
+  const notify = (message: string, type: TypeOptions) =>
+    toast(message, {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 3500,
+      type: type,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -73,13 +74,14 @@ export default function Registration(): ReactElement {
       address: data.address,
     })
       .then(() => {
+        notify("Регистрация прошла успешно", "success");
         loginUser({ email: data.email, password: data.password }).then(() => {
           reset();
-          notify();
+          notify(`Вы вошли как ${data.name}`, "success");
         });
       })
       .catch((error) => {
-        notify();
+        notify("Такой пользователь уже существует", "error");
         handleRegistrationError(error);
       });
   };
@@ -94,16 +96,16 @@ export default function Registration(): ReactElement {
       }}
     >
       <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
+      // position="top-center"
+      // autoClose={2000}
+      // hideProgressBar
+      // newestOnTop={false}
+      // closeOnClick
+      // rtl={false}
+      // pauseOnFocusLoss
+      // draggable
+      // pauseOnHover
+      // theme="light"
       />
       <Container
         maxWidth="xs"
