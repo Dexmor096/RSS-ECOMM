@@ -14,15 +14,14 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-const auth = ["РЕГИСТРАЦИЯ", "ВОЙТИ"];
-const paths = ["registration", "login"];
-
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const auth = ["РЕГИСТРАЦИЯ", "ВОЙТИ"];
+  const paths = ["registration", "login"];
 
   return (
     <>
