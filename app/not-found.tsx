@@ -19,6 +19,7 @@ export default function NotFound({ error }: { error: Error }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          height: "100vh",
         }}
       >
         <Typography
