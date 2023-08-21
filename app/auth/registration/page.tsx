@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Montserrat } from "next/font/google";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const montserrat = Montserrat({
   weight: "400",
@@ -27,6 +29,17 @@ export type RegistrationInputs = {
 };
 export default function Registration(): ReactElement {
   const { register, handleSubmit, reset } = useForm<RegistrationInputs>();
+  const notify = () =>
+    toast.success("🦄 Wow so easy!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const onSubmit = async (data: RegistrationInputs) => {
     createCustomer({
@@ -38,9 +51,11 @@ export default function Registration(): ReactElement {
       .then(() => {
         loginUser({ email: data.email, password: data.password }).then(() => {
           reset();
+          notify();
         });
       })
       .catch((error) => {
+        notify();
         handleRegistrationError(error);
       });
   };
@@ -54,6 +69,18 @@ export default function Registration(): ReactElement {
         justifyContent: "center",
       }}
     >
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Container
         maxWidth="xs"
         sx={{
