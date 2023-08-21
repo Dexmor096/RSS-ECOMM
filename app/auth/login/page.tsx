@@ -18,6 +18,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export type LoginInputs = {
   email: string;
@@ -25,6 +27,17 @@ export type LoginInputs = {
 };
 
 export default function Login() {
+  const notify = () =>
+    toast.success(`Здравствуйте, ${"user"}`, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -46,12 +59,15 @@ export default function Login() {
 
   const handleLogin = async (data: LoginInputs) => {
     loginUser(data).then(() => {
+      console.log(data);
+      notify();
       reset();
     });
   };
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <ToastContainer />
       <Container
         disableGutters={true}
         maxWidth="xs"
