@@ -18,6 +18,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
 import { useState } from "react";
+import { ToastContainer, TypeOptions, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export type LoginInputs = {
   email: string;
@@ -52,6 +54,7 @@ export default function Login() {
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <ToastContainer />
       <Container
         disableGutters={true}
         maxWidth="xs"
