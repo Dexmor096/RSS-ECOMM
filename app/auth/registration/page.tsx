@@ -13,7 +13,6 @@ const montserrat = Montserrat({
 });
 
 import { useForm } from "react-hook-form";
-import { loginUser } from "../functions/login";
 import {
   createCustomer,
   handleRegistrationError,
@@ -52,6 +51,7 @@ export default function Registration(): ReactElement {
   ) => {
     event.preventDefault();
   };
+
   const onSubmit = async (data: RegistrationInputs) => {
     createCustomer({
       email: data.email,
@@ -60,13 +60,8 @@ export default function Registration(): ReactElement {
       lastname: data.lastname,
       address: data.address,
     })
-      .then(() => {
-        loginUser({ email: data.email, password: data.password })
-          .then(() => {
-            reset();
-          })
-          .then(() => router.push("/"));
-      })
+      .then(() => reset())
+      .then(() => router.push("/auth/login"))
       .catch((error) => {
         handleRegistrationError(error);
       });
@@ -293,6 +288,10 @@ export default function Registration(): ReactElement {
           >
             Зарегистрироваться
           </Button>
+          <Typography variant="body2" component="span">
+            после регистрации Вы будете перенаправлены на страницу входа в
+            систему
+          </Typography>
         </Box>
       </Container>
     </Stack>

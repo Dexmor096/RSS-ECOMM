@@ -1,9 +1,9 @@
-import { apiRoot } from "../../../apiRoot";
+import { anonymousApiRoot } from "../../../apiRoot";
 import { RegistrationInputs } from "../registration/page";
 import { HttpErrorType } from "@commercetools/sdk-client-v2";
 
 export const createCustomer = async (data: RegistrationInputs) => {
-  return apiRoot
+  return anonymousApiRoot
     .customers()
     .post({
       body: {

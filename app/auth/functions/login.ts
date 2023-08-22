@@ -1,8 +1,8 @@
-import { apiRoot } from "../../../apiRoot";
+import { authApiRoot } from "../../../apiRoot";
 import { LoginInputs } from "../login/page";
 
 export const loginUser = async (data: LoginInputs) => {
-  return apiRoot
+  return authApiRoot
     .login()
     .post({
       body: {

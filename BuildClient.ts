@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+
 import {
   ClientBuilder,
 
@@ -10,7 +11,8 @@ import { generateRandomNumber } from "./helpers/generateNumber";
 import { PasswordAuthMiddlewareOptions } from "@commercetools/sdk-client-v2/dist/declarations/src/types/sdk";
 import * as process from "process";
 
-export const projectKey = process.env.CTP_PROJECT_KEY!;
+const projectKey = process.env.PROJECT_KEY!;
+
 const scopeList = [
   `view_published_products`,
   `create_anonymous_token`,
@@ -38,8 +40,8 @@ export const getAnonymousClient = () => {
     host: "https://auth.europe-west1.gcp.commercetools.com",
     projectKey: projectKey,
     credentials: {
-      clientId: process.env.CTP_CLIENT_ID!,
-      clientSecret: process.env.CTP_CLIENT_SECRET!,
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
       anonymousId: anonymousId, // a unique id
     },
     scopes,
@@ -59,8 +61,8 @@ export const getAuthClient = (login: string, password: string) => {
     host: "https://auth.europe-west1.gcp.commercetools.com",
     projectKey: projectKey,
     credentials: {
-      clientId: "DbX0DhQieIwQMMmeY-mWhyCu",
-      clientSecret: "A4bf_ce4Vd8EEWuLVxTM-n_4ORo8KATS",
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
       user: {
         username: login,
         password: password,
