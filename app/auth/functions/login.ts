@@ -33,7 +33,7 @@ export const loginUser = async (data: LoginInputs) => {
         notify("Такой пользователь не найден!", "error");
         console.error("Ошибка входа (400) Такой пользователь не найден!");
       } else {
-        notify(error.message, "error");
+        notify("Ошибка подключения к интернету", "error");
         console.error("An unknown error occurred:", error);
       }
     });
