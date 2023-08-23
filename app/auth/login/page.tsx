@@ -18,7 +18,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
 import { useState } from "react";
-import { ToastContainer, TypeOptions, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export type LoginInputs = {
@@ -44,7 +44,6 @@ export default function Login() {
     mode: "onBlur",
   });
   const onSubmit = (data: LoginInputs) => console.log("data", data);
-  console.log("errors", errors);
 
   const handleLogin = async (data: LoginInputs) => {
     loginUser(data).then(() => {
