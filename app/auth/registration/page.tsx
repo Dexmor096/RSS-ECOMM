@@ -81,8 +81,13 @@ export default function Registration(): ReactElement {
         });
       })
       .catch((error) => {
-        notify(error.message, "error");
-        handleRegistrationError(error);
+        if (error.statusCode === 400) {
+          notify("Такой пользователь уже существует", "error");
+          handleRegistrationError(error);
+        } else {
+          notify("Ошибка подключения к интернету", "error");
+          handleRegistrationError(error);
+        }
       });
   };
 
