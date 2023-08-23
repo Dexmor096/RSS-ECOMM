@@ -81,7 +81,7 @@ export default function Registration(): ReactElement {
         });
       })
       .catch((error) => {
-        notify("Такой пользователь уже существует", "error");
+        notify(error.message, "error");
         handleRegistrationError(error);
       });
   };
