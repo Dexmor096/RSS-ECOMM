@@ -24,6 +24,7 @@ import { IconSX } from "components/stylesSX";
 import { pagesDrawer } from "components/categories";
 import { LinkTabletSX } from "components/footer/footerSX";
 import { categoriesFooterTablet } from "components/categories";
+import CloseIcon from "@mui/icons-material/Close";
 
 const { fourthColumn } = categoriesFooterTablet;
 
@@ -54,6 +55,15 @@ export default function DrawerComp() {
           },
         }}
       >
+        <CloseIcon
+          onClick={() => setOpenDrawer(!openDrawer)}
+          sx={{
+            m: "10px 15px 0 auto",
+            color: "#fff",
+            width: "30px",
+            height: "30px",
+          }}
+        />
         <Box width="280px">
           <List>
             <Stack
@@ -61,34 +71,47 @@ export default function DrawerComp() {
               spacing={{ xs: 1, md: 3 }}
               alignItems="center"
               justifyContent="space-evenly"
-              my="20px"
+              my="15px"
+              onClick={() => setOpenDrawer(!openDrawer)}
             >
-              <Link
-                rel="preload"
-                href="/auth/login"
-                sx={IconSX}
-                component={NextLink}
-                display="flex"
-                alignItems="center"
-              >
-                <Image src={profileSVG} alt="button entrie" />
-                <Typography
-                  sx={{
-                    color: "#fff",
-                    border: "none",
-                    textTransform: "uppercase",
-                    ml: "10px",
-                  }}
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Link href="/auth/login" sx={IconSX} component={NextLink}>
+                  <Typography
+                    sx={{
+                      color: "#fff",
+                      border: "none",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Войти
+                  </Typography>
+                </Link>
+                <Typography color="white">|</Typography>
+                <Link
+                  href="/auth/registration"
+                  sx={IconSX}
+                  component={NextLink}
                 >
-                  Войти
-                </Typography>
-              </Link>
+                  <Typography
+                    sx={{
+                      color: "#fff",
+                      border: "none",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Регистрация
+                  </Typography>
+                </Link>
+              </Stack>
               <Link href="/" sx={IconSX} component={NextLink} rel="preload">
                 <Image src={wishlistSVG} alt="button wishlist" />
               </Link>
             </Stack>
             {pagesDrawer.map((page, index) => (
-              <ListItemButton key={index}>
+              <ListItemButton
+                key={index}
+                onClick={() => setOpenDrawer(!openDrawer)}
+              >
                 <ListItemIcon>
                   <ListItemText
                     sx={{
@@ -105,7 +128,13 @@ export default function DrawerComp() {
                 </ListItemIcon>
               </ListItemButton>
             ))}
-            <Stack gap="15px" marginTop="25px" color="white" pl="16px">
+            <Stack
+              gap="15px"
+              marginTop="25px"
+              color="white"
+              pl="16px"
+              onClick={() => setOpenDrawer(!openDrawer)}
+            >
               {fourthColumn.map((category: string, idx: number) => (
                 <Link href="#" sx={LinkTabletSX} component={NextLink} key={idx}>
                   {category}
