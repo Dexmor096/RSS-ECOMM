@@ -41,6 +41,7 @@ export default function HeaderDesktop() {
         <Tabs value={selectedTab} onChange={handleChange}>
           <Link href="/about-us" component={NextLink}>
             <Tab
+              href="/about-us"
               sx={headerLinkSX}
               label="About us"
               className={montserrat.className}
@@ -48,6 +49,7 @@ export default function HeaderDesktop() {
           </Link>
           <Link href="/contacts" component={NextLink}>
             <Tab
+              href="/contacts"
               sx={headerLinkSX}
               label="Contacts"
               className={montserrat.className}
@@ -58,10 +60,10 @@ export default function HeaderDesktop() {
           <Link href="/auth/login" sx={IconSX} component={NextLink}>
             <Image src={profileSVG} alt="button entrie" />
           </Link>
-          <Link href="/" sx={IconSX} component={NextLink}>
+          <Link href="/wishlist" sx={IconSX} component={NextLink}>
             <Image src={wishlistSVG} alt="button wishlist" />
           </Link>
-          <Link href="/" sx={IconSX} component={NextLink}>
+          <Link href="/cart" sx={IconSX} component={NextLink}>
             <Image src={cartSVG} alt="button cart" />
           </Link>
         </Stack>
