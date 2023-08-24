@@ -100,18 +100,7 @@ export default function Registration(): ReactElement {
         justifyContent: "center",
       }}
     >
-      <ToastContainer
-      // position="top-center"
-      // autoClose={2000}
-      // hideProgressBar
-      // newestOnTop={false}
-      // closeOnClick
-      // rtl={false}
-      // pauseOnFocusLoss
-      // draggable
-      // pauseOnHover
-      // theme="light"
-      />
+      <ToastContainer />
       <Container
         maxWidth="xs"
         disableGutters={true}
