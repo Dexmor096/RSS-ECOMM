@@ -15,12 +15,19 @@ import facebook from "../../public/assets/footer/facebook.svg";
 import insta from "../../public/assets/footer/insta.svg";
 import logoSVG from "../../public/assets/icons/logo.svg";
 import localFont from "next/font/local";
-import { categoriesFooterTablet } from "../categories";
+import { categoriesFooterTablet, categoriesInfoLink } from "../categories";
 import { footerLinkSX, LinkTabletSX, boxImgSX, themeFooter } from "./footerSX";
 import { IconSX } from "../stylesSX";
 
-const { firstColumn, secondColumn, thirdColumn, fourthColumn } =
-  categoriesFooterTablet;
+const { links } = categoriesInfoLink;
+const {
+  firstColumn,
+  firstColumnHref,
+  secondColumn,
+  thirdColumn,
+  thirdColumnHref,
+  fourthColumn,
+} = categoriesFooterTablet;
 
 const helveticaReg = localFont({
   src: "../../public/assets/fonts/helvetica.ttf",
@@ -36,21 +43,36 @@ export default function FooterTablet() {
           <Stack direction="row" display="flex" justifyContent="space-between">
             <Stack gap="15px" marginTop="30px">
               {firstColumn.map((category: string, idx: number) => (
-                <Link href="#" sx={LinkTabletSX} component={NextLink} key={idx}>
+                <Link
+                  href={`/${firstColumnHref[idx].toLowerCase()}`}
+                  sx={LinkTabletSX}
+                  component={NextLink}
+                  key={idx}
+                >
                   {category}
                 </Link>
               ))}
             </Stack>
             <Stack gap="15px" marginTop="30px">
               {secondColumn.map((category: string, idx: number) => (
-                <Link href="#" sx={LinkTabletSX} component={NextLink} key={idx}>
+                <Link
+                  href={`/${category.toLowerCase()}`}
+                  sx={LinkTabletSX}
+                  component={NextLink}
+                  key={idx}
+                >
                   {category}
                 </Link>
               ))}
             </Stack>
             <Stack gap="15px" marginTop="30px">
               {thirdColumn.map((category: string, idx: number) => (
-                <Link href="#" sx={LinkTabletSX} component={NextLink} key={idx}>
+                <Link
+                  href={`/${thirdColumnHref[idx].toLowerCase()}`}
+                  sx={LinkTabletSX}
+                  component={NextLink}
+                  key={idx}
+                >
                   {category}
                 </Link>
               ))}
@@ -61,7 +83,7 @@ export default function FooterTablet() {
               <Stack gap="15px" marginTop="30px">
                 {fourthColumn.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${links[idx].toLowerCase()}`}
                     sx={LinkTabletSX}
                     component={NextLink}
                     key={idx}

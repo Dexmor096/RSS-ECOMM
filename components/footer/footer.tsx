@@ -20,14 +20,20 @@ import { footerLinkSX, boxImgSX, titleCategoriesSX } from "./footerSX";
 import { IconSX, montserrat } from "../stylesSX";
 import { themeFooter } from "./footerSX";
 import FooterTablet from "./footerTablet";
+import { categoriesInfoLink } from "../categories";
 
+const { links } = categoriesInfoLink;
 const {
   support,
+  supportHref,
   about,
+  aboutHref,
   mountain,
+  mountainHref,
   road,
   active,
   kids,
+  kidsHref,
   city,
   clients,
   contacts,
@@ -64,7 +70,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {support.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${supportHref[idx].toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -84,7 +90,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {about.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${aboutHref[idx].toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -104,7 +110,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {mountain.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${mountainHref[idx].toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -124,7 +130,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {road.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${category.toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -144,7 +150,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {active.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${category.toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -164,7 +170,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {kids.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${kidsHref[idx].toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -184,7 +190,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {city.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${category.toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -204,7 +210,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {clients.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${category.toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
@@ -224,7 +230,7 @@ export default function Footer() {
               <Stack gap="11px" marginTop="30px">
                 {contacts.map((category: string, idx: number) => (
                   <Link
-                    href="#"
+                    href={`/${links[idx].toLowerCase()}`}
                     sx={footerLinkSX}
                     component={NextLink}
                     key={idx}
