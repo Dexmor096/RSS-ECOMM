@@ -188,7 +188,7 @@ export default function Registration(): ReactElement {
             <FilledInput
               id="lastname"
               aria-describedby="name-input-text"
-              autoComplete="given-name"
+              autoComplete="family-name"
               {...register("lastname", {
                 required: {
                   value: true,
