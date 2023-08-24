@@ -1,6 +1,17 @@
+export const headerLinkCategoriesSX = {
+  color: "#fff",
+  fontSize: "19px",
+  opacity: "1",
+  letterSpacing: "0.84px",
+  transition: "all 0.25s ease",
+  textDecoration: "none",
+  borderBottom: "2px solid transparent",
+  "&:hover": { borderBottom: "2px solid #006AD5", transform: "scaleX(1.05)" },
+};
+
 export const headerLinkSX = {
   color: "#fff",
-  opacity: "1",
+  fontSize: "15px",
   letterSpacing: "0.84px",
   transition: "all 0.25s ease",
   textDecoration: "none",

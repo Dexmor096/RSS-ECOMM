@@ -44,6 +44,6 @@ export const pagesDrawer = [
   "Kids",
   "city",
   "Accessories",
-  "About us",
+  "About-us",
   "Contacts",
 ];

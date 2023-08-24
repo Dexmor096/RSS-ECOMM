@@ -9,7 +9,7 @@ import { Stack, Tab, Tabs, Link } from "@mui/material";
 import localFont from "next/font/local";
 import React, { useState } from "react";
 import { IconSX, montserrat } from "components/stylesSX";
-import { headerLinkSX, tabsHeader } from "./headerSX";
+import { headerLinkSX, tabsHeader, headerLinkCategoriesSX } from "./headerSX";
 import { categoriesHeader } from "components/categories";
 
 const helveticaReg = localFont({
@@ -39,20 +39,18 @@ export default function HeaderDesktop() {
         <Search />
 
         <Tabs value={selectedTab} onChange={handleChange}>
-          <Link href="/about-us" component={NextLink}>
-            <Tab
-              sx={headerLinkSX}
-              label="About us"
-              className={montserrat.className}
-            />
-          </Link>
-          <Link href="/contacts" component={NextLink}>
-            <Tab
-              sx={headerLinkSX}
-              label="Contacts"
-              className={montserrat.className}
-            />
-          </Link>
+          <Tab
+            href="/about-us"
+            sx={headerLinkSX}
+            label="About us"
+            className={montserrat.className}
+          />
+          <Tab
+            href="/contacts"
+            sx={headerLinkSX}
+            label="Contacts"
+            className={montserrat.className}
+          />
         </Tabs>
         <Stack direction="row" spacing={{ md: 2, xl: 4 }}>
           <Link href="/auth/login" sx={IconSX} component={NextLink}>
@@ -68,13 +66,13 @@ export default function HeaderDesktop() {
       </Stack>
       <Tabs value={selectedTab} onChange={handleChange} sx={tabsHeader}>
         {categoriesHeader.map((category, index) => (
-          <Link href={`/${category.toLowerCase()}`} key={index}>
-            <Tab
-              label={category}
-              sx={headerLinkSX}
-              className={helveticaReg.className}
-            />
-          </Link>
+          <Tab
+            href={`/${category.toLowerCase()}`}
+            key={index}
+            label={category}
+            sx={headerLinkCategoriesSX}
+            className={helveticaReg.className}
+          />
         ))}
       </Tabs>
     </>
