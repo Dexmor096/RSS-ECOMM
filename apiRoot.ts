@@ -1,10 +1,18 @@
-import { getAnonymousClient } from "./BuildClient";
+import { getAnonymousClient, getAuthClient } from "./BuildClient";
 import { createApiBuilderFromCtpClient } from "@commercetools/platform-sdk";
 
-// Create apiRoot from the imported ClientBuilder and include your Project key
-const ctpAnonymousClient = getAnonymousClient();
-export const anonymousApiRoot = createApiBuilderFromCtpClient(
-  ctpAnonymousClient,
-).withProjectKey({
-  projectKey: process.env.PROJECT_KEY!,
-});
+export const getAnonymousApiRoot = () => {
+  const ctpAnonymousClient = getAnonymousClient();
+  return createApiBuilderFromCtpClient(ctpAnonymousClient).withProjectKey({
+    projectKey: process.env.PROJECT_KEY!,
+  });
+};
+
+export const getAuthApiRoot = (login: string, password: string) => {
+  const ctpClient = getAuthClient(login, password);
+  return createApiBuilderFromCtpClient(ctpClient).withProjectKey({
+    projectKey: process.env.PROJECT_KEY!,
+  });
+};
+
+//todo вызывать создание апи в момент логина

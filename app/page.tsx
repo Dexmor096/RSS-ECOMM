@@ -1,6 +1,6 @@
 "use client";
 import Button from "@mui/material/Button";
-import { getAuthApiRoot } from "./auth/functions/login";
+import { getAuthApiRoot } from "../apiRoot";
 
 export default function Home() {
   //todo вывод товаров после запроса токена анонима
