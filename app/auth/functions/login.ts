@@ -1,8 +1,17 @@
-import { authApiRoot } from "../../../apiRoot";
 import { LoginInputs } from "../login/page";
+import { createApiBuilderFromCtpClient } from "@commercetools/platform-sdk";
+import { getAuthClient } from "../../../BuildClient";
+
+export const getAuthApiRoot = (login: string, password: string) => {
+  const ctpClient = getAuthClient(login, password);
+  return createApiBuilderFromCtpClient(ctpClient).withProjectKey({
+    projectKey: process.env.PROJECT_KEY!,
+  });
+};
 
 export const loginUser = async (data: LoginInputs) => {
-  return authApiRoot
+  const apiRoot = getAuthApiRoot(data.email, data.password);
+  return apiRoot
     .login()
     .post({
       body: {

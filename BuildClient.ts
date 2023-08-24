@@ -14,16 +14,17 @@ import * as process from "process";
 const projectKey = process.env.PROJECT_KEY!;
 
 const scopeList = [
-  `view_published_products`,
-  `create_anonymous_token`,
-  `view_categories`,
-  `manage_my_profile`,
-  `manage_my_payments`,
-  `manage_my_business_units`,
-  `manage_my_shopping_lists`,
-  `manage_my_orders`,
-  `manage_customers`,
-  //todo создать новый клиент без `manage_customers`
+  "manage_project",
+  // `view_published_products`,
+  // `create_anonymous_token`,
+  // `view_categories`,
+  // `manage_my_profile`,
+  // `manage_my_payments`,
+  // `manage_my_business_units`,
+  // `manage_my_shopping_lists`,
+  // `manage_my_orders`,
+  // `manage_customers`,
+  // //todo создать новый клиент без `manage_customers`
 ];
 const scopes = scopeList.map((it) => it.concat(":", projectKey));
 
