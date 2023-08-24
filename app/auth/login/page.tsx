@@ -19,6 +19,12 @@ import NextLink from "next/link";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
 import { useState } from "react";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export type LoginInputs = {
   email: string;
@@ -161,9 +167,11 @@ export default function Login() {
           </FormControl>
           <Button
             type="submit"
-            sx={{ p: 2 }}
+            sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
             variant="contained"
+            fullWidth={true}
             color="secondary"
+            className={montserrat.className}
             onClick={handleSubmit(handleLogin)}
           >
             Войти

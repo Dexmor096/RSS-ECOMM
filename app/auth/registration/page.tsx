@@ -4,8 +4,10 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Montserrat } from "next/font/google";
+import NextLink from "next/link";
 
 const montserrat = Montserrat({
   weight: "400",
@@ -89,7 +91,17 @@ export default function Registration(): ReactElement {
         }}
       >
         <Box component="form" sx={{ padding: "30px 0" }} margin="normal">
-          <FormControl fullWidth variant="filled">
+          <Link
+            href="/auth/login"
+            component={NextLink}
+            underline="none"
+            color="inherit"
+            fontSize="20px"
+            fontWeight="500"
+          >
+            Уже есть учетная запись? Войти
+          </Link>
+          <FormControl fullWidth variant="filled" sx={{ mt: "20px" }}>
             <InputLabel htmlFor="email-input">E-mail</InputLabel>
             <FilledInput
               placeholder="example@email.ru"
