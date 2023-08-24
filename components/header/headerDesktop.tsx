@@ -41,7 +41,6 @@ export default function HeaderDesktop() {
         <Tabs value={selectedTab} onChange={handleChange}>
           <Link href="/about-us" component={NextLink}>
             <Tab
-              href="/about-us"
               sx={headerLinkSX}
               label="About us"
               className={montserrat.className}
@@ -49,7 +48,6 @@ export default function HeaderDesktop() {
           </Link>
           <Link href="/contacts" component={NextLink}>
             <Tab
-              href="/contacts"
               sx={headerLinkSX}
               label="Contacts"
               className={montserrat.className}

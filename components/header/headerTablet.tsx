@@ -34,10 +34,10 @@ export default function HeaderTablet() {
           <Link href="/auth/login" sx={IconSX} component={NextLink}>
             <Image src={profileSVG} alt="button entrie" />
           </Link>
-          <Link href="/" sx={IconSX} component={NextLink}>
+          <Link href="/wishlist" sx={IconSX} component={NextLink}>
             <Image src={wishlistSVG} alt="button wishlist" />
           </Link>
-          <Link href="/" sx={IconSX} component={NextLink}>
+          <Link href="/cart" sx={IconSX} component={NextLink}>
             <Image src={cartSVG} alt="button cart" />
           </Link>
           <DrawerComp />

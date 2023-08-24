@@ -18,14 +18,17 @@ import vk from "../../public/assets/footer/vk.svg";
 import facebook from "../../public/assets/footer/facebook.svg";
 import insta from "../../public/assets/footer/insta.svg";
 import MenuIcon from "@mui/icons-material/Menu";
-import profileSVG from "../../public/assets/icons/profile.svg";
 import wishlistSVG from "../../public/assets/icons/wishlist.svg";
 import { IconSX } from "components/stylesSX";
 import { pagesDrawer } from "components/categories";
 import { LinkTabletSX } from "components/footer/footerSX";
-import { categoriesFooterTablet } from "components/categories";
+import {
+  categoriesFooterTablet,
+  categoriesInfoLink,
+} from "components/categories";
 import CloseIcon from "@mui/icons-material/Close";
 
+const { links } = categoriesInfoLink;
 const { fourthColumn } = categoriesFooterTablet;
 
 export default function DrawerComp() {
@@ -103,12 +106,18 @@ export default function DrawerComp() {
                   </Typography>
                 </Link>
               </Stack>
-              <Link href="/" sx={IconSX} component={NextLink} rel="preload">
+              <Link
+                href="/wishlist"
+                sx={IconSX}
+                component={NextLink}
+                rel="preload"
+              >
                 <Image src={wishlistSVG} alt="button wishlist" />
               </Link>
             </Stack>
             {pagesDrawer.map((page, index) => (
               <ListItemButton
+                href={`/${page.toLowerCase()}`}
                 key={index}
                 onClick={() => setOpenDrawer(!openDrawer)}
               >
@@ -136,7 +145,12 @@ export default function DrawerComp() {
               onClick={() => setOpenDrawer(!openDrawer)}
             >
               {fourthColumn.map((category: string, idx: number) => (
-                <Link href="#" sx={LinkTabletSX} component={NextLink} key={idx}>
+                <Link
+                  href={`/${links[idx].toLowerCase()}`}
+                  sx={LinkTabletSX}
+                  component={NextLink}
+                  key={idx}
+                >
                   {category}
                 </Link>
               ))}

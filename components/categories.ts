@@ -17,6 +17,10 @@ export const categoriesFooterTablet = {
   fourthColumn: ["+7 (495) 829-12-59", "info@sitename.ru"],
 };
 
+export const categoriesInfoLink = {
+  links: ["tel:+74958291259", "mailto:info@sitename.ru"],
+};
+
 export const categoriesHeader = [
   "Sale",
   "Mountain",

@@ -32,7 +32,7 @@ export default function HeaderMobile() {
               }}
             />
           </IconButton>
-          <Link href="/" component={NextLink} sx={IconSX}>
+          <Link href="/cart" component={NextLink} sx={IconSX}>
             <Image src={cartSVG} alt="button cart" />
           </Link>
         </Stack>
