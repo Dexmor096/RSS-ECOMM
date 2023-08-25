@@ -1,5 +1,5 @@
-import { LoginInputs } from "../login/page";
 import { getAuthApiRoot } from "../../../apiRoot";
+import { LoginInputs } from "../../../types";
 
 export const loginUser = async (data: LoginInputs) => {
   const apiRoot = getAuthApiRoot(data.email, data.password);
