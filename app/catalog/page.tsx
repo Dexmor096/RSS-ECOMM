@@ -3,45 +3,34 @@ import Footer from "components/footer";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import CardItem from "components/CardItem";
+import CustomBreadcrumbs from "components/breadcrumbs";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Catalog() {
   return (
     <>
       <Header />
-      <Box>
+      <Box
+        sx={{
+          backgroundColor: "#D8D8D8",
+          color: "fff",
+        }}
+      >
         <Container maxWidth="xl">
-          <Stack>
-            <span>breadcrumbs</span>
+          <Stack className={montserrat.className}>
+            <CustomBreadcrumbs />
             <Typography variant="h2" color="initial">
               Каталог specialized
             </Typography>
             <Box>
-              <Card sx={{ maxWidth: 345 }}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="auto"
-                    image="./assets/card-img/mountain.png"
-                    alt=""
-                    sx={{
-                      p: 2,
-                    }}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="body1" component="h5">
-                      Mountain
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      132 товара
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <CardItem />
             </Box>
           </Stack>
         </Container>
