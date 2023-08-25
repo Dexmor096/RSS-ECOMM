@@ -26,8 +26,8 @@ export default function Catalog() {
         <Container maxWidth="xl">
           <Stack className={montserrat.className}>
             <CustomBreadcrumbs />
-            <Typography variant="h2" color="initial">
-              Каталог specialized
+            <Typography variant="h2" color="primary">
+              каталог specialized
             </Typography>
             <Box>
               <CardItem />

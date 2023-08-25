@@ -99,7 +99,7 @@ export default function Header() {
             justifyContent="space-evenly"
             paddingBottom="20px"
           >
-            <Link href="#" sx={headerLinkSX}>
+            <Link href="/catalog" sx={headerLinkSX}>
               Sale
             </Link>
             <Link href="#" sx={headerLinkSX}>
