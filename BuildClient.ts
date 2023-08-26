@@ -33,9 +33,9 @@ const httpMiddlewareOptions: HttpMiddlewareOptions = {
   fetch,
 };
 
-const anonymousId = String(generateRandomNumber());
-
 export const getAnonymousClient = () => {
+  const anonymousId = String(generateRandomNumber());
+
   const anonymousOptions: AnonymousAuthMiddlewareOptions = {
     host: "https://auth.europe-west1.gcp.commercetools.com",
     projectKey: projectKey,

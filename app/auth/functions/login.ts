@@ -4,6 +4,7 @@ import { LoginInputs } from "../../../types";
 export const loginUser = async (data: LoginInputs) => {
   const apiRoot = getAuthApiRoot(data.email, data.password);
   return apiRoot
+    .me()
     .login()
     .post({
       body: {

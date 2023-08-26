@@ -4,7 +4,8 @@ import { HttpErrorType } from "@commercetools/sdk-client-v2";
 
 export const createCustomer = async (data: RegistrationInputs) => {
   return getAnonymousApiRoot()
-    .customers()
+    .me()
+    .signup()
     .post({
       body: {
         email: data.email,
