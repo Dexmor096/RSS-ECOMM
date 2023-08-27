@@ -17,15 +17,13 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { UserContext } from "../../../components/functions/userProvider";
 import { LoginInputs } from "../../../types";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const userContext = useContext(UserContext);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -46,7 +44,6 @@ export default function Login() {
   const handleLogin = async (data: LoginInputs) => {
     loginUser(data).then(() => {
       reset();
-      userContext?.setUser({ email: data.email, password: data.password });
       router.push("/");
     });
   };

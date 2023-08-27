@@ -17,7 +17,6 @@ export const loginUser = async (data: LoginInputs) => {
     .then(() => {
       console.log("Вход выполнен успешно!");
       recordTokenToLS(data.email, data.password);
-      //TODO сохранить токен в localStorage
     })
     .catch((error) => {
       if (error.statusCode == 400) {
