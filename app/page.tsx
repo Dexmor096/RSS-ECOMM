@@ -2,14 +2,14 @@
 import Button from "@mui/material/Button";
 import { useContext } from "react";
 import { UserContext } from "../components/functions/userProvider";
-import { getAnonymousApiRoot } from "../apiRoot";
 
 export default function Home() {
   const userContext = useContext(UserContext);
   console.log(userContext?.user);
-  const categories = getAnonymousApiRoot().categories().get().execute();
-  console.log(categories);
+  //const categories = getAnonymousApiRoot().categories().get().execute();
+  //console.log(categories);
   //todo вывод товаров после запроса токена анонима
+
   return (
     <main>
       <h1>Home Page</h1>

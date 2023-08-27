@@ -2,10 +2,8 @@ import fetch from "node-fetch";
 
 import {
   ClientBuilder,
-
-  // Import middlewares
   type HttpMiddlewareOptions,
-  AnonymousAuthMiddlewareOptions, // Required for sending HTTP requests
+  AnonymousAuthMiddlewareOptions,
 } from "@commercetools/sdk-client-v2";
 import { generateRandomNumber } from "./helpers/generateNumber";
 import { PasswordAuthMiddlewareOptions } from "@commercetools/sdk-client-v2/dist/declarations/src/types/sdk";

@@ -16,5 +16,3 @@ export const getAuthApiRoot = (login: string, password: string) => {
     projectKey: process.env.PROJECT_KEY!,
   });
 };
-
-//todo вызывать создание апи в момент логина

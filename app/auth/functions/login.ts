@@ -1,5 +1,6 @@
 import { getAuthApiRoot } from "../../../apiRoot";
 import { LoginInputs } from "../../../types";
+import { recordTokenToLS } from "./recordTokenToLS";
 
 export const loginUser = async (data: LoginInputs) => {
   const apiRoot = getAuthApiRoot(data.email, data.password);
@@ -15,6 +16,8 @@ export const loginUser = async (data: LoginInputs) => {
     .execute()
     .then(() => {
       console.log("Вход выполнен успешно!");
+      recordTokenToLS(data.email, data.password);
+      //TODO сохранить токен в localStorage
     })
     .catch((error) => {
       if (error.statusCode == 400) {
