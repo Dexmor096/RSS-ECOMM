@@ -13,10 +13,6 @@ const montserrat = Montserrat({
 });
 
 import { useForm } from "react-hook-form";
-import {
-  createCustomer,
-  handleRegistrationError,
-} from "../functions/createCustomer";
 import { useRouter } from "next/navigation";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -26,6 +22,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
+import {
+  createCustomer,
+  handleRegistrationError,
+} from "../../controllers/controller";
 
 export type RegistrationInputs = {
   email: string;

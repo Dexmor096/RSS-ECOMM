@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LoginInputs } from "../../../types";
-import { handleLoginUser } from "../functions/handleLoginUser";
+import { handleLoginUser } from "../../controllers/controller";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
