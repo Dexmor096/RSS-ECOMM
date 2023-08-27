@@ -28,8 +28,8 @@ export const recordTokenToLS = async (login: string, password: string) => {
     .then((response) => response.text())
     .then((result) => {
       const objResponse = JSON.parse(result);
-      console.log("token", objResponse["access_token"]);
-      localStorage.setItem("token", objResponse["access_token"]);
+      localStorage.setItem("access-token", objResponse["access_token"]);
+      localStorage.setItem("refresh-token", objResponse["refresh_token"]);
     })
     .catch((error) => console.log("error", error));
 };

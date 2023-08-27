@@ -1,8 +1,12 @@
 import { getAuthApiRoot } from "../../../apiRoot";
 import { LoginInputs } from "../../../types";
 import { recordTokenToLS } from "./recordTokenToLS";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
-export const loginUser = async (data: LoginInputs) => {
+export const handleLoginUser = async (
+  data: LoginInputs,
+  router: AppRouterInstance,
+) => {
   const apiRoot = getAuthApiRoot(data.email, data.password);
   return apiRoot
     .me()
@@ -17,6 +21,7 @@ export const loginUser = async (data: LoginInputs) => {
     .then(() => {
       console.log("Вход выполнен успешно!");
       recordTokenToLS(data.email, data.password);
+      router.push("/");
     })
     .catch((error) => {
       if (error.statusCode == 400) {

@@ -1,4 +1,4 @@
-export const getValueFromLS = (name: string): object => {
+export const getStringFromLS = (name: string): object => {
   if (!localStorage.getItem(`${name}`)) {
     localStorage.setItem(`${name}`, JSON.stringify({}));
   }

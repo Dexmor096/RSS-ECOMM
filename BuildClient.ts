@@ -4,6 +4,7 @@ import {
   ClientBuilder,
   type HttpMiddlewareOptions,
   AnonymousAuthMiddlewareOptions,
+  RefreshAuthMiddlewareOptions,
 } from "@commercetools/sdk-client-v2";
 import { generateRandomNumber } from "./helpers/generateNumber";
 import { PasswordAuthMiddlewareOptions } from "@commercetools/sdk-client-v2/dist/declarations/src/types/sdk";
@@ -71,6 +72,42 @@ export const getAuthClient = (login: string, password: string) => {
   return new ClientBuilder()
     .withProjectKey(projectKey)
     .withPasswordFlow(passwordOptions)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
+    .build();
+};
+
+export const getTokenBuilder = (token: string) => {
+  type ExistingTokenMiddlewareOptions = {
+    force?: boolean;
+  };
+
+  const options: ExistingTokenMiddlewareOptions = {
+    force: true,
+  };
+
+  return new ClientBuilder()
+    .withProjectKey(projectKey)
+    .withExistingTokenFlow(`Bearer ${token}`, options)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
+    .build();
+};
+
+export const getRefreshTokenBuilder = (refreshToken: string) => {
+  const options: RefreshAuthMiddlewareOptions = {
+    host: "https://auth.europe-west1.gcp.commercetools.com",
+    projectKey: projectKey,
+    credentials: {
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
+    },
+    refreshToken: refreshToken,
+    fetch,
+  };
+
+  return new ClientBuilder()
+    .withRefreshTokenFlow(options)
     .withHttpMiddleware(httpMiddlewareOptions)
     .withLoggerMiddleware()
     .build();

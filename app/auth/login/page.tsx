@@ -16,10 +16,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
-import { loginUser } from "../functions/login";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LoginInputs } from "../../../types";
+import { handleLoginUser } from "../functions/handleLoginUser";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,16 +36,12 @@ export default function Login() {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm<LoginInputs>({
     mode: "onBlur",
   });
 
   const handleLogin = async (data: LoginInputs) => {
-    loginUser(data).then(() => {
-      reset();
-      router.push("/");
-    });
+    handleLoginUser(data, router);
   };
 
   return (
