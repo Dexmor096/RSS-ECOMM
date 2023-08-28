@@ -22,24 +22,14 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
-import {
-  createCustomer,
-  handleRegistrationError,
-} from "../../controllers/controller";
+import { handleCustomerCreating } from "../../controllers/controller";
+import { RegistrationInputs } from "../../../types";
 
-export type RegistrationInputs = {
-  email: string;
-  name: string;
-  lastname: string;
-  password: string;
-  address: string;
-};
 export default function Registration(): ReactElement {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<RegistrationInputs>({
     mode: "onBlur",
   });
@@ -53,18 +43,17 @@ export default function Registration(): ReactElement {
   };
 
   const onSubmit = async (data: RegistrationInputs) => {
-    createCustomer({
+    const userData = {
       email: data.email,
       password: data.password,
       name: data.name,
       lastname: data.lastname,
       address: data.address,
-    })
-      .then(() => reset())
-      .then(() => router.push("/auth/login"))
-      .catch((error) => {
-        handleRegistrationError(error);
-      });
+    };
+    const redirect = () => {
+      router.push("/auth/login");
+    };
+    handleCustomerCreating(userData, redirect);
   };
 
   return (

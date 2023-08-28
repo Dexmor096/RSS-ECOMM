@@ -1,12 +1,14 @@
 import { HttpErrorType } from "@commercetools/sdk-client-v2";
 import { getAnonymousApiRoot, getAuthApiRoot } from "../../apiRoot";
-import { RegistrationInputs } from "../auth/registration/page";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import { encodeToBase64 } from "../../helpers/encodeToBase64";
 import process from "process";
-import { LoginInputs } from "../../types";
+import { LoginInputs, RegistrationInputs } from "../../types";
 
-export const createCustomer = async (data: RegistrationInputs) => {
+export const handleCustomerCreating = async (
+  data: RegistrationInputs,
+  redirectFunc: () => void,
+) => {
   return getAnonymousApiRoot()
     .me()
     .signup()
@@ -17,10 +19,11 @@ export const createCustomer = async (data: RegistrationInputs) => {
       },
     })
     .execute()
-    .then(({ body }) => {
+    .then(() => {
       console.log("Регистрация выполнена успешно!");
-      console.log(body);
-    });
+      redirectFunc();
+    })
+    .catch((error) => handleRegistrationError(error));
 };
 
 export const handleRegistrationError = (error: HttpErrorType) => {
@@ -95,3 +98,6 @@ export const handleAccessToken = async (login: string, password: string) => {
     })
     .catch((error) => console.log("error", error));
 };
+
+//const handleUserErrors = (error: HttpErrorType) => {
+// если токен не найден, предупреждение пользователю (всплывающее окно), переход на страницу логина
