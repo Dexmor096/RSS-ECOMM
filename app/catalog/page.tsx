@@ -21,6 +21,8 @@ export default function Catalog() {
         sx={{
           backgroundColor: "#D8D8D8",
           color: "fff",
+          paddingTop: 7,
+          paddingBottom: 7,
         }}
       >
         <Container maxWidth="xl">
