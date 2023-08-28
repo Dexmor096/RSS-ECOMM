@@ -47,6 +47,7 @@ export default function Login() {
 
   const handleLogin = async (data: LoginInputs) => {
     loginUser(data).then(() => {
+      console.log(data);
       reset();
     });
   };

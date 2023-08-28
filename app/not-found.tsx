@@ -2,13 +2,13 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { Box, Button, ButtonGroup, Typography, Stack } from "@mui/material";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function NotFound({ error }: { error: Error }) {
   useEffect(() => {
     console.log(error);
   }, [error]);
-  // const router = useRouter();
+  const router = useRouter();
   return (
     <Stack sx={{ backgroundColor: "#1D1E1E" }}>
       <Box
@@ -19,6 +19,7 @@ export default function NotFound({ error }: { error: Error }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          height: "100vh",
         }}
       >
         <Typography
@@ -50,8 +51,7 @@ export default function NotFound({ error }: { error: Error }) {
         </Typography>
         <ButtonGroup sx={{ columnGap: "15px", marginTop: "40px" }}>
           <Button
-            // onClick={() => router.back()}
-            href="#"
+            onClick={() => router.back()}
             LinkComponent={Link}
             sx={{
               padding: "20px 35px",
