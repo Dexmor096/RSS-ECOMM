@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Montserrat } from "next/font/google";
+import { ToastContainer, TypeOptions, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const montserrat = Montserrat({
   weight: "400",
@@ -50,6 +52,19 @@ export default function Registration(): ReactElement {
   ) => {
     event.preventDefault();
   };
+  const notify = (message: string, type: TypeOptions) =>
+    toast(message, {
+      position: "top-center",
+      autoClose: 3500,
+      type: type,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
   const onSubmit = async (data: RegistrationInputs) => {
     createCustomer({
       email: data.email,
@@ -59,12 +74,20 @@ export default function Registration(): ReactElement {
       address: data.address,
     })
       .then(() => {
+        notify("Регистрация прошла успешно", "success");
         loginUser({ email: data.email, password: data.password }).then(() => {
           reset();
+          notify(`Вы вошли как ${data.name}`, "success");
         });
       })
       .catch((error) => {
-        handleRegistrationError(error);
+        if (error.statusCode === 400) {
+          notify("Такой пользователь уже существует", "error");
+          handleRegistrationError(error);
+        } else {
+          notify("Ошибка подключения к интернету", "error");
+          handleRegistrationError(error);
+        }
       });
   };
 
@@ -77,6 +100,7 @@ export default function Registration(): ReactElement {
         justifyContent: "center",
       }}
     >
+      <ToastContainer />
       <Container
         maxWidth="xs"
         disableGutters={true}
@@ -164,7 +188,7 @@ export default function Registration(): ReactElement {
             <FilledInput
               id="lastname"
               aria-describedby="name-input-text"
-              autoComplete="given-name"
+              autoComplete="family-name"
               {...register("lastname", {
                 required: {
                   value: true,
