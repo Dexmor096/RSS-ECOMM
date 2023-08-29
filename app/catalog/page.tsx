@@ -9,7 +9,7 @@ import CustomBreadcrumbs from "components/breadcrumbs";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
-  weight: "400",
+  weight: "600",
   subsets: ["latin"],
 });
 
@@ -28,10 +28,15 @@ export default function Catalog() {
         <Container maxWidth="xl">
           <Stack className={montserrat.className}>
             <CustomBreadcrumbs />
-            <Typography variant="h2" color="primary">
+            <Typography
+              className={montserrat.className}
+              variant="h3"
+              color="primary"
+              sx={{ p: "35px 0" }}
+            >
               каталог specialized
             </Typography>
-            <Box>
+            <Box sx={{ p: "35px 0" }}>
               <CardItem />
             </Box>
           </Stack>

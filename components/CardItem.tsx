@@ -17,7 +17,7 @@ export default function CardItem() {
             p: 2,
           }}
         />
-        <CardContent>
+        <CardContent sx={{ p: "50px 22px" }}>
           <Typography gutterBottom variant="subtitle2" component="h5">
             Mountain
           </Typography>
