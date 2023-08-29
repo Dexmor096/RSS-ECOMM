@@ -8,13 +8,13 @@ export default function CustomBreadcrumbs() {
     <Link
       underline="hover"
       key="1"
-      color="primary"
+      color="common"
       sx={{ display: "flex", alignItems: "center" }}
       href="/"
     >
       <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
     </Link>,
-    <Typography key="2" color="primary">
+    <Typography key="2" color="common">
       Breadcrumb
     </Typography>,
   ];
