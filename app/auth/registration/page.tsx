@@ -6,12 +6,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Montserrat } from "next/font/google";
-
-const montserrat = Montserrat({
-  weight: "400",
-  subsets: ["latin"],
-});
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import FormControl from "@mui/material/FormControl";
@@ -24,6 +20,11 @@ import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { handleCustomerCreating } from "../../controllers/controller";
 import { RegistrationInputs } from "../../../types";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Registration(): ReactElement {
   const {
@@ -65,6 +66,7 @@ export default function Registration(): ReactElement {
         justifyContent: "center",
       }}
     >
+      <ToastContainer />
       <Container
         maxWidth="xs"
         disableGutters={true}
@@ -152,7 +154,7 @@ export default function Registration(): ReactElement {
             <FilledInput
               id="lastname"
               aria-describedby="name-input-text"
-              autoComplete="given-name"
+              autoComplete="family-name"
               {...register("lastname", {
                 required: {
                   value: true,

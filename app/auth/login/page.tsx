@@ -20,6 +20,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LoginInputs } from "../../../types";
 import { handleLoginUser } from "../../controllers/controller";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export type LoginInputs = {
+  email: string;
+  password: string;
+};
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +53,7 @@ export default function Login() {
 
   return (
     <Box component="form">
+      <ToastContainer />
       <Container
         disableGutters={true}
         maxWidth="xs"
