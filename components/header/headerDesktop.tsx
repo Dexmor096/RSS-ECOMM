@@ -38,14 +38,16 @@ export default function HeaderDesktop() {
         </Link>
         <Search />
 
-        <Tabs value={selectedTab} onChange={handleChange}>
+        <Tabs onChange={handleChange}>
           <Tab
+            value={selectedTab}
             href="/about-us"
             sx={headerLinkSX}
             label="About us"
             className={montserrat.className}
           />
           <Tab
+            value={selectedTab}
             href="/contacts"
             sx={headerLinkSX}
             label="Contacts"
@@ -64,9 +66,10 @@ export default function HeaderDesktop() {
           </Link>
         </Stack>
       </Stack>
-      <Tabs value={selectedTab} onChange={handleChange} sx={tabsHeader}>
+      <Tabs onChange={handleChange} sx={tabsHeader}>
         {categoriesHeader.map((category, index) => (
           <Tab
+            value={selectedTab}
             href={`/${category.toLowerCase()}`}
             key={index}
             label={category}
