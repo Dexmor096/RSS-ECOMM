@@ -32,10 +32,7 @@ export const handleCustomerCreating = async (
 export const handleRegistrationError = (error: HttpErrorType) => {
   //todo проверить тип ошибки
   if (error.statusCode === 400) {
-    notify(
-      "Ошибка регистрации (400). Такой пользователь уже существует!",
-      "error",
-    );
+    notify("Такой пользователь уже существует!", "error");
     console.error(
       "Ошибка регистрации (400). Такой пользователь уже существует!",
     );
@@ -68,9 +65,13 @@ export const handleLoginUser = async (
         router.push("/");
       }, 2000);
     })
-    .catch((error) => {
-      if (error.statusCode == 400) {
-        notify("Ошибка входа (400) Такой пользователь не найден!", "error");
+    .catch((error: HttpErrorType) => {
+      if (
+        error.message ==
+        "Customer account with the given credentials not found."
+      ) {
+        console.log(error.statusCode);
+        notify("Такой пользователь не найден!", "error");
         console.error("Ошибка входа (400) Такой пользователь не найден!");
       } else {
         notify("Ошибка входа", "error");
