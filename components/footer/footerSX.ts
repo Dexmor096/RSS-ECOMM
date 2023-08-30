@@ -5,7 +5,9 @@ export const footerLinkSX = {
   color: "inherit",
   transition: "all 0.25s ease",
   textDecoration: "none",
-  "&:hover": { color: "#006AD5" },
+  padding: "3px",
+  "&:hover": { transform: "scaleX(1.05)" },
+  "&:active": { color: "#006AD5" },
 };
 
 export const LinkTabletSX = {

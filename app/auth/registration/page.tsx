@@ -91,16 +91,20 @@ export default function Registration(): ReactElement {
         }}
       >
         <Box component="form" sx={{ padding: "30px 0" }} margin="normal">
-          <Link
-            href="/auth/login"
-            component={NextLink}
-            underline="none"
-            color="inherit"
-            fontSize="20px"
-            fontWeight="500"
-          >
-            Уже есть учетная запись? Войти
-          </Link>
+          <Stack direction="row" justifyContent="center" columnGap="10px">
+            <Typography>Уже есть учетная запись?</Typography>
+            <Link
+              href="/auth/login"
+              component={NextLink}
+              underline="none"
+              fontSize="20px"
+              fontWeight="500"
+              color="secondary"
+            >
+              Войти
+            </Link>
+          </Stack>
+
           <FormControl fullWidth variant="filled" sx={{ mt: "20px" }}>
             <InputLabel htmlFor="email-input">E-mail</InputLabel>
             <FilledInput

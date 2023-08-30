@@ -6,7 +6,7 @@ export const headerLinkCategoriesSX = {
   transition: "all 0.25s ease",
   textDecoration: "none",
   borderBottom: "2px solid transparent",
-  "&:hover": { borderBottom: "2px solid #006AD5", transform: "scaleX(1.05)" },
+  "&:hover": { transform: "scaleX(1.05)" },
 };
 
 export const headerLinkSX = {
@@ -16,7 +16,7 @@ export const headerLinkSX = {
   transition: "all 0.25s ease",
   textDecoration: "none",
   borderBottom: "2px solid transparent",
-  "&:hover": { borderBottom: "2px solid #006AD5", transform: "scaleX(1.05)" },
+  "&:hover": { transform: "scaleX(1.05)" },
 };
 
 export const tabsHeader = {
