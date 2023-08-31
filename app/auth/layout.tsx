@@ -6,8 +6,8 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Montserrat } from "next/font/google";
-import Header from "components/header";
-import Footer from "components/footer";
+import Header from "components/header/header";
+import Footer from "components/footer/footer";
 
 const montserrat = Montserrat({
   weight: "400",

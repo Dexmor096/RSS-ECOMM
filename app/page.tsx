@@ -1,5 +1,5 @@
-import Header from "components/header";
-import Footer from "components/footer";
+import Header from "components/header/header";
+import Footer from "components/footer/footer";
 
 export default function Home() {
   //todo вывод товаров после запроса токена анонима
