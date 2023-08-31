@@ -18,6 +18,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import NextLink from "next/link";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../functions/login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { Montserrat } from "next/font/google";
 
@@ -49,16 +51,17 @@ export default function Login() {
     mode: "onBlur",
   });
   const onSubmit = (data: LoginInputs) => console.log("data", data);
-  console.log("errors", errors);
 
   const handleLogin = async (data: LoginInputs) => {
     loginUser(data).then(() => {
+      console.log(data);
       reset();
     });
   };
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <ToastContainer />
       <Container
         disableGutters={true}
         maxWidth="xs"
