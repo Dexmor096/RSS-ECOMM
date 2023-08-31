@@ -1,35 +1,17 @@
 import Image from "next/image";
-// import Search from "./search";
 import logoSVG from "../public/assets/icons/logo.svg";
 import cartSVG from "../public/assets/icons/cart.svg";
 import profileSVG from "../public/assets/icons/profile.svg";
 import wishlistSVG from "../public/assets/icons/wishlist.svg";
 import { AppBar, Toolbar, Container, Stack, Link } from "@mui/material";
 import { Montserrat } from "next/font/google";
+import { getStringFromLS } from "../helpers/getStringLocalStorage";
+import PersonIcon from "@mui/icons-material/Person";
 
 const montserrat = Montserrat({
   weight: "400",
   subsets: ["latin"],
 });
-
-// header styles
-
-// @font-face {
-//   font-family: 'Helvetica';
-//   src: url('../../public/assets/fonts/helvetica.ttf');
-//   font-weight: 400;
-// }
-
-// .header {
-//   font-family: Helvetica, sans-serif;
-//   background: rgba(17, 17, 17, 0.9);
-//   color: #fff;
-// }
-
-// a:hover::before {
-//   transform-origin: left;
-//   transform: scaleX(1);
-// }
 
 const headerLinkSX = {
   color: "inherit",
@@ -47,6 +29,8 @@ const IconSX = {
 };
 
 export default function Header() {
+  const session = getStringFromLS("refresh-token");
+  console.log(session.length);
   return (
     <AppBar
       position="static"
@@ -79,9 +63,15 @@ export default function Header() {
               </Link>
             </Stack>
             <Stack direction="row" spacing={4}>
-              <Link href="/auth/login" sx={IconSX}>
-                <Image src={profileSVG} alt="button entrie" />
-              </Link>
+              {session.length > 2 ? (
+                <Link href="/auth/login" sx={IconSX}>
+                  <PersonIcon sx={{ path: { color: "#fff" } }} />
+                </Link>
+              ) : (
+                <Link href="/auth/login" sx={IconSX}>
+                  <Image src={profileSVG} alt="button login or register" />
+                </Link>
+              )}
               <Link href="#" sx={IconSX}>
                 <Image src={wishlistSVG} alt="button wishlist" />
               </Link>
