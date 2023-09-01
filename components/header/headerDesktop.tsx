@@ -17,9 +17,9 @@ const helveticaReg = localFont({
 });
 
 export default function HeaderDesktop() {
-  const [selectedTab, setSelectedTab] = useState<boolean>(false);
+  const [selectedTab, setSelectedTab] = useState<number>(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: boolean) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
   };
 
@@ -38,22 +38,20 @@ export default function HeaderDesktop() {
         </Link>
         <Search />
 
-        <Tabs onChange={handleChange}>
-          <Tab
-            value={selectedTab}
+        <Stack>
+          <Link
             href="/about-us"
             sx={headerLinkSX}
-            label="About us"
             className={montserrat.className}
+            component={NextLink}
           />
-          <Tab
-            value={selectedTab}
+          <Link
             href="/contacts"
             sx={headerLinkSX}
-            label="Contacts"
+            component={NextLink}
             className={montserrat.className}
           />
-        </Tabs>
+        </Stack>
         <Stack direction="row" spacing={{ md: 2, xl: 4 }}>
           <Link href="/auth/login" sx={IconSX} component={NextLink}>
             <Image src={profileSVG} alt="button entrie" />
@@ -66,12 +64,12 @@ export default function HeaderDesktop() {
           </Link>
         </Stack>
       </Stack>
-      <Tabs onChange={handleChange} sx={tabsHeader}>
+      <Tabs value={selectedTab} onChange={handleChange} sx={tabsHeader}>
         {categoriesHeader.map((category, index) => (
           <Tab
-            value={selectedTab}
+            value={index}
             href={`/${category.toLowerCase()}`}
-            key={index}
+            key={`category_${index}`}
             label={category}
             sx={headerLinkCategoriesSX}
             className={helveticaReg.className}
