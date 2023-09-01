@@ -17,9 +17,9 @@ const helveticaReg = localFont({
 });
 
 export default function HeaderDesktop() {
-  const [selectedTab, setSelectedTab] = useState<number>(0);
+  const [selectedTab, setSelectedTab] = useState<boolean>(false);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: boolean) => {
     setSelectedTab(newValue);
   };
 
@@ -38,19 +38,23 @@ export default function HeaderDesktop() {
         </Link>
         <Search />
 
-        <Stack>
+        <Stack direction="row" gap="40px">
           <Link
             href="/about-us"
             sx={headerLinkSX}
             className={montserrat.className}
             component={NextLink}
-          />
+          >
+            About us
+          </Link>
           <Link
             href="/contacts"
             sx={headerLinkSX}
             component={NextLink}
             className={montserrat.className}
-          />
+          >
+            Contacts
+          </Link>
         </Stack>
         <Stack direction="row" spacing={{ md: 2, xl: 4 }}>
           <Link href="/auth/login" sx={IconSX} component={NextLink}>
@@ -67,7 +71,6 @@ export default function HeaderDesktop() {
       <Tabs value={selectedTab} onChange={handleChange} sx={tabsHeader}>
         {categoriesHeader.map((category, index) => (
           <Tab
-            value={index}
             href={`/${category.toLowerCase()}`}
             key={`category_${index}`}
             label={category}
