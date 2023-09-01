@@ -1,5 +1,6 @@
 import Header from "components/header/header";
 import Footer from "components/footer/footer";
+import HeroSection from "components/HeroSection";
 
 export default function Home() {
   //todo вывод товаров после запроса токена анонима
@@ -7,7 +8,7 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <h1>Home Page</h1>
+        <HeroSection />
       </main>
       <Footer />
     </>
