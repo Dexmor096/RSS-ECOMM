@@ -9,6 +9,7 @@ import CustomBreadcrumbs from "components/breadcrumbs";
 
 import { theme } from "../../theme";
 import { ThemeProvider } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 
 export default function Catalog() {
   return (
@@ -33,9 +34,26 @@ export default function Catalog() {
               >
                 каталог specialized
               </Typography>
-              <Box sx={{ pt: 2, pb: 2 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={3}>
+                  <CardItem />
+                </Grid>
+                <Grid item xs={3}>
+                  <CardItem />
+                </Grid>
+                <Grid item xs={3}>
+                  <CardItem />
+                </Grid>
+                <Grid item xs={3}>
+                  <CardItem />
+                </Grid>
+                <Grid item xs={3}>
+                  <CardItem />
+                </Grid>
+              </Grid>
+              {/* <Box sx={{ pt: 2, pb: 2 }}>
                 <CardItem />
-              </Box>
+              </Box> */}
             </Stack>
           </Container>
         </Box>
