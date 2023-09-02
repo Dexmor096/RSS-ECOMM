@@ -1,3 +1,4 @@
+"use client";
 import Header from "components/header";
 import Footer from "components/footer";
 import Box from "@mui/material/Box";
@@ -9,9 +10,16 @@ import CustomBreadcrumbs from "components/breadcrumbs";
 
 import { theme } from "../../theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
+import { getCatalog } from "./function/getCatalog";
+import { useState } from "react";
 
 export default function Catalog() {
+  const [catalog, setCatalog] = useState();
+
+  const handleGetCatalog = () => {
+    getCatalog();
+  };
   return (
     <>
       <Header />
@@ -34,6 +42,14 @@ export default function Catalog() {
               >
                 каталог specialized
               </Typography>
+              <Button
+                type="button"
+                variant="outlined"
+                color="primary"
+                onClick={() => handleGetCatalog()}
+              >
+                getCategory
+              </Button>
               <Grid container spacing={2}>
                 <Grid item xs={3}>
                   <CardItem />
