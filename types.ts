@@ -3,4 +3,5 @@ export interface ButtonStyles {
   color: string;
   border: string;
   margin: string;
+  width?: string;
 }
