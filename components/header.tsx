@@ -64,7 +64,7 @@ export default function Header() {
             </Stack>
             <Stack direction="row" spacing={4}>
               {session.length > 2 ? (
-                <Link href="/auth/login" sx={IconSX}>
+                <Link href="/profile" sx={IconSX}>
                   <PersonIcon sx={{ path: { color: "#fff" } }} />
                 </Link>
               ) : (
