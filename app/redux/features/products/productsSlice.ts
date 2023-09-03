@@ -60,8 +60,8 @@ export const productSlice = createSlice({
 
 export const productReducer = productSlice.reducer;
 
-export const selectProducts = (state) => ({
-  status: state.product.status,
-  error: state.product.error,
-});
-export const selectAllProducts = (state) =>  state.product.list;
+// export const selectProducts = (state) => ({
+//   status: state.product.status,
+//   error: state.product.error,
+// });
+// export const selectAllProducts = (state) =>  state.product.list;
