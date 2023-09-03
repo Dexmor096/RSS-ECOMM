@@ -49,7 +49,7 @@ export const productSlice = createSlice({
       })
       .addCase(loadProducts.rejected, (state, action) => {
         state.status = "rejected";
-        state.error = "action.payload.error" || action.meta;
+        state.error = "action.payload.error" || action.payload;
       })
       .addCase(loadProducts.fulfilled, (state, action) => {
         state.status = "products received";
@@ -57,3 +57,11 @@ export const productSlice = createSlice({
       });
   },
 });
+
+export const productReducer = productSlice.reducer;
+
+export const selectProducts = (state) => ({
+  status: state.product.status,
+  error: state.product.error,
+});
+export const selectAllProducts = (state) =>  state.product.list;
