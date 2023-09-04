@@ -14,15 +14,17 @@ function AboutUs() {
     <Stack component="section">
       <Container maxWidth="xl">
         <SectionTitle
+          mt="110px"
           title="Знакомство с электрическими велосипедами"
           color="#000"
+          width={950}
         />
         <Stack direction="row" mt="20px">
           <Stack width="50%" sx={{ background: "#141414", p: "162px 50px 0" }}>
             <Typography
               className={advent.className}
               fontSize={42}
-              maxWidth={555}
+              maxWidth={485}
               lineHeight={1.2}
               color="#E3E3E3"
               fontWeight={300}

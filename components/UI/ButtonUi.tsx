@@ -8,6 +8,7 @@ function ButtonUi(props: ButtonStyles) {
       variant="outlined"
       className={montserrat.className}
       sx={{
+        display: "flex",
         fontWeight: "600",
         p: "18px 40px",
         borderRadius: 0,
