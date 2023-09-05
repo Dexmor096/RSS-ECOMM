@@ -7,7 +7,6 @@ interface IProductState {
   error: string | null;
   list: ProductProjection[];
 }
-
 const initialState: IProductState = {
   status: "not loaded",
   error: null,
@@ -15,7 +14,7 @@ const initialState: IProductState = {
 };
 
 export const loadProducts = createAsyncThunk(
-  "@@products/load-products",
+  "products/load-products",
   async () => {
     return (
       apiRoot

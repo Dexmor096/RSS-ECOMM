@@ -10,9 +10,13 @@ export const getProducts = async () => {
         queryArgs: { limit: 13, published: true },
       })
       .execute()
-      .then((data) => console.log("продукты получены", data.body.results))
-      .catch(() => {
+      .then((data) => {
+        console.log("Products received", data.body.results);
+        return data;
+      })
+      .catch((error) => {
         console.error("error");
+        throw error;
       })
   );
 };
