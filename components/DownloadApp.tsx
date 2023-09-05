@@ -1,8 +1,13 @@
-import { Container, Stack } from "@mui/material";
+"use client";
+
+import { Button, Container, Stack } from "@mui/material";
 import bikeImg from "../public/assets/images/picture-bg.jpg";
 import mobileImg from "../public/assets/images/mobile.png";
 import ButtonUi from "./UI/ButtonUi";
 import SectionTitle from "./SectionTitle";
+import AppleIcon from "@mui/icons-material/Apple";
+import GoogleIcon from "@mui/icons-material/Google";
+import { buttonDownSX } from "./stylesSX";
 
 function DownloadApp() {
   return (
@@ -28,21 +33,15 @@ function DownloadApp() {
               title="Скачай приложение и ощути удовльствие от поездок"
               width={665}
             />
-            <Stack direction="row" gap={4}>
-              <ButtonUi
-                width="300px"
-                text="Скачать в apple store"
-                color="#000"
-                margin="35px 0 162px"
-                background="#fff"
-              />
-              <ButtonUi
-                width="300px"
-                text="Скачать в google play"
-                color="#000"
-                margin="35px 0 162px"
-                background="#fff"
-              />
+            <Stack direction="row" gap={4} mt={4.5}>
+              <Button variant="contained" sx={buttonDownSX}>
+                <AppleIcon />
+                <p>Скачать в apple store</p>
+              </Button>
+              <Button variant="contained" sx={buttonDownSX}>
+                <GoogleIcon />
+                <p>Скачать в google play</p>
+              </Button>
             </Stack>
           </Stack>
           <Stack

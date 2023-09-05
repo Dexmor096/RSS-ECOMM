@@ -1,11 +1,8 @@
-export interface ButtonStyles {
+export interface ButtonMain {
   text: string;
   color: string;
-  border?: string;
+  border: string;
   margin: string;
-  width?: string;
-  padding?: string;
-  background?: string;
 }
 
 export interface SectionTitleStyles {
