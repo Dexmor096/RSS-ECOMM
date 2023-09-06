@@ -9,22 +9,24 @@ import CustomBreadcrumbs from "components/breadcrumbs";
 
 import { theme } from "../../theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { Grid, Button } from "@mui/material";
-import { getCatalog } from "./function/getCatalog";
-import { useState } from "react";
+import { Button } from "@mui/material";
+import { useEffect } from "react";
 import { CardsList } from "components/cards/cardsList";
-import { getProducts } from "app/products/getProducts";
 import { loadProducts } from "app/redux/features/products/productsSlice";
-import { Provider, useDispatch } from "react-redux";
+
+import { useAppDispatch } from "app/redux/hooks/customHooks";
+import { Provider } from "react-redux";
 import { store } from "app/redux/store";
 
-export default function Catalog() {
-  // const dispatch = useDispatch();
-
-  const handleGetCatalog = () => {
-    // dispatch(testLoadProducts());
-    getProducts();
+export default function Sale() {
+  const dispatch = useAppDispatch();
+  const HandleLoadingProducts = () => {
+    dispatch(loadProducts());
   };
+  useEffect(() => {
+    dispatch(loadProducts());
+  }, [dispatch]);
+
   return (
     <>
       <Provider store={store}>
@@ -52,7 +54,7 @@ export default function Catalog() {
                   type="button"
                   variant="outlined"
                   color="primary"
-                  onClick={handleGetCatalog}
+                  onClick={HandleLoadingProducts}
                 >
                   getCategory
                 </Button>

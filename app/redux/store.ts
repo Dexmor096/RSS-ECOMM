@@ -1,3 +1,4 @@
+"use client";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { productReducer } from "./features/products/productsSlice";
 import { themeReducer } from "./features/theme/themeSlice";

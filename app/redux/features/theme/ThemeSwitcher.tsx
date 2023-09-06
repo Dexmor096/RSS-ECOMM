@@ -5,11 +5,9 @@ import { useSelector } from "react-redux";
 import { setTheme } from "./themeSlice";
 import { AppDispatch, RootState } from "app/redux/store";
 import { loadProducts } from "../products/productsSlice";
-import { getProducts } from "app/products/getProducts";
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();
-  // const useAppDispatch = () => useDispatch<AppDispatch>();
   const useAppDispatch: AppDispatch = useDispatch();
 
   const theme = useSelector((state: RootState) => state.theme);

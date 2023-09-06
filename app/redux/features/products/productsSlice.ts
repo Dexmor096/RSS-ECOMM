@@ -1,3 +1,4 @@
+"use client";
 import { ProductProjection } from "@commercetools/platform-sdk";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiRoot } from "apiRoot";
