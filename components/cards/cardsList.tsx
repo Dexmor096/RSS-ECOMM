@@ -1,20 +1,18 @@
 import CardItem from "./cardItem";
 import { Grid } from "@mui/material";
 
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { loadProducts } from "app/redux/features/products/productsSlice";
-import { AsyncThunkAction } from "@reduxjs/toolkit";
+import { useAppSelector } from "app/redux/hooks/customHooks";
 
 export const CardsList = () => {
-  // useEffect(() => {
-  //   dispatch(loadProducts());
-  // }, [dispatch]);
+  const products = useAppSelector((state) => state.product.list);
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={3}>
-        <CardItem />
-      </Grid>
+      {products.map((product) => (
+        <Grid key={product.key} item xs={3}>
+          <CardItem {...product} key={product.key} />
+        </Grid>
+      ))}
     </Grid>
   );
 };
