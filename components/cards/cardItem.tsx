@@ -7,6 +7,9 @@ import { ProductProjection } from "@commercetools/platform-sdk";
 
 export default function CardItem(props: ProductProjection) {
   const { name, masterVariant } = props;
+  const filteredPrice = masterVariant.prices?.filter(
+    (obj) => obj.country === "US",
+  );
   return (
     <Card sx={{ maxWidth: 345, maxHeight: 530 }}>
       <CardActionArea>
@@ -22,11 +25,17 @@ export default function CardItem(props: ProductProjection) {
           }}
         />
         <CardContent sx={{ p: "50px 22px" }}>
-          <Typography gutterBottom variant="h6" component="h3">
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="h3"
+            style={{ fontWeight: "bold" }}
+          >
             {name["en-US"]}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            132 товара
+            {filteredPrice?.[0].value?.centAmount}{" "}
+            {filteredPrice?.[0].value?.currencyCode}
           </Typography>
         </CardContent>
       </CardActionArea>
