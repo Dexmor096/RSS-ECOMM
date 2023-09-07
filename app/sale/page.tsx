@@ -50,18 +50,7 @@ export default function Sale() {
                 >
                   каталог specialized
                 </Typography>
-                <Button
-                  type="button"
-                  variant="outlined"
-                  color="primary"
-                  onClick={HandleLoadingProducts}
-                >
-                  getCategory
-                </Button>
                 <CardsList />
-                {/* <Box sx={{ pt: 2, pb: 2 }}>
-                <CardItem />
-              </Box> */}
               </Stack>
             </Container>
           </Box>
