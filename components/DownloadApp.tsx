@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Button, Container, Stack } from "@mui/material";
 import bikeImg from "../public/assets/images/picture-bg.jpg";
 import mobileImg from "../public/assets/images/mobile.png";
@@ -27,7 +28,7 @@ function DownloadApp() {
           margin="50px 0 0 auto"
         />
         <Stack direction="row" alignItems="flex-start" mt="140px">
-          <Stack mr={145}>
+          <Stack mr={15}>
             <SectionTitle
               color="#FFF"
               title="Скачай приложение и ощути удовльствие от поездок"
@@ -44,17 +45,13 @@ function DownloadApp() {
               </Button>
             </Stack>
           </Stack>
-          <Stack
-            sx={{
-              background: `url(${mobileImg.src})`,
-              width: "306px",
-              height: "520px",
-              boxShadow: "10px 8px 20px 0px rgba(255, 255, 255, 0.25",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-            }}
-          ></Stack>
+          <Image
+            src={mobileImg.src}
+            alt="mobile app"
+            width={306}
+            height={520}
+            style={{ marginBottom: "-27px" }}
+          />
         </Stack>
       </Container>
     </Stack>
