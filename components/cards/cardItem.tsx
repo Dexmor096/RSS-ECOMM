@@ -2,7 +2,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
+
+import { CardActionArea, Box } from "@mui/material";
 import { ProductProjection } from "@commercetools/platform-sdk";
 
 export default function CardItem(props: ProductProjection) {
@@ -37,6 +40,14 @@ export default function CardItem(props: ProductProjection) {
             {filteredPrice?.[0].value?.centAmount}{" "}
             {filteredPrice?.[0].value?.currencyCode}
           </Typography>
+          <Box
+            sx={{
+              mt: 2,
+            }}
+          >
+            <FavoriteBorderIcon sx={{ mr: 1 }} />
+            <ShoppingCartOutlined />
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>

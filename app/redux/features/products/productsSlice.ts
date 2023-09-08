@@ -22,7 +22,7 @@ export const loadProducts = createAsyncThunk(
         .productProjections()
         // .search()
         .get({
-          queryArgs: { limit: 13, published: true },
+          queryArgs: { limit: 8, published: true },
         })
         .execute()
         .then((data) => {
