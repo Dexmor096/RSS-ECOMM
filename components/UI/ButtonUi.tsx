@@ -1,13 +1,14 @@
 import { Button } from "@mui/material";
-import { ButtonStyles } from "types";
+import { ButtonMain } from "types";
 import { montserrat } from "components/stylesSX";
 
-function ButtonUi(props: ButtonStyles) {
+function ButtonUi(props: ButtonMain) {
   return (
     <Button
       variant="outlined"
       className={montserrat.className}
       sx={{
+        display: "flex",
         fontWeight: "600",
         p: "18px 40px",
         borderRadius: 0,

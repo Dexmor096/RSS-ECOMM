@@ -68,7 +68,13 @@ export default function HeaderDesktop() {
           </Link>
         </Stack>
       </Stack>
-      <Tabs value={selectedTab} onChange={handleChange} sx={tabsHeader}>
+
+      <Tabs
+        value={selectedTab}
+        onChange={handleChange}
+        sx={tabsHeader}
+        TabIndicatorProps={{ style: { background: "transparent" } }}
+      >
         {categoriesHeader.map((category, index) => (
           <Tab
             href={`/${category.toLowerCase()}`}

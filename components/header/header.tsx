@@ -21,7 +21,7 @@ export default function Header() {
       }}
     >
       <Toolbar disableGutters={true}>
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           {isTablet ? <HeaderTablet /> : <HeaderDesktop />}
         </Container>
       </Toolbar>

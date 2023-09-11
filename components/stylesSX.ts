@@ -11,3 +11,12 @@ export const IconSX = {
   borderRadius: "5px",
   "&:hover": { backgroundColor: "rgba(211, 211, 211, 0.15)" },
 };
+
+export const buttonDownSX = {
+  background: "#fff",
+  color: "#000",
+  p: "15px 24px",
+  alignItems: "center",
+  gap: "10px",
+  transition: "all 0.5s ease",
+};
