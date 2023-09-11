@@ -27,7 +27,13 @@ function DownloadApp() {
           border="border: 1px solid rgba(255, 255, 255, 0.60)"
           margin="50px 0 0 auto"
         />
-        <Stack direction="row" alignItems="flex-start" mt="140px">
+        <Stack
+          direction="row"
+          alignItems="flex-start"
+          mt="140px"
+          justifyContent="space-between"
+          mb="-27px"
+        >
           <Stack mr={15}>
             <SectionTitle
               color="#FFF"
@@ -50,7 +56,6 @@ function DownloadApp() {
             alt="mobile app"
             width={306}
             height={520}
-            style={{ marginBottom: "-27px" }}
           />
         </Stack>
       </Container>
