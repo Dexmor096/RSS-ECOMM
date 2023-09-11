@@ -9,18 +9,8 @@ import Typography from "@mui/material/Typography";
 import { Montserrat } from "next/font/google";
 import NextLink from "next/link";
 import "react-toastify/dist/ReactToastify.css";
-
-const montserrat = Montserrat({
-  weight: "400",
-  subsets: ["latin"],
-});
-
 import { useForm } from "react-hook-form";
-import { loginUser } from "../functions/login";
-import {
-  createCustomer,
-  handleRegistrationError,
-} from "../functions/createCustomer";
+import { useRouter } from "next/navigation";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import { FilledInput, InputLabel } from "@mui/material";
@@ -29,68 +19,44 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
-import { ToastContainer, TypeOptions, toast } from "react-toastify";
+import { handleCustomerCreating } from "../../controllers/controller";
+import { RegistrationInputs } from "../../../types";
+import { ToastContainer } from "react-toastify";
 
-export type RegistrationInputs = {
-  email: string;
-  name: string;
-  lastname: string;
-  password: string;
-  address: string;
-};
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export default function Registration(): ReactElement {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<RegistrationInputs>({
     mode: "onBlur",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
-  const notify = (message: string, type: TypeOptions) =>
-    toast(message, {
-      position: "top-center",
-      autoClose: 3500,
-      type: type,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const onSubmit = async (data: RegistrationInputs) => {
-    createCustomer({
+    const userData = {
       email: data.email,
       password: data.password,
       name: data.name,
       lastname: data.lastname,
       address: data.address,
-    })
-      .then(() => {
-        notify("Регистрация прошла успешно", "success");
-        loginUser({ email: data.email, password: data.password }).then(() => {
-          reset();
-          notify(`Вы вошли как ${data.name}`, "success");
-        });
-      })
-      .catch((error) => {
-        if (error.statusCode === 400) {
-          notify("Такой пользователь уже существует", "error");
-          handleRegistrationError(error);
-        } else {
-          notify("Ошибка подключения к интернету", "error");
-          handleRegistrationError(error);
-        }
-      });
+    };
+    const redirect = () => {
+      router.push("/auth/login");
+    };
+    handleCustomerCreating(userData, redirect);
   };
 
   return (
@@ -329,6 +295,10 @@ export default function Registration(): ReactElement {
           >
             Зарегистрироваться
           </Button>
+          <Typography variant="body2" component="span">
+            после регистрации Вы будете перенаправлены на страницу входа в
+            систему
+          </Typography>
         </Box>
       </Container>
     </Stack>
