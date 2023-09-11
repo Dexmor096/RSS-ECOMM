@@ -4,9 +4,10 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Montserrat } from "next/font/google";
-import { ToastContainer } from "react-toastify";
+import NextLink from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -20,6 +21,7 @@ import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { handleCustomerCreating } from "../../controllers/controller";
 import { RegistrationInputs } from "../../../types";
+import { ToastContainer } from "react-toastify";
 
 const montserrat = Montserrat({
   weight: "400",
@@ -79,7 +81,21 @@ export default function Registration(): ReactElement {
         }}
       >
         <Box component="form" sx={{ padding: "30px 0" }} margin="normal">
-          <FormControl fullWidth variant="filled">
+          <Stack direction="row" justifyContent="center" columnGap="10px">
+            <Typography>Уже есть учетная запись?</Typography>
+            <Link
+              href="/auth/login"
+              component={NextLink}
+              underline="none"
+              fontSize="20px"
+              fontWeight="500"
+              color="secondary"
+            >
+              Войти
+            </Link>
+          </Stack>
+
+          <FormControl fullWidth variant="filled" sx={{ mt: "20px" }}>
             <InputLabel htmlFor="email-input">E-mail</InputLabel>
             <FilledInput
               placeholder="example@email.ru"
@@ -272,7 +288,7 @@ export default function Registration(): ReactElement {
           <Button
             sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
             variant="contained"
-            fullWidth
+            fullWidth={true}
             color="secondary"
             className={montserrat.className}
             onClick={handleSubmit(onSubmit)}

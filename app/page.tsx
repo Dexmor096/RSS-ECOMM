@@ -1,11 +1,11 @@
 "use client";
+import Header from "components/header/header";
+import Footer from "components/footer/footer";
 import Button from "@mui/material/Button";
 import { getApiRootWithRefreshToken } from "../apiRoot";
 
-import Header from "components/header";
-import Footer from "components/footer";
-
 export default function Home() {
+  //todo вывод товаров после запроса токена анонима
   return (
     <>
       <Header />
