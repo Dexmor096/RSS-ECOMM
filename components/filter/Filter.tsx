@@ -44,8 +44,10 @@ const Filter = ({ nameFilter, descFilter }: FilterProps) => {
             rowGap: "12px",
           }}
         >
-          {descFilter.map((category) => (
-            <Typography className={montserrat.className}>{category}</Typography>
+          {descFilter.map((category, idx) => (
+            <Typography className={montserrat.className} key={idx}>
+              {category}
+            </Typography>
           ))}
         </AccordionDetails>
       </Accordion>
