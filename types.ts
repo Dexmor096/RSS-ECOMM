@@ -10,3 +10,9 @@ export interface RegistrationInputs {
   password: string;
   address: string;
 }
+export interface ButtonStyles {
+  text: string;
+  color: string;
+  border: string;
+  margin: string;
+}

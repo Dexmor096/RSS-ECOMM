@@ -38,22 +38,24 @@ export default function HeaderDesktop() {
         </Link>
         <Search />
 
-        <Tabs onChange={handleChange}>
-          <Tab
-            value={selectedTab}
+        <Stack direction="row" gap="40px">
+          <Link
             href="/about-us"
             sx={headerLinkSX}
-            label="About us"
             className={montserrat.className}
-          />
-          <Tab
-            value={selectedTab}
+            component={NextLink}
+          >
+            About us
+          </Link>
+          <Link
             href="/contacts"
             sx={headerLinkSX}
-            label="Contacts"
+            component={NextLink}
             className={montserrat.className}
-          />
-        </Tabs>
+          >
+            Contacts
+          </Link>
+        </Stack>
         <Stack direction="row" spacing={{ md: 2, xl: 4 }}>
           <Link href="/auth/login" sx={IconSX} component={NextLink}>
             <Image src={profileSVG} alt="button entrie" />
@@ -66,12 +68,11 @@ export default function HeaderDesktop() {
           </Link>
         </Stack>
       </Stack>
-      <Tabs onChange={handleChange} sx={tabsHeader}>
+      <Tabs value={selectedTab} onChange={handleChange} sx={tabsHeader}>
         {categoriesHeader.map((category, index) => (
           <Tab
-            value={selectedTab}
             href={`/${category.toLowerCase()}`}
-            key={index}
+            key={`category_${index}`}
             label={category}
             sx={headerLinkCategoriesSX}
             className={helveticaReg.className}
