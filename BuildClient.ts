@@ -1,24 +1,28 @@
 import fetch from "node-fetch";
+
 import {
   ClientBuilder,
-
-  // Import middlewares
   type HttpMiddlewareOptions,
-  AnonymousAuthMiddlewareOptions, // Required for sending HTTP requests
+  AnonymousAuthMiddlewareOptions,
+  RefreshAuthMiddlewareOptions,
 } from "@commercetools/sdk-client-v2";
 import { generateRandomNumber } from "./helpers/generateNumber";
+import { PasswordAuthMiddlewareOptions } from "@commercetools/sdk-client-v2/dist/declarations/src/types/sdk";
+import * as process from "process";
 
-export const projectKey = "ygvyvt";
+const projectKey = process.env.PROJECT_KEY!;
+
 const scopeList = [
-  `view_published_products`,
   `create_anonymous_token`,
+  `manage_my_business_units`,
+  `manage_my_shopping_lists`,
+  `manage_my_quotes`,
+  `manage_my_orders`,
+  `manage_my_quote_requests`,
   `view_categories`,
   `manage_my_profile`,
   `manage_my_payments`,
-  `manage_my_business_units`,
-  `manage_my_shopping_lists`,
-  `manage_my_orders`,
-  `manage_customers`,
+  `view_published_products`,
 ];
 const scopes = scopeList.map((it) => it.concat(":", projectKey));
 
@@ -28,31 +32,83 @@ const httpMiddlewareOptions: HttpMiddlewareOptions = {
   fetch,
 };
 
-const anonymousId = String(generateRandomNumber());
+export const getAnonymousClient = () => {
+  const anonymousId = String(generateRandomNumber());
 
-const anonymousOptions: AnonymousAuthMiddlewareOptions = {
-  host: "https://auth.europe-west1.gcp.commercetools.com",
-  projectKey: projectKey,
-  credentials: {
-    clientId: "DbX0DhQieIwQMMmeY-mWhyCu",
-    clientSecret: "A4bf_ce4Vd8EEWuLVxTM-n_4ORo8KATS",
-    anonymousId: anonymousId, // a unique id
-  },
-  scopes,
-  fetch,
+  const anonymousOptions: AnonymousAuthMiddlewareOptions = {
+    host: "https://auth.europe-west1.gcp.commercetools.com",
+    projectKey: projectKey,
+    credentials: {
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
+      anonymousId: anonymousId, // a unique id
+    },
+    scopes,
+    fetch,
+  };
+
+  return new ClientBuilder()
+    .withProjectKey(projectKey)
+    .withAnonymousSessionFlow(anonymousOptions)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
+    .build();
 };
 
-// Export the ClientBuilder
-export const ctpAnonymousClient = new ClientBuilder()
-  .withProjectKey(projectKey) // .withProjectKey() is not required if the projectKey is included in authMiddlewareOptions
-  .withAnonymousSessionFlow(anonymousOptions)
-  .withHttpMiddleware(httpMiddlewareOptions)
-  .withLoggerMiddleware() // Include middleware for logging
-  .build();
+export const getAuthClient = (login: string, password: string) => {
+  const passwordOptions: PasswordAuthMiddlewareOptions = {
+    host: "https://auth.europe-west1.gcp.commercetools.com",
+    projectKey: projectKey,
+    credentials: {
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
+      user: {
+        username: login,
+        password: password,
+      },
+    },
+  };
 
-// export const ctpClient = new ClientBuilder()
-//   .withProjectKey(projectKey) // .withProjectKey() is not required if the projectKey is included in authMiddlewareOptions
-//   .withClientCredentialsFlow(authMiddlewareOptions)
-//   .withHttpMiddleware(httpMiddlewareOptions)
-//   .withLoggerMiddleware() // Include middleware for logging
-//   .build();
+  return new ClientBuilder()
+    .withProjectKey(projectKey)
+    .withPasswordFlow(passwordOptions)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
+    .build();
+};
+
+export const getTokenBuilder = (token: string) => {
+  type ExistingTokenMiddlewareOptions = {
+    force?: boolean;
+  };
+
+  const options: ExistingTokenMiddlewareOptions = {
+    force: true,
+  };
+
+  return new ClientBuilder()
+    .withProjectKey(projectKey)
+    .withExistingTokenFlow(`Bearer ${token}`, options)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
+    .build();
+};
+
+export const getRefreshTokenBuilder = (refreshToken: string) => {
+  const options: RefreshAuthMiddlewareOptions = {
+    host: "https://auth.europe-west1.gcp.commercetools.com",
+    projectKey: projectKey,
+    credentials: {
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
+    },
+    refreshToken: refreshToken,
+    fetch,
+  };
+
+  return new ClientBuilder()
+    .withRefreshTokenFlow(options)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .withLoggerMiddleware()
+    .build();
+};

@@ -1,10 +1,36 @@
-import { ctpAnonymousClient } from "./BuildClient";
+import {
+  getAnonymousClient,
+  getAuthClient,
+  getRefreshTokenBuilder,
+  getTokenBuilder,
+} from "./BuildClient";
 import { createApiBuilderFromCtpClient } from "@commercetools/platform-sdk";
-import { projectKey as thisProjectKey } from "./BuildClient";
 
-// Create apiRoot from the imported ClientBuilder and include your Project key
-export const apiRoot = createApiBuilderFromCtpClient(
-  ctpAnonymousClient,
-).withProjectKey({
-  projectKey: thisProjectKey,
-});
+export const getAnonymousApiRoot = () => {
+  const ctpAnonymousClient = getAnonymousClient();
+  console.log("anon is created");
+  return createApiBuilderFromCtpClient(ctpAnonymousClient).withProjectKey({
+    projectKey: process.env.PROJECT_KEY!,
+  });
+};
+
+export const getAuthApiRoot = (login: string, password: string) => {
+  const ctpClient = getAuthClient(login, password);
+  return createApiBuilderFromCtpClient(ctpClient).withProjectKey({
+    projectKey: process.env.PROJECT_KEY!,
+  });
+};
+
+export const getApiRootWithToken = (token: string) => {
+  const ctpClient = getTokenBuilder(token);
+  return createApiBuilderFromCtpClient(ctpClient).withProjectKey({
+    projectKey: process.env.PROJECT_KEY!,
+  });
+};
+
+export const getApiRootWithRefreshToken = (token: string) => {
+  const ctpClient = getRefreshTokenBuilder(token);
+  return createApiBuilderFromCtpClient(ctpClient).withProjectKey({
+    projectKey: process.env.PROJECT_KEY!,
+  });
+};

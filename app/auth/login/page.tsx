@@ -17,10 +17,12 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import NextLink from "next/link";
 import { useForm } from "react-hook-form";
-import { loginUser } from "../functions/login";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { LoginInputs } from "../../../types";
+import { handleLoginUser } from "../../controllers/controller";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
@@ -28,13 +30,9 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-export type LoginInputs = {
-  email: string;
-  password: string;
-};
-
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -46,21 +44,16 @@ export default function Login() {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm<LoginInputs>({
     mode: "onBlur",
   });
-  const onSubmit = (data: LoginInputs) => console.log("data", data);
 
   const handleLogin = async (data: LoginInputs) => {
-    loginUser(data).then(() => {
-      console.log(data);
-      reset();
-    });
+    handleLoginUser(data, router);
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+    <Box component="form">
       <ToastContainer />
       <Container
         disableGutters={true}
