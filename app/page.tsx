@@ -2,8 +2,8 @@
 import Header from "components/header/header";
 import Footer from "components/footer/footer";
 import HeroSection from "components/HeroSection";
-
-// import { ThemeSwitcher } from "./redux/features/theme/ThemeSwitcher";
+import AboutUs from "components/AboutUs";
+import DownloadApp from "components/DownloadApp";
 
 export default function Home() {
   //todo вывод товаров после запроса токена анонима
@@ -13,7 +13,8 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        {/* <ThemeSwitcher /> */}
+        <AboutUs />
+        <DownloadApp />
       </main>
       <Footer />
     </>
