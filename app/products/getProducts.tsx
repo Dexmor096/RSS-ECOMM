@@ -1,9 +1,8 @@
-import { apiRoot } from "apiRoot";
-import { ByProjectKeyRequestBuilder } from "@commercetools/platform-sdk/dist/declarations/src/generated/client/by-project-key-request-builder";
+import { getAnonymousApiRoot } from "apiRoot";
 
 export const getProducts = async () => {
   return (
-    apiRoot
+    getAnonymousApiRoot()
       .productProjections()
       // .search()
       .get({

@@ -1,13 +1,8 @@
 "use client";
-import { ProductProjection } from "@commercetools/platform-sdk";
+import { IProductState } from "types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { apiRoot } from "apiRoot";
+import { getAnonymousApiRoot } from "apiRoot";
 
-interface IProductState {
-  status: string;
-  error: string | null;
-  list: ProductProjection[];
-}
 const initialState: IProductState = {
   status: "not loaded",
   error: null,
@@ -18,7 +13,7 @@ export const loadProducts = createAsyncThunk(
   "products/load-products",
   async () => {
     return (
-      apiRoot
+      getAnonymousApiRoot()
         .productProjections()
         // .search()
         .get({
@@ -59,9 +54,3 @@ export const productSlice = createSlice({
 });
 
 export const productReducer = productSlice.reducer;
-
-// export const selectProducts = (state) => ({
-//   status: state.product.status,
-//   error: state.product.error,
-// });
-// export const selectAllProducts = (state) =>  state.product.list;

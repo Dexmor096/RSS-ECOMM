@@ -1,12 +1,10 @@
 "use client";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { productReducer } from "./features/products/productsSlice";
-import { themeReducer } from "./features/theme/themeSlice";
 
 export const store = configureStore({
   reducer: {
     product: productReducer,
-    theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
