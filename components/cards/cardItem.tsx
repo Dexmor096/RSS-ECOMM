@@ -19,7 +19,7 @@ export default function CardItem(props: ProductProjection) {
         <CardMedia
           component="img"
           height="auto"
-          image={masterVariant?.images?.[0]?.url || " "}
+          image={masterVariant?.images?.[0]?.url}
           alt=""
           sx={{
             p: 2,
@@ -37,7 +37,7 @@ export default function CardItem(props: ProductProjection) {
             {name["en-US"]}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {filteredPrice?.[0]?.value?.centAmount}{" "}
+            {filteredPrice?.[0]?.value?.centAmount.toLocaleString()}{" "}
             {filteredPrice?.[0]?.value?.currencyCode}
           </Typography>
           <Box
