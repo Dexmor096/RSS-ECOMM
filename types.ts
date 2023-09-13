@@ -1,3 +1,5 @@
+import { ProductProjection } from "@commercetools/platform-sdk";
+
 export type LoginInputs = {
   email: string;
   password: string;
@@ -29,4 +31,9 @@ export interface SectionTitleStyles {
   title: string;
   color: string;
   width: number;
+}
+export interface IProductState {
+  status: string;
+  error: string | null;
+  list: ProductProjection[];
 }
