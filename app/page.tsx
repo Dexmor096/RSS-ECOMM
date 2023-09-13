@@ -7,6 +7,7 @@ import DownloadApp from "components/DownloadApp";
 
 export default function Home() {
   //todo вывод товаров после запроса токена анонима
+
   return (
     <>
       <Header />
