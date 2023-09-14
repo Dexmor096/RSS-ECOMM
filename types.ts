@@ -10,3 +10,11 @@ export interface RegistrationInputs {
   password: string;
   address: string;
 }
+
+export interface IUserInfo {
+  firstname: string;
+  lastname: string;
+  email: string;
+  addresses: string[];
+  birthDay: string;
+}

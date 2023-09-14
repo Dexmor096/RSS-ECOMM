@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import logoSVG from "../public/assets/icons/logo.svg";
 import cartSVG from "../public/assets/icons/cart.svg";

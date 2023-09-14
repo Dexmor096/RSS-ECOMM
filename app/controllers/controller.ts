@@ -120,7 +120,8 @@ export const getMyInfo = async () => {
     .get()
     .execute()
     .then((response) => {
-      console.log(response.body);
+      const info = response;
+      return info;
     })
     .catch((error) => console.log("error", error));
 };
