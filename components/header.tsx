@@ -30,7 +30,6 @@ const IconSX = {
 
 export default function Header() {
   const session = getStringFromLS("refresh-token");
-  console.log(session.length);
   return (
     <AppBar
       position="static"
