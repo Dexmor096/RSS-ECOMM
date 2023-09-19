@@ -39,6 +39,11 @@ export interface IProductState {
 }
 export type Details = {
   params: {
+    details: string;
+  };
+};
+export type Category = {
+  params: {
     category: string;
   };
 };
