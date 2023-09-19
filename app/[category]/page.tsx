@@ -9,20 +9,18 @@ import CustomBreadcrumbs from "components/breadcrumbs";
 
 import { theme } from "../../theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { CardsList } from "components/cards/cardsList";
 import { loadProducts } from "app/redux/features/products/productsSlice";
+import { Details } from "types";
 
 import { useAppDispatch } from "app/redux/hooks/customHooks";
 import { Provider } from "react-redux";
 import { store } from "app/redux/store";
 
-export default function Sale() {
+export default function Sale({ params: { category } }: Details) {
   const dispatch = useAppDispatch();
-  const HandleLoadingProducts = () => {
-    dispatch(loadProducts());
-  };
+
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch]);
@@ -42,13 +40,13 @@ export default function Sale() {
           >
             <Container maxWidth="xl">
               <Stack>
-                <CustomBreadcrumbs />
+                <CustomBreadcrumbs current={category} />
                 <Typography
                   variant="h3"
                   color="common.black"
                   sx={{ pt: 2, pb: 4 }}
                 >
-                  каталог specialized
+                  {category}
                 </Typography>
                 <CardsList />
               </Stack>

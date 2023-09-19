@@ -37,3 +37,8 @@ export interface IProductState {
   error: string | null;
   list: ProductProjection[];
 }
+export type Details = {
+  params: {
+    category: string;
+  };
+};

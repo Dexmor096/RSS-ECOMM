@@ -1,9 +1,8 @@
-import CardItem from "./cardItem";
 import { Grid } from "@mui/material";
+import CardItem from "./cardItem";
 
 import { useAppSelector } from "app/redux/hooks/customHooks";
-import CatalogSkeletonLoading from "app/sale/loading";
-import { cardSkeleton } from "app/sale/loading";
+import CatalogSkeletonLoading, { cardSkeleton } from "app/sale2/loading";
 
 export const CardsList = () => {
   const products = useAppSelector((state) => state.product.list);
