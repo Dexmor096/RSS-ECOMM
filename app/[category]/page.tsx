@@ -12,13 +12,13 @@ import { ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 import { CardsList } from "components/cards/cardsList";
 import { loadProducts } from "app/redux/features/products/productsSlice";
-import { Category } from "types";
+import { CategoryTitle } from "types";
 
 import { useAppDispatch } from "app/redux/hooks/customHooks";
 import { Provider } from "react-redux";
 import { store } from "app/redux/store";
 
-export default function Category({ params: { category } }: Category) {
+export default function Category({ params: { category } }: CategoryTitle) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

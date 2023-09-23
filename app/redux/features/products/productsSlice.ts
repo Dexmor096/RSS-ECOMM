@@ -2,6 +2,8 @@
 import { IProductState } from "types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAnonymousApiRoot } from "apiRoot";
+import { ByProjectKeyProductProjectionsRequestBuilder } from "@commercetools/platform-sdk/dist/declarations/src/generated/client/product-projections/by-project-key-product-projections-request-builder";
+import { CategoryPagedQueryResponse } from "@commercetools/platform-sdk";
 
 const initialState: IProductState = {
   status: "not loaded",
@@ -15,9 +17,13 @@ export const loadProducts = createAsyncThunk(
     return (
       getAnonymousApiRoot()
         .productProjections()
-        // .search()
+        .search()
+        //.categories()
         .get({
-          queryArgs: { limit: 8, published: true },
+          queryArgs: {
+            filter: 'categories.id: "ed96a7ee-a86b-410d-a753-f0145657b8f9"',
+            published: true,
+          },
         })
         .execute()
         .then((data) => {
@@ -30,7 +36,7 @@ export const loadProducts = createAsyncThunk(
         })
     );
   },
-);
+); // id: "05e3e06a-8a92-48e2-8333-f21e2e9a0900"
 
 export const productSlice = createSlice({
   name: "@@products",
