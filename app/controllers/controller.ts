@@ -115,3 +115,23 @@ export const handleAccessToken = async (login: string, password: string) => {
 
 //const handleUserErrors = (error: HttpErrorType) => {
 // если токен не найден, предупреждение пользователю (всплывающее окно), переход на страницу логина
+
+export const createFilters = (categories: string) => {
+  if (categories === "mountain") {
+    return 'categories.id: "ad61e3bc-ab60-4d0b-bbc6-27c1979849e6"';
+  } else if (categories === "active") {
+    return 'categories.id: "ae38c9e1-d8f8-432c-985e-4212b15f2c86"';
+  } else if (categories === "kids") {
+    return 'categories.id: "ed96a7ee-a86b-410d-a753-f0145657b8f9"';
+  } else if (categories === "city") {
+    return 'categories.id: "12e8730b-cc80-410b-8f85-ab6c6d182256"';
+  } else if (categories === "accessories") {
+    return 'categories.id: "d288c419-ba2b-4e37-a9f8-92651cd9249b"';
+  }
+};
+
+export const createQueryArgs = (categories: string) => {
+  return {
+    filter: createFilters(categories),
+  };
+};

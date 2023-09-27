@@ -2,6 +2,7 @@
 import { IProductState } from "types";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAnonymousApiRoot } from "apiRoot";
+import { createQueryArgs } from "app/controllers/controller";
 import { ByProjectKeyProductProjectionsRequestBuilder } from "@commercetools/platform-sdk/dist/declarations/src/generated/client/product-projections/by-project-key-product-projections-request-builder";
 import { CategoryPagedQueryResponse } from "@commercetools/platform-sdk";
 
@@ -13,7 +14,7 @@ const initialState: IProductState = {
 
 export const loadProducts = createAsyncThunk(
   "products/load-products",
-  async () => {
+  async (categoryId: string) => {
     return (
       getAnonymousApiRoot()
         .productProjections()
@@ -21,13 +22,14 @@ export const loadProducts = createAsyncThunk(
         //.categories()
         .get({
           queryArgs: {
-            filter: 'categories.id: "ed96a7ee-a86b-410d-a753-f0145657b8f9"',
+            ...createQueryArgs(categoryId),
+            // filter: 'categories.id: "832585fd-5dd9-4329-afaf-a5fcd7a809c4"',
             published: true,
           },
         })
         .execute()
         .then((data) => {
-          console.log("Products received", data.body.results);
+          console.log("Products received", data.body.results, categoryId);
           return data.body.results;
         })
         .catch((error) => {

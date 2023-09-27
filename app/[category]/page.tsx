@@ -22,8 +22,8 @@ export default function Category({ params: { category } }: CategoryTitle) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(loadProducts());
-  }, [dispatch]);
+    dispatch(loadProducts(category));
+  }, [dispatch, category]);
 
   return (
     <>
