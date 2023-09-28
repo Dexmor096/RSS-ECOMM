@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type LoginInputs = {
   email: string;
   password: string;
@@ -18,3 +20,10 @@ export interface IUserInfo {
   addresses: string[];
   birthDay: string;
 }
+
+export interface InfoCardProps {
+  title: string;
+  icon: string;
+  info: React.ReactElement;
+}
+

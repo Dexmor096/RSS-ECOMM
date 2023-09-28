@@ -9,6 +9,11 @@ import Grid from "@mui/material/Grid";
 import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
 import { IUserInfo } from "../../types";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import Button from "@mui/material/Button";
+import EditIcon from "@mui/icons-material/Edit";
+import { InfoCard } from "../../components/infoCard";
+import icon from "../../public/assets/icons/favorites.svg";
 
 const montserrat = Montserrat({
   weight: "900",
@@ -17,8 +22,11 @@ const montserrat = Montserrat({
 
 const Item = styled(Paper)(({ theme }) => ({
   textAlign: "start",
-  height: 60,
-  lineHeight: "60px",
+  height: "166px",
+  lineHeight: "30px",
+  padding: 30,
+  boxSizing: "content-box",
+  fontWeight: "bold",
 }));
 
 export default function Profile() {
@@ -57,18 +65,78 @@ export default function Profile() {
           textTransform="uppercase"
           fontSize={32}
           letterSpacing={4}
+          fontWeight="bold"
+          marginBottom="55px"
         >
           Личный кабинет
         </Typography>
         <Grid container spacing={3}>
-          <Grid item xs={8}>
-            <Item elevation={0}>{myInfo?.firstname}</Item>
+          <Grid item xs={4}>
+            <Item
+              elevation={0}
+              sx={{
+                display: "flex",
+                alignItems: "start",
+                gap: "7px",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <AccountCircleOutlinedIcon
+                  aria-label="avatar"
+                  color="primary"
+                  sx={{
+                    width: 62,
+                    height: 62,
+                    verticalAlign: "middle",
+                    display: "inline-block",
+                  }}
+                ></AccountCircleOutlinedIcon>
+                <Typography
+                  sx={{ fontWeight: "bold", fontSize: 14, paddingLeft: "5px" }}
+                >
+                  {myInfo?.firstname} {myInfo?.lastname}
+                </Typography>
+              </div>
+              <Typography>
+                <span style={{ color: "#969696" }}>E-mail: </span>
+                {myInfo?.email}
+              </Typography>
+              <div style={{ alignSelf: "end" }}>
+                <Button>
+                  <EditIcon></EditIcon>
+                </Button>
+                <Button
+                  size="medium"
+                  variant="text"
+                  sx={{
+                    textTransform: "capitalize",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Выйти
+                </Button>
+              </div>
+            </Item>
           </Grid>
           <Grid item xs={4}>
-            <Item elevation={0}>Item</Item>
+            <Item elevation={0}>
+              <InfoCard
+                title="Избранное"
+                icon={icon}
+                info={<div>2</div>}
+              ></InfoCard>
+            </Item>
           </Grid>
           <Grid item xs={4}>
-            <Item elevation={0}>Item</Item>
+            <Item elevation={0}>
+              <InfoCard
+                title="Избранное"
+                icon={icon}
+                info={<div>2</div>}
+              ></InfoCard>
+            </Item>
           </Grid>
           <Grid item xs={8}>
             3{" "}
