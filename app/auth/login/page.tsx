@@ -15,16 +15,24 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
+import NextLink from "next/link";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LoginInputs } from "../../../types";
 import { handleLoginUser } from "../../controllers/controller";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -46,6 +54,7 @@ export default function Login() {
 
   return (
     <Box component="form">
+      <ToastContainer />
       <Container
         disableGutters={true}
         maxWidth="xs"
@@ -154,14 +163,16 @@ export default function Login() {
           </FormControl>
           <Button
             type="submit"
-            sx={{ p: 2 }}
+            sx={{ p: 2, mt: "25px", backgroundColor: "#8933CC" }}
             variant="contained"
+            fullWidth={true}
             color="secondary"
+            className={montserrat.className}
             onClick={handleSubmit(handleLogin)}
           >
             Войти
           </Button>
-          <Link href="#" underline="none" color="inherit">
+          <Link href="/" component={NextLink} underline="none" color="inherit">
             Забыли пароль?
           </Link>
         </Stack>

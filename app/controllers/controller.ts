@@ -8,6 +8,7 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import { encodeToBase64 } from "../../helpers/encodeToBase64";
 import process from "process";
 import { LoginInputs, RegistrationInputs } from "../../types";
+import { notify } from "../../components/notify";
 
 export const handleCustomerCreating = async (
   data: RegistrationInputs,
@@ -26,8 +27,10 @@ export const handleCustomerCreating = async (
     })
     .execute()
     .then(() => {
-      console.log("Регистрация выполнена успешно!");
-      redirectFunc();
+      notify("Регистрация выполнена успешно!", "success");
+      setTimeout(() => {
+        redirectFunc();
+      }, 2000);
     })
     .catch((error) => handleRegistrationError(error));
 };
@@ -35,11 +38,13 @@ export const handleCustomerCreating = async (
 export const handleRegistrationError = (error: HttpErrorType) => {
   //todo проверить тип ошибки
   if (error.statusCode === 400) {
+    notify("Такой пользователь уже существует!", "error");
     console.error(
       "Ошибка регистрации (400). Такой пользователь уже существует!",
     );
   } else {
     console.error("An unknown error occurred:", error);
+    notify("Ошибка регистрации", "error");
   }
 };
 
@@ -59,14 +64,23 @@ export const handleLoginUser = async (
     })
     .execute()
     .then(() => {
-      console.log("Вход выполнен успешно!");
       handleAccessToken(data.email, data.password);
-      router.push("/");
+      notify("Вход выполнен успешно!", "success");
+
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     })
-    .catch((error) => {
-      if (error.statusCode == 400) {
+    .catch((error: HttpErrorType) => {
+      if (
+        error.message ==
+        "Customer account with the given credentials not found."
+      ) {
+        console.log(error.statusCode);
+        notify("Такой пользователь не найден!", "error");
         console.error("Ошибка входа (400) Такой пользователь не найден!");
       } else {
+        notify("Ошибка входа", "error");
         console.error("An unknown error occurred:", error);
       }
     });

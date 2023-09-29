@@ -1,4 +1,5 @@
-import React from 'react';
+import { ProductProjection } from "@commercetools/platform-sdk";
+import React from "react";
 
 export type LoginInputs = {
   email: string;
@@ -11,6 +12,31 @@ export interface RegistrationInputs {
   lastname: string;
   password: string;
   address: string;
+}
+export interface ButtonStyles {
+  text: string;
+  color: string;
+  border: string;
+  margin: string;
+}
+
+export interface ButtonMain {
+  text: string;
+  color: string;
+  border: string;
+  margin: string;
+}
+
+export interface SectionTitleStyles {
+  mt?: string;
+  title: string;
+  color: string;
+  width: number;
+}
+export interface IProductState {
+  status: string;
+  error: string | null;
+  list: ProductProjection[];
 }
 
 export interface IUserInfo {
