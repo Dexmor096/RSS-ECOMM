@@ -1,22 +1,33 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
-import favoritesIcon from "../public/assets/icons/favorites.svg";
 import { InfoCardProps } from "../types";
 
 export const InfoCard: React.FC<InfoCardProps> = ({ title, icon, info }) => {
   return (
-    <>
-      <div>
-        <Image src={icon} alt="" width={62} height={62}></Image>
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+        <Image src={icon} alt="icon" width={62} height={62}></Image>
         <Typography
-          sx={{ fontWeight: "bold", fontSize: 14, paddingLeft: "5px" }}
+          sx={{
+            fontWeight: "bold",
+            fontSize: 16,
+            paddingLeft: "5px",
+            letterSpacing: "1px",
+          }}
         >
-          {/*{индивидуальная информация для конкретной карточки}*/}
+          {title}
         </Typography>
       </div>
       <div>{info}</div>
-    </>
+    </div>
   );
 };
 

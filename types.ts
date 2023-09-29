@@ -24,6 +24,5 @@ export interface IUserInfo {
 export interface InfoCardProps {
   title: string;
   icon: string;
-  info: React.ReactElement;
+  info?: React.ReactElement;
 }
-

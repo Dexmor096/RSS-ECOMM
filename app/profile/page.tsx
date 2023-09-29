@@ -13,14 +13,15 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import { InfoCard } from "../../components/infoCard";
-import icon from "../../public/assets/icons/favorites.svg";
+import favoritesIcon from "../../public/assets/icons/favorites.svg";
+import ordersIcon from "../../public/assets/icons/orders.svg";
 
 const montserrat = Montserrat({
   weight: "900",
   subsets: ["latin"],
 });
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(() => ({
   textAlign: "start",
   height: "166px",
   lineHeight: "30px",
@@ -123,17 +124,32 @@ export default function Profile() {
           <Grid item xs={4}>
             <Item elevation={0}>
               <InfoCard
-                title="Избранное"
-                icon={icon}
-                info={<div>2</div>}
+                title="Мои желания"
+                icon={favoritesIcon}
+                info={
+                  <div>
+                    <div>
+                      <span style={{ color: "#969696", fontWeight: "normal" }}>
+                        Количество товаров{" "}
+                      </span>
+                      <span>5</span>
+                    </div>
+                    <div>
+                      <span style={{ color: "#969696", fontWeight: "normal" }}>
+                        Доступно к заказу{" "}
+                      </span>
+                      <span>3</span>
+                    </div>
+                  </div>
+                }
               ></InfoCard>
             </Item>
           </Grid>
           <Grid item xs={4}>
             <Item elevation={0}>
               <InfoCard
-                title="Избранное"
-                icon={icon}
+                title="Заказы"
+                icon={ordersIcon}
                 info={<div>2</div>}
               ></InfoCard>
             </Item>
