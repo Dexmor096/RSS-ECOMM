@@ -1,20 +1,17 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/header";
-import * as React from "react";
-import Footer from "../../components/footer";
-import { getMyInfo } from "../controllers/controller";
-import { Container, Paper, Typography } from "@mui/material";
-import { Montserrat } from "next/font/google";
-import Grid from "@mui/material/Grid";
-import { styled } from "@mui/system";
-import { useEffect, useState } from "react";
-import { IUserInfo } from "../../types";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import Button from "@mui/material/Button";
-import EditIcon from "@mui/icons-material/Edit";
+import Footer from "../../components/footer/footer";
 import { InfoCard } from "../../components/infoCard";
+import { getMyInfo } from "../controllers/controller";
+import { IUserInfo } from "../../types";
+import { Container, Paper, Typography, Grid, Button, Box } from "@mui/material";
+import { Montserrat } from "next/font/google";
+import { styled } from "@mui/system";
+import EditIcon from "@mui/icons-material/Edit";
 import favoritesIcon from "../../public/assets/icons/favorites.svg";
 import ordersIcon from "../../public/assets/icons/orders.svg";
+import avatarIcon from "../../public/assets/icons/avatar.svg";
 
 const montserrat = Montserrat({
   weight: "900",
@@ -46,14 +43,14 @@ export default function Profile() {
       }
     });
   }, []);
-
+  // todo to add margins left, right
   return (
     <>
       <Header />
       <Container
+        maxWidth="lg"
         disableGutters={true}
         sx={{
-          maxWidth: "1220px",
           height: "auto",
           alignItems: "center",
           justifyContent: "start",
@@ -83,42 +80,33 @@ export default function Profile() {
                 justifyContent: "space-between",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <AccountCircleOutlinedIcon
-                  aria-label="avatar"
-                  color="primary"
-                  sx={{
-                    width: 62,
-                    height: 62,
-                    verticalAlign: "middle",
-                    display: "inline-block",
-                  }}
-                ></AccountCircleOutlinedIcon>
-                <Typography
-                  sx={{ fontWeight: "bold", fontSize: 14, paddingLeft: "5px" }}
-                >
-                  {myInfo?.firstname} {myInfo?.lastname}
-                </Typography>
-              </div>
-              <Typography>
-                <span style={{ color: "#969696" }}>E-mail: </span>
-                {myInfo?.email}
-              </Typography>
-              <div style={{ alignSelf: "end" }}>
-                <Button>
-                  <EditIcon></EditIcon>
-                </Button>
-                <Button
-                  size="medium"
-                  variant="text"
-                  sx={{
-                    textTransform: "capitalize",
-                    textDecoration: "underline",
-                  }}
-                >
-                  Выйти
-                </Button>
-              </div>
+              <InfoCard
+                title={`${myInfo?.firstname} ${myInfo?.lastname}`}
+                icon={avatarIcon}
+                info={
+                  <>
+                    <Typography variant="body2">
+                      E-mail: {myInfo?.email}
+                    </Typography>
+                    <Box display="flex" justifyContent="end">
+                      <Button>
+                        <EditIcon></EditIcon>
+                      </Button>
+                      <Button
+                        size="medium"
+                        variant="text"
+                        sx={{
+                          alignSelf: "end",
+                          textTransform: "capitalize",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        Выйти
+                      </Button>
+                    </Box>
+                  </>
+                }
+              />
             </Item>
           </Grid>
           <Grid item xs={4}>
@@ -129,16 +117,30 @@ export default function Profile() {
                 info={
                   <div>
                     <div>
-                      <span style={{ color: "#969696", fontWeight: "normal" }}>
-                        Количество товаров{" "}
-                      </span>
-                      <span>5</span>
+                      <Typography
+                        style={{ color: "#969696" }}
+                        variant="body2"
+                        display="inline"
+                        gutterBottom
+                      >
+                        Количество товаров
+                      </Typography>
+                      <Typography variant="body2" display="inline">
+                        {" 4 "}
+                      </Typography>
                     </div>
                     <div>
-                      <span style={{ color: "#969696", fontWeight: "normal" }}>
-                        Доступно к заказу{" "}
-                      </span>
-                      <span>3</span>
+                      <Typography
+                        style={{ color: "#969696" }}
+                        variant="body2"
+                        display="inline"
+                        gutterBottom
+                      >
+                        Доступно к заказу
+                      </Typography>
+                      <Typography variant="body2" display="inline">
+                        {" 5 "}
+                      </Typography>
                     </div>
                   </div>
                 }
@@ -150,12 +152,18 @@ export default function Profile() {
               <InfoCard
                 title="Заказы"
                 icon={ordersIcon}
-                info={<div>2</div>}
+                info={
+                  <Typography
+                    style={{ color: "#969696" }}
+                    variant="body2"
+                    display="inline"
+                    gutterBottom
+                  >
+                    У вас пока нет заказов
+                  </Typography>
+                }
               ></InfoCard>
             </Item>
-          </Grid>
-          <Grid item xs={8}>
-            3{" "}
           </Grid>
         </Grid>
       </Container>
