@@ -23,7 +23,7 @@ import { setCategory } from "app/redux/features/category/categorySlice";
 export default function Category({ params: { category } }: CategoryTitle) {
   const dispatch = useAppDispatch();
   const categoryDispatch = useDispatch();
-  // сделать слайс категорий и передавать в стор её, а потом в компоненте categoryItem брать её и отдавать в путь
+
   useEffect(() => {
     dispatch(loadProducts(category));
     categoryDispatch(setCategory(category));
