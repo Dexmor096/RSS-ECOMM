@@ -52,7 +52,7 @@ export default function Category({ params: { category } }: CategoryTitle) {
                 >
                   {category}
                 </Typography>
-                <CardsList category={category} />
+                <CardsList />
               </Stack>
             </Container>
           </Box>
