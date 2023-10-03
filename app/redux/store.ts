@@ -1,10 +1,12 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
+import { categoryReducer } from "./features/category/categorySlice";
 import { productReducer } from "./features/products/productsSlice";
 
 export const store = configureStore({
   reducer: {
     product: productReducer,
+    category: categoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -7,15 +7,22 @@ import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
 
 import { CardActionArea, Box } from "@mui/material";
 import { ProductProjection } from "@commercetools/platform-sdk";
+import Link from "next/link";
+import { useAppSelector } from "app/redux/hooks/customHooks";
 
 export default function CardItem(props: ProductProjection) {
-  const { name, masterVariant } = props;
+  const categoryName = useAppSelector((state) => state.category);
+
+  const { name, masterVariant, slug } = props;
   const filteredPrice = masterVariant.prices?.filter(
     (obj) => obj.country === "US",
   );
   return (
     <Card sx={{ maxWidth: 345, maxHeight: 530 }}>
-      <CardActionArea>
+      <CardActionArea
+        component={Link}
+        href={`${categoryName}/${slug["en-US"]}`}
+      >
         <CardMedia
           component="img"
           height="auto"

@@ -12,7 +12,7 @@ import { Details } from "types";
 import { Provider } from "react-redux";
 import { store } from "app/redux/store";
 
-export default function Category({ params: { details } }: Details) {
+export default function Details({ params: { id } }: Details) {
   return (
     <>
       <Provider store={store}>
@@ -27,13 +27,13 @@ export default function Category({ params: { details } }: Details) {
         >
           <Container maxWidth="xl">
             <Stack>
-              <CustomBreadcrumbs current={details} />
+              <CustomBreadcrumbs current={id} />
               <Typography
                 variant="h3"
                 color="common.black"
                 sx={{ pt: 2, pb: 4 }}
               >
-                {details + " details"}
+                {id + " details"}
               </Typography>
             </Stack>
           </Container>

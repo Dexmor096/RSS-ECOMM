@@ -17,13 +17,17 @@ import { CategoryTitle } from "types";
 import { useAppDispatch } from "app/redux/hooks/customHooks";
 import { Provider } from "react-redux";
 import { store } from "app/redux/store";
+import { useDispatch } from "react-redux";
+import { setCategory } from "app/redux/features/category/categorySlice";
 
 export default function Category({ params: { category } }: CategoryTitle) {
   const dispatch = useAppDispatch();
-
+  const categoryDispatch = useDispatch();
+  // сделать слайс категорий и передавать в стор её, а потом в компоненте categoryItem брать её и отдавать в путь
   useEffect(() => {
     dispatch(loadProducts(category));
-  }, [dispatch, category]);
+    categoryDispatch(setCategory(category));
+  }, [dispatch, category, categoryDispatch]);
 
   return (
     <>
@@ -48,7 +52,7 @@ export default function Category({ params: { category } }: CategoryTitle) {
                 >
                   {category}
                 </Typography>
-                <CardsList />
+                <CardsList category={category} />
               </Stack>
             </Container>
           </Box>

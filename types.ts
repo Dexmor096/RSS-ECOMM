@@ -39,7 +39,7 @@ export interface IProductState {
 }
 export type Details = {
   params: {
-    details: string;
+    id: string;
   };
 };
 export type CategoryTitle = {
