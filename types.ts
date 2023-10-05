@@ -47,8 +47,13 @@ export interface IUserInfo {
   birthDay: string;
 }
 
-export interface InfoCardProps {
+export interface BigCardProps {
   title: string;
   icon: string;
   info?: React.ReactElement;
+}
+
+export interface SmallCardProps {
+  title: string;
+  icon: string;
 }
