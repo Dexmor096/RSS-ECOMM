@@ -16,6 +16,7 @@ import homeIcon from "../../public/assets/icons/home.svg";
 import saleIcon from "../../public/assets/icons/sale.svg";
 import moneyIcon from "../../public/assets/icons/money.svg";
 import feedBackIcon from "../../public/assets/icons/feedback.svg";
+import CustomBreadcrumbs from "../../components/breadcrumbs";
 
 const montserrat = Montserrat({
   weight: "900",
@@ -54,6 +55,7 @@ export default function Profile() {
           padding: "35px 15px 15px 15px",
         }}
       >
+        <CustomBreadcrumbs />
         <Typography
           variant="h1"
           className={montserrat.className}
@@ -61,7 +63,7 @@ export default function Profile() {
           fontSize={32}
           letterSpacing={4}
           fontWeight="bold"
-          marginBottom="55px"
+          margin=" 35px 0 55px 0"
         >
           Личный кабинет
         </Typography>
