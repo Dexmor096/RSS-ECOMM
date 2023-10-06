@@ -4,6 +4,8 @@ import Header from "../../components/header";
 import Footer from "../../components/footer/footer";
 import { BigCard } from "../../components/profileCards/bigCard";
 import { SmallCard } from "../../components/profileCards/smallCard";
+import CustomBreadcrumbs from "../../components/breadcrumbs";
+import CardSkeleton from "../../components/profileCards/cardSkeleton";
 import { getMyInfo } from "../controllers/controller";
 import { IUserInfo } from "../../types";
 import { Container, Typography, Grid, Button, Box } from "@mui/material";
@@ -16,7 +18,6 @@ import homeIcon from "../../public/assets/icons/home.svg";
 import saleIcon from "../../public/assets/icons/sale.svg";
 import moneyIcon from "../../public/assets/icons/money.svg";
 import feedBackIcon from "../../public/assets/icons/feedback.svg";
-import CustomBreadcrumbs from "../../components/breadcrumbs";
 
 const montserrat = Montserrat({
   weight: "900",
@@ -25,6 +26,8 @@ const montserrat = Montserrat({
 
 export default function Profile() {
   const [myInfo, setMyInfo] = useState<IUserInfo | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     getMyInfo().then((data) => {
       if (data) {
@@ -36,6 +39,7 @@ export default function Profile() {
           email: data.body.email,
         };
         setMyInfo(info);
+        setIsLoading(false);
       }
     });
   }, []);
@@ -69,88 +73,102 @@ export default function Profile() {
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <BigCard
-              title={`${myInfo?.firstname} ${myInfo?.lastname}`}
-              icon={avatarIcon}
-              info={
-                <>
-                  <Typography variant="body2">
-                    E-mail: {myInfo?.email}
-                  </Typography>
-                  <Typography variant="body2">
-                    Birth: {myInfo?.birthDay ? myInfo?.birthDay : "XX.XX.XXXX"}
-                  </Typography>
-                  <Box display="flex" justifyContent="end">
-                    <Button>
-                      <EditIcon></EditIcon>
-                    </Button>
-                    <Button
-                      size="medium"
-                      variant="text"
-                      sx={{
-                        alignSelf: "end",
-                        textTransform: "capitalize",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      Выйти
-                    </Button>
-                  </Box>
-                </>
-              }
-            />
+            {isLoading ? (
+              <CardSkeleton />
+            ) : (
+              <BigCard
+                title={`${myInfo?.firstname} ${myInfo?.lastname}`}
+                icon={avatarIcon}
+                info={
+                  <>
+                    <Typography variant="body2">
+                      E-mail: {myInfo?.email}
+                    </Typography>
+                    <Typography variant="body2">
+                      Birth:{" "}
+                      {myInfo?.birthDay ? myInfo?.birthDay : "XX.XX.XXXX"}
+                    </Typography>
+                    <Box display="flex" justifyContent="end">
+                      <Button>
+                        <EditIcon></EditIcon>
+                      </Button>
+                      <Button
+                        size="medium"
+                        variant="text"
+                        sx={{
+                          alignSelf: "end",
+                          textTransform: "capitalize",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        Выйти
+                      </Button>
+                    </Box>
+                  </>
+                }
+              />
+            )}
           </Grid>
           <Grid item xs={12} md={4}>
-            <BigCard
-              title="Мои желания"
-              icon={favoritesIcon}
-              info={
-                <div>
+            {" "}
+            {isLoading ? (
+              <CardSkeleton />
+            ) : (
+              <BigCard
+                title="Мои желания"
+                icon={favoritesIcon}
+                info={
                   <div>
-                    <Typography
-                      style={{ color: "#969696" }}
-                      variant="body2"
-                      display="inline"
-                      gutterBottom
-                    >
-                      Количество товаров
-                    </Typography>
-                    <Typography variant="body2" display="inline">
-                      {" 4 "}
-                    </Typography>
+                    <div>
+                      <Typography
+                        style={{ color: "#969696" }}
+                        variant="body2"
+                        display="inline"
+                        gutterBottom
+                      >
+                        Количество товаров
+                      </Typography>
+                      <Typography variant="body2" display="inline">
+                        {" 4 "}
+                      </Typography>
+                    </div>
+                    <div>
+                      <Typography
+                        style={{ color: "#969696" }}
+                        variant="body2"
+                        display="inline"
+                        gutterBottom
+                      >
+                        Доступно к заказу
+                      </Typography>
+                      <Typography variant="body2" display="inline">
+                        {" 5 "}
+                      </Typography>
+                    </div>
                   </div>
-                  <div>
-                    <Typography
-                      style={{ color: "#969696" }}
-                      variant="body2"
-                      display="inline"
-                      gutterBottom
-                    >
-                      Доступно к заказу
-                    </Typography>
-                    <Typography variant="body2" display="inline">
-                      {" 5 "}
-                    </Typography>
-                  </div>
-                </div>
-              }
-            ></BigCard>
+                }
+              ></BigCard>
+            )}
           </Grid>
           <Grid item xs={12} md={4}>
-            <BigCard
-              title="Заказы"
-              icon={ordersIcon}
-              info={
-                <Typography
-                  style={{ color: "#969696" }}
-                  variant="body2"
-                  display="inline"
-                  gutterBottom
-                >
-                  У вас пока нет заказов
-                </Typography>
-              }
-            ></BigCard>
+            {isLoading ? (
+              <CardSkeleton />
+            ) : (
+              <BigCard
+                title="Заказы"
+                icon={ordersIcon}
+                info={
+                  <Typography
+                    style={{ color: "#969696" }}
+                    variant="body2"
+                    display="inline"
+                    gutterBottom
+                  >
+                    У вас пока нет заказов
+                  </Typography>
+                }
+              ></BigCard>
+            )}
           </Grid>
           <Grid item xs={6} md={3}>
             <SmallCard title="Мои адреса" icon={homeIcon}></SmallCard>
