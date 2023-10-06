@@ -15,6 +15,7 @@ import avatarIcon from "../../public/assets/icons/avatar.svg";
 import homeIcon from "../../public/assets/icons/home.svg";
 import saleIcon from "../../public/assets/icons/sale.svg";
 import moneyIcon from "../../public/assets/icons/money.svg";
+import feedBackIcon from "../../public/assets/icons/feedback.svg";
 
 const montserrat = Montserrat({
   weight: "900",
@@ -162,7 +163,7 @@ export default function Profile() {
             ></SmallCard>
           </Grid>
           <Grid item xs={6} md={3}>
-            <SmallCard title="Обратная связь" icon={favoritesIcon}></SmallCard>
+            <SmallCard title="Обратная связь" icon={feedBackIcon}></SmallCard>
           </Grid>
         </Grid>
       </Container>
