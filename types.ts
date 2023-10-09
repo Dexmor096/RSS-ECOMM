@@ -20,6 +20,7 @@ export interface ButtonStyles {
 }
 
 export interface ButtonMain {
+  width?: string;
   text: string;
   color: string;
   border: string;
