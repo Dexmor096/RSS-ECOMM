@@ -1,23 +1,25 @@
 "use client";
 import { ReactElement } from "react";
-import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
+import {
+  Box,
+  Button,
+  Link,
+  Typography,
+  Container,
+  FilledInput,
+  InputLabel,
+  FormControl,
+  FormHelperText,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import { Montserrat } from "next/font/google";
 import NextLink from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import { FilledInput, InputLabel } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 import { handleCustomerCreating } from "../../controllers/controller";
 import { RegistrationInputs } from "../../../types";
