@@ -32,6 +32,7 @@ export default function CardItem(props: ProductProjection) {
             gutterBottom
             variant="h6"
             component="h3"
+            color=""
             style={{ fontWeight: "bold" }}
           >
             {name["en-US"]}

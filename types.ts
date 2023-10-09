@@ -1,4 +1,4 @@
-import { ProductProjection } from "@commercetools/platform-sdk";
+import { Category, ProductProjection } from "@commercetools/platform-sdk";
 
 export type LoginInputs = {
   email: string;
@@ -37,3 +37,13 @@ export interface IProductState {
   error: string | null;
   list: ProductProjection[];
 }
+export type Details = {
+  params: {
+    details: string;
+  };
+};
+export type CategoryTitle = {
+  params: {
+    category: string;
+  };
+};

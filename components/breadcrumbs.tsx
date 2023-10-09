@@ -3,7 +3,7 @@ import Link from "@mui/material/Link";
 import { Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 
-export default function CustomBreadcrumbs() {
+export default function CustomBreadcrumbs({ current }: { current: string }) {
   const breadcrumbs = [
     <Link
       underline="hover"
@@ -15,7 +15,7 @@ export default function CustomBreadcrumbs() {
       <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
     </Link>,
     <Typography key="2" color="common">
-      Breadcrumb
+      {current}
     </Typography>,
   ];
   return (
