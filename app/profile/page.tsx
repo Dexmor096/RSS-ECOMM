@@ -18,6 +18,7 @@ import homeIcon from "../../public/assets/icons/home.svg";
 import saleIcon from "../../public/assets/icons/sale.svg";
 import moneyIcon from "../../public/assets/icons/money.svg";
 import feedBackIcon from "../../public/assets/icons/feedback.svg";
+import Link from "next/link";
 
 const montserrat = Montserrat({
   weight: "900",
@@ -90,7 +91,9 @@ export default function Profile() {
                     </Typography>
                     <Box display="flex" justifyContent="end">
                       <Button>
-                        <EditIcon></EditIcon>
+                        <Link href="/profile/edit-profile">
+                          <EditIcon />
+                        </Link>
                       </Button>
                       <Button
                         size="medium"
