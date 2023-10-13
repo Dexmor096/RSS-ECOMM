@@ -19,9 +19,7 @@ import { store } from "app/redux/store";
 
 export default function Sale() {
   const dispatch = useAppDispatch();
-  const HandleLoadingProducts = () => {
-    dispatch(loadProducts());
-  };
+
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch]);
