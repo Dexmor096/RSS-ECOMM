@@ -1,18 +1,18 @@
 "use client";
 import Header from "components/header/header";
 import Footer from "components/footer/footer";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import {
+  Box,
+  Container,
+  Typography,
+  Stack,
+  ThemeProvider,
+} from "@mui/material";
 import CustomBreadcrumbs from "components/breadcrumbs";
-
 import { theme } from "../../theme";
-import { ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 import { CardsList } from "components/cards/cardsList";
 import { loadProducts } from "app/redux/features/products/productsSlice";
-
 import { useAppDispatch } from "app/redux/hooks/customHooks";
 import { Provider } from "react-redux";
 import { store } from "app/redux/store";

@@ -1,5 +1,9 @@
 import { HttpErrorType } from "@commercetools/sdk-client-v2";
-import { getAnonymousApiRoot, getAuthApiRoot } from "../../apiRoot";
+import {
+  getAnonymousApiRoot,
+  getApiRootWithRefreshToken,
+  getAuthApiRoot,
+} from "../../apiRoot";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import { encodeToBase64 } from "../../helpers/encodeToBase64";
 import process from "process";
@@ -17,6 +21,8 @@ export const handleCustomerCreating = async (
       body: {
         email: data.email,
         password: data.password,
+        firstName: data.name,
+        lastName: data.lastname,
       },
     })
     .execute()
@@ -115,3 +121,21 @@ export const handleAccessToken = async (login: string, password: string) => {
 
 //const handleUserErrors = (error: HttpErrorType) => {
 // если токен не найден, предупреждение пользователю (всплывающее окно), переход на страницу логина
+
+export const getMyInfo = async () => {
+  const token = localStorage.getItem("refresh-token");
+  if (!token) {
+    console.log("Пользователь не найден!");
+    //todo redirect to login page
+    return;
+  }
+  return getApiRootWithRefreshToken(token)
+    .me()
+    .get()
+    .execute()
+    .then((response) => {
+      const info = response;
+      return info;
+    })
+    .catch((error) => console.log("error", error));
+};

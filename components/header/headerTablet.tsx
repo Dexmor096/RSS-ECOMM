@@ -10,10 +10,14 @@ import { Stack, Link, useMediaQuery, useTheme } from "@mui/material";
 import HeaderMobile from "./headerMobile";
 import { IconSX } from "components/stylesSX";
 import { stackSX } from "./headerSX";
+import { getStringFromLS } from "../../helpers/getStringLocalStorage";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function HeaderTablet() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const session = getStringFromLS("refresh-token");
 
   if (isMobile) {
     return <HeaderMobile />;
@@ -31,9 +35,15 @@ export default function HeaderTablet() {
           spacing={{ xs: 1, md: 3, xl: 4 }}
           alignItems="center"
         >
-          <Link href="/auth/login" sx={IconSX} component={NextLink}>
-            <Image src={profileSVG} alt="button entrie" />
-          </Link>
+          {session.length > 2 ? (
+            <Link href="/profile" sx={IconSX}>
+              <PersonIcon sx={{ path: { color: "#fff" } }} />
+            </Link>
+          ) : (
+            <Link href="/auth/login" sx={IconSX}>
+              <Image src={profileSVG} alt="button login or register" />
+            </Link>
+          )}
           <Link href="/wishlist" sx={IconSX} component={NextLink}>
             <Image src={wishlistSVG} alt="button wishlist" />
           </Link>

@@ -1,4 +1,5 @@
 import { ProductProjection } from "@commercetools/platform-sdk";
+import React from "react";
 
 export type LoginInputs = {
   email: string;
@@ -37,4 +38,23 @@ export interface IProductState {
   status: string;
   error: string | null;
   list: ProductProjection[];
+}
+
+export interface IUserInfo {
+  firstname: string;
+  lastname: string;
+  email: string;
+  addresses: string[];
+  birthDay: string;
+}
+
+export interface BigCardProps {
+  title: string;
+  icon: string;
+  info?: React.ReactElement;
+}
+
+export interface SmallCardProps {
+  title: string;
+  icon: string;
 }

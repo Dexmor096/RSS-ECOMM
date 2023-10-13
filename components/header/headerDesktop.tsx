@@ -11,6 +11,8 @@ import React, { useState } from "react";
 import { IconSX, montserrat } from "components/stylesSX";
 import { headerLinkSX, tabsHeader, headerLinkCategoriesSX } from "./headerSX";
 import { categoriesHeader } from "components/categories";
+import { getStringFromLS } from "../../helpers/getStringLocalStorage";
+import PersonIcon from "@mui/icons-material/Person";
 
 const helveticaReg = localFont({
   src: "../../public/assets/fonts/helvetica.ttf",
@@ -22,6 +24,7 @@ export default function HeaderDesktop() {
   const handleChange = (event: React.SyntheticEvent, newValue: boolean) => {
     setSelectedTab(newValue);
   };
+  const session = getStringFromLS("refresh-token");
 
   return (
     <>
@@ -57,9 +60,15 @@ export default function HeaderDesktop() {
           </Link>
         </Stack>
         <Stack direction="row" spacing={{ md: 2, xl: 4 }}>
-          <Link href="/auth/login" sx={IconSX} component={NextLink}>
-            <Image src={profileSVG} alt="button entrie" />
-          </Link>
+          {session.length > 2 ? (
+            <Link href="/profile" sx={IconSX}>
+              <PersonIcon sx={{ path: { color: "#fff" } }} />
+            </Link>
+          ) : (
+            <Link href="/auth/login" sx={IconSX}>
+              <Image src={profileSVG} alt="button login or register" />
+            </Link>
+          )}
           <Link href="/wishlist" sx={IconSX} component={NextLink}>
             <Image src={wishlistSVG} alt="button wishlist" />
           </Link>

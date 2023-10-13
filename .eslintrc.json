@@ -39,6 +39,11 @@
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-var-reqiures": "off",
+    "@typescript-eslint/ban-types": ["error", {
+      "types": {
+        "OverridableComponent<SvgIconTypeMap<{}, 'svg'>>": false
+      }
+    }],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
   },
