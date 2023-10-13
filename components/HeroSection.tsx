@@ -2,9 +2,9 @@ import { Stack, Typography } from "@mui/material";
 import localFont from "next/font/local";
 import headerBg from "../public/assets/images/header-bg.webp";
 import ButtonUi from "./UI/ButtonUi";
-import Filter from "./filter/Filter";
+// import Filter from "./filter/Filter";
 
-const colorArr = ["🟢", "🔵", "🔴", "⚫"];
+// const colorArr = ["🟢", "🔵", "🔴", "⚫"];
 
 const proheroFont = localFont({
   src: "../public/assets/fonts/prohero.ttf",

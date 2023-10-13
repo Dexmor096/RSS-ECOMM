@@ -9,7 +9,6 @@ import CustomBreadcrumbs from "components/breadcrumbs";
 
 import { theme } from "../../theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { CardsList } from "components/cards/cardsList";
 import { loadProducts } from "app/redux/features/products/productsSlice";
@@ -20,9 +19,7 @@ import { store } from "app/redux/store";
 
 export default function Sale() {
   const dispatch = useAppDispatch();
-  const HandleLoadingProducts = () => {
-    dispatch(loadProducts());
-  };
+
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch]);
